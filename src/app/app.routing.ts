@@ -1,10 +1,12 @@
-import { NgModule }                 from '@angular/core';
-import { Routes,
-         RouterModule }             from '@angular/router';
+import {NgModule}                 from '@angular/core';
+import {
+    Routes,
+    RouterModule
+}             from '@angular/router';
 
 //Layouts
-import { FullLayoutComponent }      from './layouts/full-layout.component';
-import { SimpleLayoutComponent }    from './layouts/simple-layout.component';
+import {FullLayoutComponent}      from './layouts/full-layout.component';
+import {SimpleLayoutComponent}    from './layouts/simple-layout.component';
 
 export const routes: Routes = [
     {
@@ -21,23 +23,35 @@ export const routes: Routes = [
         children: [
             {
                 path: 'dashboard',
-                loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
+                loadChildren: 'app/owlvision/dashboard/dashboard.module#DashboardModule'
+            },
+            {
+                path: 'issues',
+                loadChildren: 'app/owlvision/issues/issues.module#IssuesModule'
+            },
+            {
+                path: 'events',
+                loadChildren: 'app/owlvision/events/events.module#EventsModule'
+            },
+            {
+                path: 'study-groups',
+                loadChildren: 'app/owlvision/study-groups/study-groups.module#StudyGroupsModule'
             },
             {
                 path: 'components',
-                loadChildren: 'app/components/components.module#ComponentsModule'
+                loadChildren: 'app/core-ui/components/components.module#ComponentsModule'
             },
             {
                 path: 'icons',
-                loadChildren: 'app/icons/icons.module#IconsModule'
+                loadChildren: 'app/core-ui/icons/icons.module#IconsModule'
             },
             {
                 path: 'widgets',
-                loadChildren: 'app/widgets/widgets.module#WidgetsModule'
+                loadChildren: 'app/core-ui/widgets/widgets.module#WidgetsModule'
             },
             {
                 path: 'charts',
-                loadChildren: 'app/chartjs/chartjs.module#ChartJSModule'
+                loadChildren: 'app/core-ui/chartjs/chartjs.module#ChartJSModule'
             }
         ]
     },
@@ -57,7 +71,8 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [ RouterModule.forRoot(routes) ],
-    exports: [ RouterModule ]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

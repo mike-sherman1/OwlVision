@@ -71,6 +71,55 @@
                 <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i class="icon-speedometer"></i> Dashboard <span class="tag tag-info">NEW</span></a>
             </li>
 
+            <!-- owlvision menu-->
+
+            <li class="divider"></li>
+            <li class="nav-title">
+                OwlVision
+            </li>
+            <li class="nav-item nav-dropdown" routerLinkActive="open">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-support fa-lg"></i> Issues</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/issues/post']"><i class="icon-puzzle"></i> Post a new Issue</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/issues/browse']"><i class="icon-puzzle"></i> Browse Issues</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/issues/my-issues']"><i class="icon-puzzle"></i> My Issues</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item nav-dropdown" routerLinkActive="open">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-support fa-lg"></i> Events</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/events/post']"><i class="icon-puzzle"></i> Post New</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/events/browse']"><i class="icon-puzzle"></i> Browse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/events/my-events']"><i class="icon-puzzle"></i> My Events</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item nav-dropdown" routerLinkActive="open">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-support fa-lg"></i> Study Groups</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/study-groups/post']"><i class="icon-puzzle"></i> Create New</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/study-groups/browse']"><i class="icon-puzzle"></i> Browse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/study-groups/my-study-groups']"><i class="icon-puzzle"></i> My Study Groups</a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="divider"></li>
             <li class="nav-title">
                 UI Elements
