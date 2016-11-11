@@ -2,10 +2,11 @@
 
 ## Get up and running
 
-1. `git@gitlab.com:TheLeftovers/OwlVisionFront.git` (set up your SSH keys first! instructions are given by gitlab in that screen)
-2. `npm install`
-3. `npm install angular-cli -g` to install angular-cli globally
-4. `ng serve` then navigate to http://localhost:4200
+1. Make sure you have the latest Node LTS installed.
+2. `git@gitlab.com:TheLeftovers/OwlVisionFront.git` (set up your SSH keys first! instructions are given by gitlab in that screen)
+3. `npm install`
+4. `npm install angular-cli -g` to install angular-cli globally
+5. `ng serve` then navigate to http://localhost:4200
 
 ## How Make Changes to Repo
 
