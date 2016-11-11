@@ -1,31 +1,25 @@
-# Angular2DevelopmentCLI
+# OwlVision v0.1
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.11-webpack.8.
+## Get up and running
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. `git@gitlab.com:TheLeftovers/OwlVisionFront.git` (set up your SSH keys first! instructions are given by gitlab in that screen)
+2. `npm install`
+3. `npm install angular-cli -g` to install angular-cli globally
+4. `ng serve` then navigate to http://localhost:4200
 
-## Code scaffolding
+## How Make Changes to Repo
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
+1. In your terminal, in the root directory of the project after cloning the repo, run `git branch` to ensure you are in the master branch. If you are not, then run `git checkout master` to change branches
+2. Now make sure your branch is up to date by running `git pull origin master`
+3. Now you are ready to create a new branch where you can work on new features. The following will create a new branch and change branches in one line: `git checkout -b branch_name` branch_name can be anything you want
+4. Now make modification to the code however you want.
+5. When you are ready to push them back to the repo, you must execute these operations:
+ 1. `git add . --all` to stage modified files for commit
+ 2. `git commit -m "describe your changes here in the commit message"`
+ 3. `git push origin branch_name`
+6. Now your branch will be pushed to the repo but will not have merged with the master branch yet. For this, you may either follow the link provided by gitlab in the terminal or just go into gitlab > branches and next to the branch you just updated, there will be a "merge request" button. Click it and submit it. Once it's approved it will be merged to master.
 
-## Build
+References:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). 
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Deploying to Github Pages
-
-Run `ng github-pages:deploy` to deploy to Github Pages.
-
-## Further help
-
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+[[**]Markdown Reference](https://gitlab.com/help/user/markdown)

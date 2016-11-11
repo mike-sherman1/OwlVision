@@ -1,0 +1,17 @@
+image: node:latest
+
+before_script:
+    - apt-get update -y
+    - npm install --global rimraf
+    - npm run clean
+    - npm install --global angular-cli typescript@2.0.0
+    - npm install
+    - ng build
+
+test:
+    script:
+        - echo "Build complete"
+
+# deploy:
+  # script:
+      # - npm start
