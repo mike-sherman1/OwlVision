@@ -7,8 +7,8 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "dev": "nodemon ./src/server/app.js | bistre",
-    "start": "node ./src/server/app.js",
+    "dev": "nodemon ./server/app.js | bistre",
+    "start": "node ./server/app.js",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
