@@ -1,11 +1,16 @@
-import { Component }        from '@angular/core';
+import {Component}        from '@angular/core';
+import {AngularFire, FirebaseListObservable} from "angularfire2";
 
 @Component({
     templateUrl: 'browse.component.html',
-    styles:[require('./browse.scss')]
+    styles: [require('./browse.scss')]
 })
 export class BrowseEventsComponent {
 
-    constructor() { }
+    items: FirebaseListObservable<any[]>;
+
+    constructor(af: AngularFire) {
+        this.items = af.database.list('/items');
+    }
 
 }

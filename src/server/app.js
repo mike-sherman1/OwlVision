@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var app = express();
 app.set('port', (process.env.PORT || 3000));
 
-app.use('/', express.static(__dirname + '/../../dist'));
+app.use('/', express.static(__dirname + '/../../../dist'));
 app.use('/', express.static(__dirname + '/../assets'));
 app.use('/', express.static(__dirname + '/../img'));
 
