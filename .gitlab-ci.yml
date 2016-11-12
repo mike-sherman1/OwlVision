@@ -14,7 +14,7 @@ test:
   # script:
       # - npm start
 
-#staging:
+staging:
     type: deploy
     script:
         - apt-get update -yq
