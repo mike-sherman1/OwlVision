@@ -2,9 +2,7 @@ image: node:latest
 
 before_script:
     - apt-get update -y
-    - npm install --global angular-cli typescript
     - npm install
-    - ng build
 
 test:
     script:
