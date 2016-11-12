@@ -1,0 +1,2 @@
+web: ng build
+web: node ./server/app.js
