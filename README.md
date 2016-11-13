@@ -6,7 +6,8 @@
 2. `git@gitlab.com:TheLeftovers/OwlVisionFront.git` (set up your SSH keys first! instructions are given by gitlab in that screen)
 3. `npm install`
 4. `npm install angular-cli -g` to install angular-cli globally
-5. `ng serve` then navigate to http://localhost:4200
+5. `npm install typescript -g`
+6. `ng serve` then navigate to http://localhost:4200
 
 ## How Make Changes to Repo
 
@@ -20,7 +21,7 @@
  3. `git push origin branch_name`
 6. Now your branch will be pushed to the repo but will not have merged with the master branch yet. For this, you may either follow the link provided by gitlab in the terminal or just go into gitlab > branches and next to the branch you just updated, there will be a "merge request" button. Click it and submit it. Once it's approved it will be merged to master.
 
-References:
+###References:
 
 [AngularFire2 Documentation](https://github.com/angular/angularfire2/blob/master/docs/1-install-and-setup.md): good place to gain an understanding of firebase and basic data manipulation
 
