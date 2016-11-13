@@ -22,5 +22,9 @@
 
 References:
 
+[AngularFire2 Documentation](https://github.com/angular/angularfire2/blob/master/docs/1-install-and-setup.md): good place to gain an understanding of firebase and basic data manipulation
+[Firebase SDK API](https://firebase.google.com/docs/reference/js/) AngularFire is a library on top of the firebase SDK. If you can't do something in AF2, look here.
+[Core-UI Angular2 Demo](http://coreui.io/demo/Angular2_Demo/#/dashboard): Browse the UI components to use in our project ....
+[Core-UI Demo](https://github.com/mrholek/CoreUI-Free-Bootstrap-Admin-Template/tree/master/Angular2_CLI_Full_Project/src/app): then grab the code from here for the components you liked in the demo and use them
 
 [[**]Markdown Reference](https://gitlab.com/help/user/markdown)

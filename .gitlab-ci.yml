@@ -1,23 +1,18 @@
 image: node:latest
 
-before_script:
-    - apt-get update -y
-    - npm install
+cache:
+  paths:
+    - node_modules/
 
-test:
-    script:
-        - echo "Build complete"
-
-# deploy:
-  # script:
-      # - npm start
-
-staging:
-    type: deploy
-    script:
-        - apt-get update -yq
-        - apt-get install -yqq ruby ruby-dev
-        - gem install dpl
-        - dpl --provider=heroku --app=owlvision --api-key=d84226a5-ab28-4136-98e9-543d87cf6f1b
-    only:
+deploy_production:
+  stage: deploy
+  environment: Production
+  only:
     - master
+  script:
+    - npm install -g firebase-tools
+    - npm install -g angular-cli
+    - npm install
+    - ng build --prod
+    - firebase use --token 1/TaCn8X95q-GPCJGrtHMqFj3SbEWKyItbaVfctJjmjXA production
+    - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID" --non-interactive --token 1/TaCn8X95q-GPCJGrtHMqFj3SbEWKyItbaVfctJjmjXA
