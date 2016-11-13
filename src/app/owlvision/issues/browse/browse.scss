@@ -1,0 +1,9 @@
+.issueCards {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  issue-card {
+    flex: 1 1 450px;
+    //max-width: 400px;
+  }
+}

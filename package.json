@@ -27,13 +27,13 @@
     "@angular/platform-browser-dynamic": "2.1.2",
     "@angular/router": "3.1.2",
     "@angular/upgrade": "2.1.2",
+    "@types/node": "^6.0.46",
     "angularfire2": "^2.0.0-beta.6",
     "bistre": "^1.0.1",
     "body-parser": "^1.15.2",
     "chart.js": "2.3.0",
     "core-js": "2.4.1",
     "express": "^4.14.0",
-    "firebase": "^3.6.0",
     "moment": "2.15.2",
     "morgan": "^1.7.0",
     "ng2-bootstrap": "1.1.16",
@@ -42,8 +42,7 @@
     "path": "^0.12.7",
     "rxjs": "5.0.0-rc.1",
     "ts-helpers": "1.1.2",
-    "zone.js": "0.6.26",
-    "@types/node": "^6.0.46"
+    "zone.js": "0.6.26"
   },
   "devDependencies": {
     "@types/jasmine": "2.5.37",

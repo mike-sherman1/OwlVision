@@ -2,7 +2,7 @@ import {NgModule}                     from '@angular/core';
 import {BrowserModule}                from '@angular/platform-browser';
 import {
     LocationStrategy,
-    HashLocationStrategy
+    HashLocationStrategy, CommonModule
 }         from '@angular/common';
 
 import {AppComponent}                 from './app.component';
@@ -21,6 +21,9 @@ import {AppRoutingModule}             from './app.routing';
 import {FullLayoutComponent}          from './layouts/full-layout.component';
 import {SimpleLayoutComponent}        from './layouts/simple-layout.component';
 import {AngularFireModule} from "angularfire2";
+import {AuthService} from "./services/auth/auth.service";
+import {IssueService} from "./services/issue/issue.service";
+import * as firebase from 'firebase';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAw_g0ylAQChmZrtXLz6cZ1-VUH-3t66tU",
@@ -32,6 +35,7 @@ export const firebaseConfig = {
 @NgModule({
     imports: [
         BrowserModule,
+        CommonModule,
         AppRoutingModule,
         Ng2BootstrapModule,
         ChartsModule,
@@ -46,10 +50,14 @@ export const firebaseConfig = {
         SIDEBAR_TOGGLE_DIRECTIVES,
         AsideToggleDirective
     ],
-    providers: [{
-        provide: LocationStrategy,
-        useClass: HashLocationStrategy
-    }],
+    providers: [
+        {
+            provide: LocationStrategy,
+            useClass: HashLocationStrategy
+        },
+        AuthService,
+        IssueService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,0 +1,66 @@
+<div class="card">
+    <div class="card-header">
+        <strong>{{form_title}}</strong>
+        <small>Form</small>
+    </div>
+    <div class="card-block">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group text-md-center text-sm-center">
+                <label for="isAnon">Post Anonymously?</label><br/>
+                <label class="switch switch-text switch-primary">
+                    <input id="isAnon" formControlName="isAnonymous" type="checkbox" class="switch-input" checked>
+                    <span class="switch-label" data-on="Yes" data-off="No"></span>
+                    <span class="switch-handle"></span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" formControlName="title" class="form-control" id="title"
+                       placeholder="Enter issue title">
+            </div>
+            <div class="form-group">
+                <label for="priority">Priority</label>
+                <select id="priority" formControlName="priority" class="form-control" size="1">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" formControlName="status" *ngIf="update" class="form-control" size="1">
+                    <option value="Opened">Opened</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Resolved">Resolved</option>
+                </select>
+                <span *ngIf="!update">: <strong class="red">New Issue</strong></span>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="description">Description</label>
+                <div class="col-md-9">
+                    <textarea id="description" formControlName="description" name="textarea-input" rows="9"
+                              class="form-control" placeholder="Description of issue.."></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" formControlName="location" class="form-control" id="location"
+                       placeholder="Enter issue's location">
+            </div>
+            <div class="form-group">
+                <label>Placeholder for picture upload</label>
+            </div>
+            <div class="form-group text-sm-center">
+                <button type="submit" class="btn btn-success"><i class="fa fa-magic"></i>&nbsp; Post Issue</button>
+            </div>
+            <!--/row-->
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <pre>
+            {{form.value|json}}
+        </pre>
+    </div>
+</div>

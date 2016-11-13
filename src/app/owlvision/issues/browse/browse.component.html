@@ -3,3 +3,8 @@
         <h1>Browse Issues</h1>
     </div>
 </div>
+<div class="row">
+    <div class="issueCards">
+        <issue-card *ngFor="let issue of issues | async" class="issue-card" [issue]="issue"></issue-card>
+    </div>
+</div>
