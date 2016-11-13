@@ -16,7 +16,7 @@ export class IssueService {
     constructor(public af: AngularFire) {
 
         this.issues = af.database.list('/issues/');
-        this.issuepics = firebase.storage().ref('/issuepics/');
+        // this.issuepics = firebase.storage().ref('/issuepics/');
 
     }
 

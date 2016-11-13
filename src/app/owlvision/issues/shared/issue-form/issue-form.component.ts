@@ -3,6 +3,8 @@ import {FormGroup, FormBuilder, Validators}                 from '@angular/forms
 import {Issue} from "../../../../models/issue";
 import {IssueService} from "../../../../services/issue/issue.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../../services/auth/auth.service";
+import {AngularFire} from "angularfire2";
 @Component({
     selector: 'issue-form',
     template: require('./issue-form.component.html'),
@@ -16,7 +18,20 @@ export class IssueFormComponent implements OnInit {
     update: boolean = false;
     form_title: string = 'New Issue';
 
-    constructor(private fb: FormBuilder, private _issueService: IssueService, private _router: Router) {
+    displayName: string;
+    email: string;
+    uid: string;
+
+    constructor(private fb: FormBuilder, private _issueService: IssueService, private _router: Router, private _authService: AuthService, private _af: AngularFire) {
+
+        _af.auth.subscribe(auth=> {
+            console.log(auth);
+            if (auth.google) {
+                this.displayName = auth.google.displayName;
+                this.email = auth.google.email;
+                this.uid = auth.google.uid;
+            }
+        })
 
     }
 
@@ -32,6 +47,8 @@ export class IssueFormComponent implements OnInit {
     newForm(event_id = '') {
         return this.fb.group({
             title: '',
+            name: '',
+            email: '',
             author: '',
             priority: 'Low',
             status: 'Opened',
@@ -43,6 +60,7 @@ export class IssueFormComponent implements OnInit {
     }
 
     onSubmit() {
+        this.form.patchValue({name: this.displayName, email: this.email, author: this.uid});
         this._issueService.createIssue(this.form.value).then(res=> {
             this._router.navigate(['/issues']);
         });

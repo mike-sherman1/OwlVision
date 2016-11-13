@@ -1,14 +1,16 @@
 import {Injectable} from '@angular/core';
 import {AuthProviders, AuthMethods, FirebaseAuth, FirebaseAuthState} from 'angularfire2';
+import {Router} from "@angular/router";
 
 
 @Injectable()
 export class AuthService {
     private authState: FirebaseAuthState = null;
 
-    constructor(public auth$: FirebaseAuth) {
+    constructor(public auth$: FirebaseAuth, private _router: Router) {
         auth$.subscribe((state: FirebaseAuthState) => {
             this.authState = state;
+            if (!this.authenticated) _router.navigate(['/']);
         });
     }
 
@@ -48,4 +50,5 @@ export class AuthService {
     signOut(): void {
         this.auth$.logout();
     }
+
 }

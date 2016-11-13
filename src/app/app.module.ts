@@ -20,16 +20,20 @@ import {AppRoutingModule}             from './app.routing';
 //Layouts
 import {FullLayoutComponent}          from './layouts/full-layout.component';
 import {SimpleLayoutComponent}        from './layouts/simple-layout.component';
-import {AngularFireModule} from "angularfire2";
-import {AuthService} from "./services/auth/auth.service";
-import {IssueService} from "./services/issue/issue.service";
-import * as firebase from 'firebase';
+import {AngularFireModule, AuthProviders, AuthMethods} from "angularfire2";
+import {AuthService, AuthGuard, IssueService} from "./services";
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAw_g0ylAQChmZrtXLz6cZ1-VUH-3t66tU",
     authDomain: "owlvision-be46e.firebaseapp.com",
     databaseURL: "https://owlvision-be46e.firebaseio.com",
     storageBucket: "owlvision-be46e.appspot.com"
+};
+
+export const myFirebaseAuthConfig =
+{
+    provider: AuthProviders.Google,
+    method: AuthMethods.Popup
 };
 
 @NgModule({
@@ -39,7 +43,7 @@ export const firebaseConfig = {
         AppRoutingModule,
         Ng2BootstrapModule,
         ChartsModule,
-        AngularFireModule.initializeApp(firebaseConfig)
+        AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
     ],
     declarations: [
         AppComponent,
@@ -56,6 +60,7 @@ export const firebaseConfig = {
             useClass: HashLocationStrategy
         },
         AuthService,
+        AuthGuard,
         IssueService
     ],
     bootstrap: [AppComponent]

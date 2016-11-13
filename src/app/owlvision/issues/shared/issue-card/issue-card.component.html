@@ -7,7 +7,10 @@
     <div class="card-block">
         <ul>
             <li>
-                Author: {{issue.isAnonymous ? 'Anonymous' : issue.author}}
+                Author: {{issue.isAnonymous ? 'Anonymous' : issue.name}}
+            </li>
+            <li>
+                Email: {{issue.email}}
             </li>
             <li>
                 Location: {{issue.location}}

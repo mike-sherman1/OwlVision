@@ -7,6 +7,7 @@ import {
 //Layouts
 import {FullLayoutComponent}      from './layouts/full-layout.component';
 import {SimpleLayoutComponent}    from './layouts/simple-layout.component';
+import {AuthGuard} from "./services/auth-guard/auth-guard.service";
 
 export const routes: Routes = [
     {
@@ -17,6 +18,7 @@ export const routes: Routes = [
     {
         path: '',
         component: FullLayoutComponent,
+        canActivate: [AuthGuard],
         data: {
             title: 'Home'
         },
@@ -54,6 +56,14 @@ export const routes: Routes = [
                 loadChildren: 'app/core-ui/chartjs/chartjs.module#ChartJSModule'
             }
         ]
+    },
+    {
+        path: 'auth',
+        component: SimpleLayoutComponent,
+        data: {
+            title: 'Authorization'
+        },
+        loadChildren: 'app/owlvision/auth/auth.module#AuthModule'
     },
     {
         path: 'pages',
