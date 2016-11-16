@@ -4,14 +4,12 @@ import { Routes,
 
 import { p404Component }            from './404.component';
 import { p500Component }            from './500.component';
-import { LoginComponent }           from './login.component';
-import { RegisterComponent }        from './register.component';
 
 const routes: Routes = [
     {
         path: '',
         data: {
-            title: 'Example Pages'
+            title: 'Error'
         },
         children: [
             {
@@ -27,20 +25,6 @@ const routes: Routes = [
                 data: {
                     title: 'Page 500'
                 }
-            },
-            {
-                path: 'login',
-                component: LoginComponent,
-                data: {
-                    title: 'Login Page'
-                }
-            },
-            {
-                path: 'register',
-                component: RegisterComponent,
-                data: {
-                    title: 'Register Page'
-                }
             }
         ]
     }
@@ -50,4 +34,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class PagesRoutingModule {}
+export class ErrorsRoutingModule {}

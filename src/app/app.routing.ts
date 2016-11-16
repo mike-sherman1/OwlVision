@@ -66,15 +66,15 @@ export const routes: Routes = [
         loadChildren: 'app/owlvision/auth/auth.module#AuthModule'
     },
     {
-        path: 'pages',
+        path: 'errors',
         component: SimpleLayoutComponent,
         data: {
-            title: 'Pages'
+            title: 'Errors'
         },
         children: [
             {
                 path: '',
-                loadChildren: 'app/owlvision/pages/pages.module#PagesModule',
+                loadChildren: 'app/owlvision/errors/errors.module#ErrorsModule',
             }
         ]
     }

@@ -28,7 +28,8 @@
                 <a class="nav-link" href="#"><i class="icon-location-pin"></i></a>
             </li>
             <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle>
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false" dropdownToggle>
                     <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                     <span class="hidden-md-down">admin</span>
                 </a>
@@ -38,10 +39,14 @@
                         <strong>Account</strong>
                     </div>
 
-                    <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span class="tag tag-info">42</span></a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="tag tag-success">42</span></a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="tag tag-danger">42</span></a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span class="tag tag-warning">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span
+                            class="tag tag-info">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span
+                            class="tag tag-success">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span
+                            class="tag tag-danger">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span
+                            class="tag tag-warning">42</span></a>
 
                     <div class="dropdown-header text-xs-center">
                         <strong>Settings</strong>
@@ -49,7 +54,8 @@
 
                     <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
                     <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="tag tag-default">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span
+                            class="tag tag-default">42</span></a>
                     <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="tag tag-primary">42</span></a>
                     <div class="divider"></div>
                     <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a>
@@ -68,7 +74,8 @@
     <nav class="sidebar-nav">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i class="icon-speedometer"></i> Dashboard <span class="tag tag-info">NEW</span></a>
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i
+                        class="icon-speedometer"></i> Dashboard <span class="tag tag-info">NEW</span></a>
             </li>
 
             <!-- owlvision menu-->
@@ -81,13 +88,16 @@
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-support fa-lg"></i> Issues</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/issues/post']"><i class="icon-puzzle"></i> Post a new Issue</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/issues/post']"><i
+                                class="icon-puzzle"></i> Post a new Issue</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/issues/browse']"><i class="icon-puzzle"></i> Browse Issues</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/issues/browse']"><i
+                                class="icon-puzzle"></i> Browse Issues</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/issues/my-issues']"><i class="icon-puzzle"></i> My Issues</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/issues/my-issues']"><i
+                                class="icon-puzzle"></i> My Issues</a>
                     </li>
                 </ul>
             </li>
@@ -95,13 +105,16 @@
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-support fa-lg"></i> Events</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/events/post']"><i class="icon-puzzle"></i> Post New</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/events/post']"><i
+                                class="icon-puzzle"></i> Post New</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/events/browse']"><i class="icon-puzzle"></i> Browse</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/events/browse']"><i
+                                class="icon-puzzle"></i> Browse</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/events/my-events']"><i class="icon-puzzle"></i> My Events</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/events/my-events']"><i
+                                class="icon-puzzle"></i> My Events</a>
                     </li>
                 </ul>
             </li>
@@ -109,13 +122,33 @@
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-support fa-lg"></i> Study Groups</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/study-groups/post']"><i class="icon-puzzle"></i> Create New</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/study-groups/post']"><i
+                                class="icon-puzzle"></i> Create New</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/study-groups/browse']"><i class="icon-puzzle"></i> Browse</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/study-groups/browse']"><i
+                                class="icon-puzzle"></i> Browse</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/study-groups/my-study-groups']"><i class="icon-puzzle"></i> My Study Groups</a>
+                        <a class="nav-link" routerLinkActive="active"
+                           [routerLink]="['/study-groups/my-study-groups']"><i class="icon-puzzle"></i> My Study Groups</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item nav-dropdown" routerLinkActive="open">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-support fa-lg"></i> Auth</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/auth/login']"><i
+                                class="icon-puzzle"></i> Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" style="cursor:pointer" (click)="authService.signOut()"><i
+                                class="icon-puzzle"></i> Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/auth/register']"><i
+                                class="icon-puzzle"></i> Register</a>
                     </li>
                 </ul>
             </li>
@@ -128,25 +161,32 @@
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Components</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/buttons']"><i class="icon-puzzle"></i> Buttons</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/buttons']"><i
+                                class="icon-puzzle"></i> Buttons</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="icon-puzzle"></i> Social Buttons</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i
+                                class="icon-puzzle"></i> Social Buttons</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/cards']"><i class="icon-puzzle"></i> Cards</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/cards']"><i
+                                class="icon-puzzle"></i> Cards</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/forms']"><i class="icon-puzzle"></i> Forms</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/forms']"><i
+                                class="icon-puzzle"></i> Forms</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/switches']"><i class="icon-puzzle"></i> Switches</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/switches']"><i
+                                class="icon-puzzle"></i> Switches</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/tables']"><i class="icon-puzzle"></i> Tables</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/tables']"><i
+                                class="icon-puzzle"></i> Tables</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/tabs']"><i class="icon-puzzle"></i> Tabs</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/tabs']"><i
+                                class="icon-puzzle"></i> Tabs</a>
                     </li>
                 </ul>
             </li>
@@ -154,18 +194,22 @@
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> Icons</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/icons/font-awesome']"><i class="icon-star"></i> Font Awesome</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/icons/font-awesome']"><i
+                                class="icon-star"></i> Font Awesome</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/icons/simple-line-icons']"><i class="icon-star"></i> Simple Line Icons</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/icons/simple-line-icons']"><i
+                                class="icon-star"></i> Simple Line Icons</a>
                     </li>
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" [routerLink]="['/widgets']"><i class="icon-calculator"></i> Widgets <span class="tag tag-info">NEW</span></a>
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/widgets']"><i
+                        class="icon-calculator"></i> Widgets <span class="tag tag-info">NEW</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" [routerLink]="['/charts']"><i class="icon-pie-chart"></i> Charts</a>
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/charts']"><i class="icon-pie-chart"></i>
+                    Charts</a>
             </li>
             <li class="divider"></li>
             <li class="nav-title">
@@ -175,16 +219,12 @@
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> Pages</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/login']"><i class="icon-star"></i> Login</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/errors/404']"><i
+                                class="icon-star"></i> Error 404</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/register']"><i class="icon-star"></i> Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/404']"><i class="icon-star"></i> Error 404</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/500']"><i class="icon-star"></i> Error 500</a>
+                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/errors/500']"><i
+                                class="icon-star"></i> Error 500</a>
                     </li>
                 </ul>
             </li>
@@ -204,7 +244,8 @@
         <li class="breadcrumb-menu">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                 <a class="btn btn-secondary" href="#"><i class="icon-speech"></i></a>
-                <a class="btn btn-secondary" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+                <a class="btn btn-secondary" [routerLink]="['/dashboard']"><i class="icon-graph"></i>
+                    &nbsp;Dashboard</a>
                 <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
             </div>
         </li>
@@ -281,7 +322,8 @@
             <hr class="mx-1 my-0">
             <div class="callout callout-success m-0 py-1">
                 <div>
-                    <strong>#10 Startups.Garden</strong>Meetup</div>
+                    <strong>#10 Startups.Garden</strong>Meetup
+                </div>
                 <small class="text-muted mr-1"><i class="icon-calendar"></i>&nbsp; 1 - 3pm</small>
                 <small class="text-muted"><i class="icon-location-pin"></i>&nbsp; Palo Alto, CA</small>
             </div>
@@ -334,7 +376,9 @@
                         <small class="text-muted float-xs-right mt-q">1:52 PM</small>
                     </div>
                     <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
+                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt...
+                    </small>
                 </div>
                 <hr>
                 <div class="message">
@@ -349,7 +393,9 @@
                         <small class="text-muted float-xs-right mt-q">1:52 PM</small>
                     </div>
                     <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
+                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt...
+                    </small>
                 </div>
                 <hr>
                 <div class="message">
@@ -364,7 +410,9 @@
                         <small class="text-muted float-xs-right mt-q">1:52 PM</small>
                     </div>
                     <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
+                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt...
+                    </small>
                 </div>
                 <hr>
                 <div class="message">
@@ -379,7 +427,9 @@
                         <small class="text-muted float-xs-right mt-q">1:52 PM</small>
                     </div>
                     <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
+                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt...
+                    </small>
                 </div>
                 <hr>
                 <div class="message">
@@ -394,7 +444,9 @@
                         <small class="text-muted float-xs-right mt-q">1:52 PM</small>
                     </div>
                     <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
+                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt...
+                    </small>
                 </div>
             </div>
         </tab>
@@ -415,7 +467,9 @@
                         </label>
                     </div>
                     <div>
-                        <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small>
+                        <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </small>
                     </div>
                 </div>
 
@@ -430,7 +484,9 @@
                         </label>
                     </div>
                     <div>
-                        <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small>
+                        <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </small>
                     </div>
                 </div>
 
