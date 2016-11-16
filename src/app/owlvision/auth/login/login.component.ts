@@ -20,4 +20,8 @@ export class LoginComponent {
         });
     }
 
+    goToRegistration() {
+        this._router.navigate(['/auth/register']);
+    }
+
 }

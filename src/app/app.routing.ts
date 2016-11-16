@@ -74,7 +74,7 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
-                loadChildren: 'app/pages/pages.module#PagesModule',
+                loadChildren: 'app/owlvision/pages/pages.module#PagesModule',
             }
         ]
     }
