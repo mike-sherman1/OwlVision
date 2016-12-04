@@ -5,7 +5,7 @@ import 'rxjs';
 // firebase/angularfire
 import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 
-import {Issue} from "../../models/issue";
+import {Issue} from "../models/issue";
 
 @Injectable()
 export class IssueService {

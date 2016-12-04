@@ -2,50 +2,63 @@
     <div class="d-100vh-va-middle">
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <div class="card mx-2">
+                <form form [formGroup]="form" (ngSubmit)="onSubmit()" class="card mx-2">
                     <div class="card-block p-2">
-                        <h1>Register</h1>
-                        <p class="text-muted">Create your account</p>
-                        <div class="input-group mb-1">
-                            <span class="input-group-addon"><i class="icon-user"></i>
-                            </span>
-                            <input type="text" class="form-control" placeholder="Username">
+                        <h1>Profile Set Up</h1>
+                        <p class="text-muted"></p>
+                        <div class="form-group row">
+                            <label class="col-md-4 form-control-label">Student or Administrator?</label>
+                            <div class="col-md-8">
+                                <div class="radio">
+                                    <label for="student">
+                                        <input type="radio" id="student" formControlName="type"
+                                               value="student">Student
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="admin">
+                                        <input type="radio" id="admin" formControlName="type"
+                                               value="admin">Administrator
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="input-group mb-1">
-                            <span class="input-group-addon">@</span>
-                            <input type="text" class="form-control" placeholder="Email">
+                        <div class="form-group row">
+                            <p>What Classes Are You Taking?</p>
+                            <div formArrayName="classes">
+                                <div *ngFor="let aclass of classArr.value; let i=index">
+                                    <div class="form-group row" [formGroupName]="i">
+                                        <div class="col-sm-12">
+                                            <label>Subject</label>
+                                            <select formControlName="subject" class="form-control">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                                <option>7</option>
+                                                <option>8</option>
+                                                <option>9</option>
+                                                <option>10</option>
+                                                <option>11</option>
+                                                <option>12</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary" (click)="addClass()"><i
+                                    class="fa fa-plus"></i>&nbsp; Add Class
+                            </button>
                         </div>
-
-                        <div class="input-group mb-1">
-                            <span class="input-group-addon"><i class="icon-lock"></i>
-                            </span>
-                            <input type="password" class="form-control" placeholder="Password">
-                        </div>
-
-                        <div class="input-group mb-2">
-                            <span class="input-group-addon"><i class="icon-lock"></i>
-                            </span>
-                            <input type="password" class="form-control" placeholder="Repeat password">
-                        </div>
-
                         <button type="button" class="btn btn-block btn-success">Create Account</button>
                     </div>
-                    <div class="card-footer p-2">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <button class="btn btn-block btn-facebook" type="button">
-                                    <span>facebook</span>
-                                </button>
-                            </div>
-                            <div class="col-xs-6">
-                                <button class="btn btn-block btn-twitter" type="button">
-                                    <span>twitter</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <pre>
+                        {{ form.value | json }}
+                    </pre>
+                </form>
             </div>
         </div>
     </div>

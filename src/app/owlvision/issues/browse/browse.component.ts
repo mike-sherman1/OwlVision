@@ -1,7 +1,7 @@
 import { Component }        from '@angular/core';
 import {FirebaseListObservable, AngularFire} from "angularfire2";
 import {Router} from "@angular/router";
-import {IssueService} from "../../../services/issue/issue.service";
+import {IssueService} from "../../../services/issue.service";
 
 @Component({
     templateUrl: 'browse.component.html',

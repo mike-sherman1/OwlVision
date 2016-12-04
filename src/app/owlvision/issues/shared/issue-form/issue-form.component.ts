@@ -1,9 +1,9 @@
 import {Component, Input, OnInit, Inject}  from '@angular/core';
 import {FormGroup, FormBuilder, Validators}                 from '@angular/forms';
 import {Issue} from "../../../../models/issue";
-import {IssueService} from "../../../../services/issue/issue.service";
+import {IssueService} from "../../../../services/issue.service";
 import {Router} from "@angular/router";
-import {AuthService} from "../../../../services/auth/auth.service";
+import {AuthService} from "../../../../services/auth.service";
 import {AngularFire} from "angularfire2";
 @Component({
     selector: 'issue-form',

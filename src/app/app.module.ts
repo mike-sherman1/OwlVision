@@ -21,7 +21,7 @@ import {AppRoutingModule}             from './app.routing';
 import {FullLayoutComponent}          from './layouts/full-layout.component';
 import {SimpleLayoutComponent}        from './layouts/simple-layout.component';
 import {AngularFireModule, AuthProviders, AuthMethods} from "angularfire2";
-import {AuthService, AuthGuard, IssueService} from "./services";
+import {AuthService, AuthGuard, IssueService, UserService} from "./services";
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAw_g0ylAQChmZrtXLz6cZ1-VUH-3t66tU",
@@ -31,10 +31,10 @@ export const firebaseConfig = {
 };
 
 export const myFirebaseAuthConfig =
-{
-    provider: AuthProviders.Google,
-    method: AuthMethods.Popup
-};
+    {
+        provider: AuthProviders.Google,
+        method: AuthMethods.Popup
+    };
 
 @NgModule({
     imports: [
@@ -61,7 +61,8 @@ export const myFirebaseAuthConfig =
         },
         AuthService,
         AuthGuard,
-        IssueService
+        IssueService,
+        UserService
     ],
     bootstrap: [AppComponent]
 })

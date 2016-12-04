@@ -7,7 +7,7 @@ import {
 //Layouts
 import {FullLayoutComponent}      from './layouts/full-layout.component';
 import {SimpleLayoutComponent}    from './layouts/simple-layout.component';
-import {AuthGuard} from "./services/auth-guard/auth-guard.service";
+import {AuthGuard} from "./services/auth-guard.service";
 
 export const routes: Routes = [
     {

@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, Inject}  from '@angular/core';
 import {FormGroup, FormBuilder, Validators}                 from '@angular/forms';
 import {Issue} from "../../../../models/issue";
-import {IssueService} from "../../../../services/issue/issue.service";
+import {IssueService} from "../../../../services/issue.service";
 @Component({
     selector: 'issue-card',
     template: require('./issue-card.component.html'),
