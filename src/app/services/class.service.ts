@@ -5,7 +5,7 @@ import {Http, Headers} from "@angular/http";
 @Injectable()
 export class ClassService {
 
-    private url: string = "http://owlvision.herokuapp.com/classes";
+    private url: string = "https://owlvision.herokuapp.com/classes";
 
     constructor(private _http:Http) {
     }
