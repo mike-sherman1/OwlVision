@@ -17,8 +17,8 @@ export class AuthGuard implements CanActivate {
             .do(authenticated => {
                 if (!authenticated) this._router.navigate(['/auth/login']);
                 else {
-                    this._userService.profile.subscribe(prof => {
-                        if(!prof.$val){
+                    this._userService.getProfile().subscribe(prof => {
+                        if (!prof.$exists()) {
                             this._router.navigate(['/auth/register']);
                         }
                     })

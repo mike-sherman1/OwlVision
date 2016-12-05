@@ -10,7 +10,6 @@ export class AuthService {
     constructor(public auth$: FirebaseAuth, private _router: Router) {
         auth$.subscribe((state: FirebaseAuthState) => {
             this.authState = state;
-            console.log('auth', this.authState);
             if (!this.authenticated) _router.navigate(['/auth/login']);
         });
     }

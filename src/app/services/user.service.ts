@@ -10,14 +10,25 @@ import {AuthService} from "./auth.service";
 @Injectable()
 export class UserService {
 
-    profile:FirebaseObjectObservable<any>;
+    profile: FirebaseObjectObservable<any>;
+    profileList: FirebaseListObservable<any>;
     issuepics;
 
-    constructor(public af: AngularFire, private _authService:AuthService) {
+    constructor(public af: AngularFire, private _authService: AuthService) {
+        this.profileList = this.af.database.list('/profiles/');
 
-        this.profile = af.database.object('/profiles/'+this._authService.id);
-        // this.issuepics = firebase.storage().ref('/issuepics/');
+    }
 
+    getProfile() {
+        this.profile = this.af.database.object('/profiles/' + this._authService.id);
+        return this.profile;
+    }
+
+    createUser(profile: Profile) {
+        let userId = this._authService.id;
+        let a = this.af.database.object('/profiles/' + userId + '/');
+        return firebase.database().ref('profiles/' + userId).set(profile);
+        // return this.profileList.object.set(profile);
     }
 
     // /**

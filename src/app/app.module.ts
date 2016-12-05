@@ -21,7 +21,8 @@ import {AppRoutingModule}             from './app.routing';
 import {FullLayoutComponent}          from './layouts/full-layout.component';
 import {SimpleLayoutComponent}        from './layouts/simple-layout.component';
 import {AngularFireModule, AuthProviders, AuthMethods} from "angularfire2";
-import {AuthService, AuthGuard, IssueService, UserService} from "./services";
+import {AuthService, AuthGuard, IssueService, UserService, ClassService} from "./services";
+import {HttpModule} from "@angular/http";
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAw_g0ylAQChmZrtXLz6cZ1-VUH-3t66tU",
@@ -43,6 +44,7 @@ export const myFirebaseAuthConfig =
         AppRoutingModule,
         Ng2BootstrapModule,
         ChartsModule,
+        HttpModule,
         AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
     ],
     declarations: [
@@ -62,7 +64,8 @@ export const myFirebaseAuthConfig =
         AuthService,
         AuthGuard,
         IssueService,
-        UserService
+        UserService,
+        ClassService
     ],
     bootstrap: [AppComponent]
 })
