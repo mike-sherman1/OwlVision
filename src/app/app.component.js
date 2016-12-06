@@ -6,23 +6,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-require("rxjs");
-var issue_1 = require("../models/issue");
-var IssueService = (function () {
-    function IssueService(af) {
-        this.af = af;
-        this.issues = af.database.list('/issues/');
-        // this.issuepics = firebase.storage().ref('/issuepics/');
+var AppComponent = (function () {
+    function AppComponent() {
     }
-    IssueService.prototype.createIssue = function (issue) {
-        // Set basic user profile defaults
-        issue = new issue_1.Issue(issue);
-        // Save user profile
-        return this.issues.push(issue);
-    };
-    return IssueService;
+    return AppComponent;
 }());
-IssueService = __decorate([
-    core_1.Injectable()
-], IssueService);
-exports.IssueService = IssueService;
+AppComponent = __decorate([
+    core_1.Component({
+        selector: 'body',
+        template: '<router-outlet></router-outlet>'
+    })
+], AppComponent);
+exports.AppComponent = AppComponent;

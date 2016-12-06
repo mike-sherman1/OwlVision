@@ -5,26 +5,32 @@ import {IssueService} from "../../../../services/issue.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../../services/auth.service";
 import {AngularFire} from "angularfire2";
+import {SGService} from "../../../../services/studygroup.service";
+import {BuildingListService} from "../../../../services/building.service";
+// import {BuildingListService, SGService} from "../../../../services";
 @Component({
-    selector: 'issue-form',
-    template: require('./issue-form.component.html'),
-    styles: [require('./issue-form.component.scss')],
+    selector: 'sg-form',
+    template: require('./sg-form.component.html'),
+    styles: [require('./sg-form.component.scss')],
 })
-export class IssueFormComponent implements OnInit {
+export class SGFormComponent implements OnInit {
 
-    @Input() issue: Issue;
+    @Input() studyGroup: Issue;
     form: FormGroup;
     display: boolean = false;
     update: boolean = false;
-    form_title: string = 'New Issue';
+    form_title: string = 'New Study Group';
 
     displayName: string;
     email: string;
     uid: string;
 
-    constructor(private fb: FormBuilder, private _issueService: IssueService, private _router: Router, private _authService: AuthService, private _af: AngularFire) {
+    locList: any[] = [];
+    nameList: any[] = [];
 
-        _af.auth.subscribe(auth=> {
+    constructor(private fb: FormBuilder, private _studyGroupService: SGService, private _router: Router, private _authService: AuthService, private _af: AngularFire, private _bldgService: BuildingListService) {
+
+        _af.auth.subscribe(auth => {
             console.log(auth.auth);
             if (auth.auth) {
                 this.displayName = auth.auth.displayName;
@@ -37,10 +43,10 @@ export class IssueFormComponent implements OnInit {
 
     ngOnInit() {
         this.form = this.newForm();
-        if (this.issue !== undefined) {
-            this.issue = new Issue(this.issue);
+        if (this.studyGroup !== undefined) {
+            this.studyGroup = new Issue(this.studyGroup);
             this.update = true;
-            this.form.setValue(this.issue);
+            this.form.setValue(this.studyGroup);
         }
     }
 
@@ -50,20 +56,52 @@ export class IssueFormComponent implements OnInit {
             name: '',
             email: '',
             author: '',
-            priority: 'Low',
-            status: 'Opened',
             description: '',
-            location: '',
-            picture: '',
-            isAnonymous: false
+            location: this.fb.group({
+                type: '',
+                code: '',
+                name: '',
+                room: '',
+                extra: ''
+            }),
+            time:this.fb.group({
+                date:'',
+                start:'',
+                end:''
+            })
         });
     }
 
     onSubmit() {
         this.form.patchValue({name: this.displayName, email: this.email, author: this.uid});
-        this._issueService.createIssue(this.form.value).then(res=> {
-            this._router.navigate(['/issues']);
+        this._studyGroupService.createIssue(this.form.value).then(res => {
+            this._router.navigate(['/study-groups']);
         });
+    }
+
+    getLocList(type: string) {
+        switch (type) {
+            case 'bcode':
+                this.locList = this._bldgService.getDistinctBldgCodes();
+                this.clearLoc();
+                break;
+            case 'bname':
+                this.locList = this._bldgService.getDistinctBldgNames();
+                this.clearLoc();
+                break;
+            case 'other':
+                this.clearLoc();
+                break;
+        }
+    }
+
+    getNameList($event){
+        this.nameList = this._bldgService.getBldgNamesByCode($event);
+        if(this.nameList.length === 1) this.form.patchValue({location:{name:this.nameList[0]}});
+    }
+
+    clearLoc(){
+        this.form.patchValue({location:{code:'',name:'',room:'',extra:''}});
     }
 
     // saveAndReturn() {

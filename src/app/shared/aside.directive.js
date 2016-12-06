@@ -6,23 +6,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-require("rxjs");
-var issue_1 = require("../models/issue");
-var IssueService = (function () {
-    function IssueService(af) {
-        this.af = af;
-        this.issues = af.database.list('/issues/');
-        // this.issuepics = firebase.storage().ref('/issuepics/');
+/**
+* Allows the aside to be toggled via click.
+*/
+var AsideToggleDirective = (function () {
+    function AsideToggleDirective() {
     }
-    IssueService.prototype.createIssue = function (issue) {
-        // Set basic user profile defaults
-        issue = new issue_1.Issue(issue);
-        // Save user profile
-        return this.issues.push(issue);
+    AsideToggleDirective.prototype.toggleOpen = function ($event) {
+        $event.preventDefault();
+        document.querySelector('body').classList.toggle('aside-menu-open');
     };
-    return IssueService;
+    return AsideToggleDirective;
 }());
-IssueService = __decorate([
-    core_1.Injectable()
-], IssueService);
-exports.IssueService = IssueService;
+__decorate([
+    core_1.HostListener('click', ['$event'])
+], AsideToggleDirective.prototype, "toggleOpen", null);
+AsideToggleDirective = __decorate([
+    core_1.Directive({
+        selector: '.aside-toggle',
+    })
+], AsideToggleDirective);
+exports.AsideToggleDirective = AsideToggleDirective;

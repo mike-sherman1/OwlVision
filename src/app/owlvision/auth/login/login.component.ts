@@ -13,7 +13,6 @@ export class LoginComponent {
 
     signInWithGoogle() {
         this._authService.signInWithGoogle().then(res=> {
-            console.log(res);
             this._router.navigate(['/']);
         }, error=> {
             console.log(error);

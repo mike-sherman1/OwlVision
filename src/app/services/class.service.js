@@ -6,23 +6,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-require("rxjs");
-var issue_1 = require("../models/issue");
-var IssueService = (function () {
-    function IssueService(af) {
-        this.af = af;
-        this.issues = af.database.list('/issues/');
-        // this.issuepics = firebase.storage().ref('/issuepics/');
+var ClassService = (function () {
+    function ClassService(_http) {
+        this._http = _http;
+        this.url = "https://owlvision.herokuapp.com/classes";
     }
-    IssueService.prototype.createIssue = function (issue) {
-        // Set basic user profile defaults
-        issue = new issue_1.Issue(issue);
-        // Save user profile
-        return this.issues.push(issue);
+    ClassService.prototype.getAll = function () {
+        console.log('in service');
+        return this._http.get("" + this.url)
+            .map(function (res) { return res.json(); });
     };
-    return IssueService;
+    return ClassService;
 }());
-IssueService = __decorate([
+ClassService = __decorate([
     core_1.Injectable()
-], IssueService);
-exports.IssueService = IssueService;
+], ClassService);
+exports.ClassService = ClassService;
