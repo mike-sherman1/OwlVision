@@ -11,16 +11,29 @@ export class AuthGuard implements CanActivate {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        let auth_state:FirebaseAuthState;
         return this._auth
             .take(1)
-            .map((authState: FirebaseAuthState) => !!authState)
+            .map((authState: FirebaseAuthState) => {
+                auth_state = authState;
+                return !!authState
+            })
             .do(authenticated => {
-                if (!authenticated) this._router.navigate(['/auth/login']);
+                let email = auth_state.auth.email;
+                let ind = email.indexOf('@');
+                let valid_domain = email.slice((ind+1),email.length) === 'fau.edu';
+                if (!authenticated || !valid_domain) {
+                    if(!valid_domain) {
+                        this._auth.logout();
+                    }
+                    this._router.navigate(['/auth/login']);
+                }
                 else {
-                    this._userService.getProfile().subscribe(prof => {
-                        if (!prof.$exists()) {
+                    return this._userService.getProfile().subscribe(prof => {
+                        if (prof !== null && !prof.$exists()) {
                             this._router.navigate(['/auth/register']);
                         }
+                        return true;
                     })
                 }
             });

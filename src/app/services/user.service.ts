@@ -6,6 +6,7 @@ import 'rxjs';
 import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import {Profile} from "../models/profile";
 import {AuthService} from "./auth.service";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class UserService {
@@ -20,8 +21,11 @@ export class UserService {
     }
 
     getProfile() {
-        this.profile = this.af.database.object('/profiles/' + this._authService.id);
-        return this.profile;
+        if(this._authService.authenticated){
+            this.profile = this.af.database.object('/profiles/' + this._authService.id);
+            return this.profile;
+        }
+        else return null;
     }
 
     createUser(profile: Profile) {
