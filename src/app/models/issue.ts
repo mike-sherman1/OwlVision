@@ -24,7 +24,7 @@ export class Issue {
         this.location = issueObj && issueObj.location || '';
         this.picture = issueObj && issueObj.picture || '';
         this.isAnonymous = issueObj && issueObj.isAnonymous || false;
-        this.$key = issueObj && issueObj.$key || null;
+        // this.$key = issueObj && issueObj.$key || null;
         this.comments = issueObj && issueObj.comments || [];
     }
 }
