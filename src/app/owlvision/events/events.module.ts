@@ -12,7 +12,6 @@ import {EventsRoutingModule} from "./events.routing";
         BrowseEventsComponent,
         MyEventsComponent,
         PostIssueComponent,
-
     ]
 })
 export class EventsModule {

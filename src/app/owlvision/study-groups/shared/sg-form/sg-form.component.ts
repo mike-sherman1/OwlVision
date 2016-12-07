@@ -74,9 +74,10 @@ export class SGFormComponent implements OnInit {
 
     onSubmit() {
         this.form.patchValue({name: this.displayName, email: this.email, author: this.uid});
-        this._studyGroupService.createIssue(this.form.value).then(res => {
-            this._router.navigate(['/study-groups']);
-        });
+        console.log(this.form.value);
+        // this._studyGroupService.createSG(this.form.value).then(res => {
+        //     this._router.navigate(['/study-groups']);
+        // });
     }
 
     getLocList(type: string) {

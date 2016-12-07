@@ -4,28 +4,28 @@ import 'rxjs';
 
 // firebase/angularfire
 import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
-import {StudyGroup} from "../models/studygroup";
+import {Event} from "../models/event";
 
 @Injectable()
-export class SGService {
+export class EventService {
 
-    studygroups:FirebaseListObservable<any>;
+    events:FirebaseListObservable<any>;
 
     constructor(public af: AngularFire) {
 
-        this.studygroups = af.database.list('/studygroups/');
+        this.events = af.database.list('/events/');
         // this.issuepics = firebase.storage().ref('/issuepics/');
 
     }
 
-    createSG(sg: StudyGroup) {
+    createSG(event: Event) {
 
         // Set basic user profile defaults
-        sg = new StudyGroup(sg);
+        event = new Event(event);
 
 
         // Save user profile
-        return this.studygroups.push(sg);
+        return this.events.push(event);
 
     }
 

@@ -22,7 +22,6 @@ export class Issue {
         this.description = issueObj && issueObj.description || '';
         this.location = issueObj && issueObj.location || '';
         this.picture = issueObj && issueObj.picture || '';
-        this.picture = issueObj && issueObj.picture || '';
         this.isAnonymous = issueObj && issueObj.isAnonymous || false;
         this.comments = issueObj && issueObj.comments || [];
     }

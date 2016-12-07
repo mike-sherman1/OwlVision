@@ -23,6 +23,8 @@ import {SimpleLayoutComponent}        from './layouts/simple-layout.component';
 import {AngularFireModule, AuthProviders, AuthMethods} from "angularfire2";
 import {AuthService, AuthGuard, IssueService, UserService, ClassService} from "./services";
 import {HttpModule} from "@angular/http";
+import {SGService} from "./services/studygroup.service";
+import {EventService} from "./services/event.service";
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAw_g0ylAQChmZrtXLz6cZ1-VUH-3t66tU",
@@ -65,7 +67,9 @@ export const myFirebaseAuthConfig =
         AuthGuard,
         IssueService,
         UserService,
-        ClassService
+        ClassService,
+        SGService,
+        EventService
     ],
     bootstrap: [AppComponent]
 })
