@@ -22,23 +22,26 @@ export class AuthGuard implements CanActivate {
                 let email, ind, valid_domain;
                 if (authenticated) {
                     console.log('auth state', auth_state);
-                    email = auth_state.auth.email;
-                    ind = email.indexOf('@');
-                    valid_domain = email.slice((ind + 1), email.length) === 'fau.edu';
-                    if (!valid_domain) {
-                        this._auth.logout();
-                    }
-                    else {
-                        return this._userService.getProfile().subscribe(prof => {
-                            if (prof !== null && !prof.$exists()) {
-                                this._router.navigate(['/auth/register']);
-                            }
-                            // this._router.navigate(['/dashboard']);
-                        });
-                    }
+                    // email = auth_state.auth.email;
+                    // ind = email.indexOf('@');
+                    // valid_domain = email.slice((ind + 1), email.length) === 'fau.edu';
+                    // if (!valid_domain) {
+                    //     this._auth.logout();
+                    // }
+                    // else {
+                    return this._userService.getProfile().subscribe(prof => {
+                        if (prof !== null && !prof.$exists()) {
+                            this._router.navigate(['/auth/register']);
+                            return false;
+                        }
+                        this._router.navigate(['/dashboard']);
+                        return true;
+                    });
+                    // }
                 }
                 else {
                     this._router.navigate(['/auth/login']);
+                    return false;
                 }
             });
     }
