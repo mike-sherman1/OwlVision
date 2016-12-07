@@ -33,7 +33,7 @@ export class AuthGuard implements CanActivate {
                             if (prof !== null && !prof.$exists()) {
                                 this._router.navigate(['/auth/register']);
                             }
-                            this._router.navigate(['/dashboard']);
+                            // this._router.navigate(['/dashboard']);
                         });
                     }
                 }

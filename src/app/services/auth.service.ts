@@ -11,6 +11,7 @@ export class AuthService {
         auth$.subscribe((state: FirebaseAuthState) => {
             this.authState = state;
             if (!this.authenticated) _router.navigate(['/auth/login']);
+            else _router.navigate(['/dashboard']);
         });
     }
 
