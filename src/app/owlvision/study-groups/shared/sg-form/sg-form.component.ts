@@ -7,6 +7,7 @@ import {AuthService} from "../../../../services/auth.service";
 import {AngularFire} from "angularfire2";
 import {SGService} from "../../../../services/studygroup.service";
 import {BuildingListService} from "../../../../services/building.service";
+import {ClassService} from "../../../../services/class.service";
 // import {BuildingListService, SGService} from "../../../../services";
 @Component({
     selector: 'sg-form',
@@ -28,7 +29,7 @@ export class SGFormComponent implements OnInit {
     locList: any[] = [];
     nameList: any[] = [];
 
-    constructor(private fb: FormBuilder, private _studyGroupService: SGService, private _router: Router, private _authService: AuthService, private _af: AngularFire, private _bldgService: BuildingListService) {
+    constructor(private fb: FormBuilder, private _studyGroupService: SGService, private _router: Router, private _classService: ClassService, private _authService: AuthService, private _af: AngularFire, private _bldgService: BuildingListService) {
 
         _af.auth.subscribe(auth => {
             console.log(auth.auth);
@@ -75,9 +76,9 @@ export class SGFormComponent implements OnInit {
     onSubmit() {
         this.form.patchValue({name: this.displayName, email: this.email, author: this.uid});
         console.log(this.form.value);
-        // this._studyGroupService.createSG(this.form.value).then(res => {
-        //     this._router.navigate(['/study-groups']);
-        // });
+        this._studyGroupService.createSG(this.form.value).then(res => {
+            this._router.navigate(['/study-groups']);
+        });
     }
 
     getLocList(type: string) {

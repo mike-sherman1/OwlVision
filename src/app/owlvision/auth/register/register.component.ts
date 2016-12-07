@@ -31,28 +31,21 @@ export class RegisterComponent {
             this.form.setValue(this.prof);
         }
         this.addClass();
-        this._classService.getAll().subscribe(classes => {
-            this.classes = classes;
-            let dict = {};
-            let subjects_numbers = {};
-            let subjects = this.classes.map(function (o) {
-                if (dict[o.course_id.subject] == null) {
-                    dict[o.course_id.subject] = {};
-                }
-                if (dict[o.course_id.subject][o.course_id.number] == null) dict[o.course_id.subject][o.course_id.number] = [];
-                if (subjects_numbers[o.course_id.subject] == null) subjects_numbers[o.course_id.subject] = [];
-                if (subjects_numbers[o.course_id.subject].indexOf(o.course_id.number) < 0) subjects_numbers[o.course_id.subject].push(o.course_id.number);
-                o.classes.forEach(function (c) {
-                    if (dict[o.course_id.subject][o.course_id.number].indexOf(c.title) < 0) {
-                        dict[o.course_id.subject][o.course_id.number].push(c.title);
-                    }
-                });
-                return o.course_id.subject;
+        if(this._classService.primed){
+            let objs = this._classService.getSubsNumDict();
+            this.classes = objs.classes;
+            this.subjects = objs.subjects;
+            this.classes_dict = objs.dict;
+            this.subjects_numbers = objs.numbers;
+        }else{
+            this._classService.getAll().subscribe(objs => {
+                console.log('her');
+                this.classes = objs.classes;
+                this.subjects = objs.subjects;
+                this.classes_dict = objs.dict;
+                this.subjects_numbers = objs.numbers;
             });
-            this.subjects = Object.keys(dict).sort();
-            this.classes_dict = dict;
-            this.subjects_numbers = subjects_numbers;
-        });
+        }
     }
 
     onSubmit() {
