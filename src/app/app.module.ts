@@ -25,6 +25,7 @@ import {AuthService, AuthGuard, IssueService, UserService, ClassService} from ".
 import {HttpModule} from "@angular/http";
 import {SGService} from "./services/studygroup.service";
 import {EventService} from "./services/event.service";
+import {BuildingListService} from "./services/building.service";
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAw_g0ylAQChmZrtXLz6cZ1-VUH-3t66tU",
@@ -69,7 +70,8 @@ export const myFirebaseAuthConfig =
         UserService,
         ClassService,
         SGService,
-        EventService
+        EventService,
+        BuildingListService
     ],
     bootstrap: [AppComponent]
 })

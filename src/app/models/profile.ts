@@ -1,3 +1,4 @@
+import {Class} from "./class";
 export class Profile {
     userId:string;
     public classes: Class[];
@@ -7,17 +8,5 @@ export class Profile {
         this.userId = profileObj && profileObj.userId || '';
         this.classes = profileObj && profileObj.classes || [];
         this.type = profileObj && profileObj.type || null;
-    }
-}
-
-export class Class {
-    public subject:string;
-    public number:string;
-    public title:string;
-
-    constructor(classObj?:any){
-        this.subject = classObj && classObj.subject || null;
-        this.number = classObj && classObj.number || null;
-        this.title = classObj && classObj.title || null;
     }
 }

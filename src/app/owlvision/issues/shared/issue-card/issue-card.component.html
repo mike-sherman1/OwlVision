@@ -1,4 +1,4 @@
-<div class="card" [ngClass]="accentColor[issue.priority]">
+<div class="card" [class]="!detail ? 'issueC' : ''" [ngClass]="accentColor[issue.priority]" (click)="goToDetail()">
     <div class="card-header text-sm-center">
         {{issue.title}}
         <span [ngClass]="statusColor[issue.status]" class="tag float-xs-left">{{issue.status}}</span>
@@ -17,6 +17,9 @@
             </li>
             <li>
                 Description: {{issue.description}}
+            </li>
+            <li>
+                <img class="the_pic" *ngIf="picture!=='' && detail" [src]="picture">
             </li>
         </ul>
     </div>

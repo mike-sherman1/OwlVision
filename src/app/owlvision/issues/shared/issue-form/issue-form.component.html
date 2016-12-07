@@ -42,13 +42,77 @@
                               class="form-control" placeholder="Description of issue.."></textarea>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="location">Location</label>
-                <input type="text" formControlName="location" class="form-control" id="location"
-                       placeholder="Enter issue's location">
+            <div class="form-group" formGroupName="location">
+                <label>Where did the issue occur?</label>
+                <div class="form-group row">
+                    <div class="col-md-8">
+                        <div class="radio">
+                            <label for="bcode">
+                                <input type="radio" id="bcode" formControlName="type" (click)="getLocList('bcode')"
+                                       value="bcode">By Building Code
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label for="bname">
+                                <input type="radio" id="bname" formControlName="type" (click)="getLocList('bname')"
+                                       value="bname">By Building Name
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label for="bother">
+                                <input type="radio" id="bother" formControlName="type"
+                                       value="other" (click)="getLocList('other')">Manual
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" *ngIf="form.value.location.type === 'bcode'">
+                    <label>Building Code</label>
+                    <select formControlName="code"
+                            class="form-control" (ngModelChange)="getNameList($event)">
+                        <option *ngFor="let t of locList"
+                                [ngValue]="t">
+                            {{t}}
+                        </option>
+                    </select>
+                    <div *ngIf="form.value.location.code !== ''">
+                        <label>Building Name</label>
+                        <select formControlName="name"
+                                class="form-control">
+                            <option *ngFor="let t of nameList"
+                                    [ngValue]="t">
+                                {{t}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12" *ngIf="form.value.location.type === 'bname'">
+                    <label>Building Name</label>
+                    <select formControlName="name"
+                            class="form-control">
+                        <option *ngFor="let t of locList"
+                                [ngValue]="t">
+                            {{t}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-sm-12" *ngIf="form.value.location.type === 'other'">
+                    <label>Other Location</label>
+                    <input type="text" formControlName="name" class="form-control">
+                    <label>Room (if applicable)</label>
+                    <input type="text" formControlName="room" class="form-control">
+                </div>
+                <div class="col-sm-12"
+                     *ngIf="form.value.location.type !== 'other' && (form.value.location.name !== '' || form.value.location.code !== '')">
+                    <label>Room (if applicable)</label>
+                    <input type="text" formControlName="room" class="form-control">
+                    <label>Further Description</label>
+                    <input type="text" formControlName="extra" class="form-control">
+                </div>
             </div>
             <div class="form-group">
-                <label>Placeholder for picture upload</label>
+                <label>Picture Upload</label><br>
+                <input type="file" id="filebutton" value="upload" #filebtn (change)="photoInputChange($event)">
             </div>
             <div class="form-group text-sm-center">
                 <button type="submit" class="btn btn-success"><i class="fa fa-magic"></i>&nbsp; Post Issue</button>

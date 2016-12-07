@@ -12,10 +12,13 @@ export class IssueService {
 
     issues;
     issuepics;
+    storage;
+
 
     constructor(public af: AngularFire) {
 
         this.issues = af.database.list('/issues/');
+        this.storage = firebase.storage().ref();
         // this.issuepics = firebase.storage().ref('/issuepics/');
 
     }
@@ -29,6 +32,43 @@ export class IssueService {
         // Save user profile
         return this.issues.push(issue);
 
+    }
+
+    uploadPhoto(files, userId) {
+        let path = '/issues/' + userId + '/' + files.name;
+        let storageref = this.storage.child(path);
+        let task = storageref.put(files);
+        task.on('state_changed', function (snapshot) {
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
+            // Handle unsuccessful uploads
+        }, function () {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            let iurl = task.snapshot.downloadURL;
+            console.log(iurl);
+            // return iurl;
+        });
+        return path;
+    }
+
+    getImageURL(path) {
+        return this.storage.child(path).getDownloadURL();
+    }
+
+    getIssueRef(id) {
+        return firebase.database().ref('/issues/' + id).once('value');
     }
 
     // /**

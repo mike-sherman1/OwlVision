@@ -6,6 +6,7 @@ import {
 import {BrowseIssuesComponent} from "./browse/browse.component";
 import {MyIssuesComponent} from "./my-issues/my-issues.component";
 import {PostIssueComponent} from "./post/post.component";
+import {BrowseDetailComponent} from "./detail/detail.component";
 
 const routes: Routes = [
     {
@@ -14,6 +15,11 @@ const routes: Routes = [
             title: 'Issues'
         },
         children: [
+            {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'browse'
+            },
             {
                 path: 'post',
                 component: PostIssueComponent,
@@ -26,6 +32,13 @@ const routes: Routes = [
                 component: BrowseIssuesComponent,
                 data: {
                     title: 'Browse Issues'
+                }
+            },
+            {
+                path: 'browse/:id',
+                component: BrowseDetailComponent,
+                data: {
+                    title: 'Detail'
                 }
             },
             {

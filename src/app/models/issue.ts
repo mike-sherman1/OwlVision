@@ -10,6 +10,7 @@ export class Issue {
     public location: string;
     public picture: string;
     public isAnonymous: boolean;
+    public $key?: string;
     public comments: Comment[];
 
     constructor(issueObj?: any) {
@@ -23,6 +24,7 @@ export class Issue {
         this.location = issueObj && issueObj.location || '';
         this.picture = issueObj && issueObj.picture || '';
         this.isAnonymous = issueObj && issueObj.isAnonymous || false;
+        // this.$key = issueObj && issueObj.$key || null;
         this.comments = issueObj && issueObj.comments || [];
     }
 }

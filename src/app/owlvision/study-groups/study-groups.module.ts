@@ -9,8 +9,6 @@ import {RouterModule} from "@angular/router";
 import {SGFormComponent} from "./shared/sg-form/sg-form.component";
 import {SGCardComponent} from "./shared/sg-card/sg-card.component";
 import {FileUploadModule} from "primeng/components/fileupload/fileupload";
-import {BuildingListService} from "../../services/building.service";
-import {SGService} from "../../services/studygroup.service";
 import {CalendarModule} from "primeng/components/calendar/calendar";
 
 @NgModule({
@@ -21,10 +19,6 @@ import {CalendarModule} from "primeng/components/calendar/calendar";
         StudyGroupsRoutingModule,
         FileUploadModule,
         CalendarModule
-    ],
-    providers:[
-        BuildingListService,
-        SGService
     ],
     declarations: [
         BrowseStudyGroupsComponent,

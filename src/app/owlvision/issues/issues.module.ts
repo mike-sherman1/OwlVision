@@ -7,6 +7,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {IssueFormComponent,IssueCardComponent} from "./shared";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
+import {BrowseDetailComponent} from "./detail/detail.component";
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import {RouterModule} from "@angular/router";
         MyIssuesComponent,
         PostIssueComponent,
         IssueFormComponent,
-        IssueCardComponent
+        IssueCardComponent,
+        BrowseDetailComponent
     ]
 })
 export class IssuesModule {

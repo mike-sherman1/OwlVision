@@ -15,6 +15,11 @@ const routes: Routes = [
         },
         children: [
             {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'browse'
+            },
+            {
                 path: 'post',
                 component: PostStudyGroupComponent,
                 data: {
