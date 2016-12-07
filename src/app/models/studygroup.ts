@@ -5,6 +5,7 @@ export class StudyGroup {
     public email: string;
     public location: Location;
     public time: Time;
+    public the_class: Class;
     public description: string;
 
     constructor(sgObj?: any) {
@@ -12,8 +13,9 @@ export class StudyGroup {
         this.author = sgObj && sgObj.author || '';
         this.name = sgObj && sgObj.name || '';
         this.email = sgObj && sgObj.email || '';
-        this.location = sgObj && sgObj.location || null;
-        this.time = sgObj && sgObj.time || null;
+        this.location = sgObj && new Location(sgObj.location) || null;
+        this.time = sgObj && new Time(sgObj.time) || null;
+        this.the_class = sgObj && new Class(sgObj.the_class) || null;
         this.description = sgObj && sgObj.description || '';
     }
 }
@@ -35,13 +37,25 @@ export class Location {
 }
 
 export class Time {
-    public date: Date;
-    public start: Date;
-    public end: Date;
+    public date: any;
+    public start: any;
+    public end: any;
 
     constructor(timeObj?: any) {
-        this.date = timeObj && timeObj.date || null;
-        this.start = timeObj && timeObj.start || null;
-        this.end = timeObj && timeObj.end || null;
+        this.date = timeObj && timeObj.date.toUTCString() || null;
+        this.start = timeObj && timeObj.start.toUTCString() || null;
+        this.end = timeObj && timeObj.end.toUTCString() || null;
+    }
+}
+
+export class Class {
+    public subject: string;
+    public number: string;
+    public title: string;
+
+    constructor(classObj?: any) {
+        this.subject = classObj && classObj.subject || '';
+        this.number = classObj && classObj.number || '';
+        this.title = classObj && classObj.title || '';
     }
 }

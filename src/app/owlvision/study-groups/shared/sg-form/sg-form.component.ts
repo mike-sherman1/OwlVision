@@ -8,6 +8,7 @@ import {AngularFire} from "angularfire2";
 import {SGService} from "../../../../services/studygroup.service";
 import {BuildingListService} from "../../../../services/building.service";
 import {ClassService} from "../../../../services/class.service";
+import {StudyGroup} from "../../../../models/studygroup";
 // import {BuildingListService, SGService} from "../../../../services";
 @Component({
     selector: 'sg-form',
@@ -26,6 +27,11 @@ export class SGFormComponent implements OnInit {
     email: string;
     uid: string;
 
+    classes: any[] = [];
+    subjects: any[] = [];
+    subjects_numbers: any = {};
+    classes_dict: any = {};
+
     locList: any[] = [];
     nameList: any[] = [];
 
@@ -38,8 +44,7 @@ export class SGFormComponent implements OnInit {
                 this.email = auth.auth.email;
                 this.uid = auth.auth.uid;
             }
-        })
-
+        });
     }
 
     ngOnInit() {
@@ -48,6 +53,20 @@ export class SGFormComponent implements OnInit {
             this.studyGroup = new Issue(this.studyGroup);
             this.update = true;
             this.form.setValue(this.studyGroup);
+        }
+        if(this._classService.primed){
+            let objs = this._classService.getSubsNumDict();
+            this.classes = objs.classes;
+            this.subjects = objs.subjects;
+            this.classes_dict = objs.dict;
+            this.subjects_numbers = objs.numbers;
+        }else{
+            this._classService.getAll().subscribe(objs => {
+                this.classes = objs.classes;
+                this.subjects = objs.subjects;
+                this.classes_dict = objs.dict;
+                this.subjects_numbers = objs.numbers;
+            });
         }
     }
 
@@ -69,13 +88,17 @@ export class SGFormComponent implements OnInit {
                 date:'',
                 start:'',
                 end:''
+            }),
+            the_class:this.fb.group({
+                subject:'',
+                number:'',
+                title:''
             })
         });
     }
 
     onSubmit() {
         this.form.patchValue({name: this.displayName, email: this.email, author: this.uid});
-        console.log(this.form.value);
         this._studyGroupService.createSG(this.form.value).then(res => {
             this._router.navigate(['/study-groups']);
         });

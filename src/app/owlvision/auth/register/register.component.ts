@@ -39,7 +39,6 @@ export class RegisterComponent {
             this.subjects_numbers = objs.numbers;
         }else{
             this._classService.getAll().subscribe(objs => {
-                console.log('her');
                 this.classes = objs.classes;
                 this.subjects = objs.subjects;
                 this.classes_dict = objs.dict;

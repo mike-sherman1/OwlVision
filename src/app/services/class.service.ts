@@ -36,14 +36,14 @@ export class ClassService {
             if (this.dict[o.course_id.subject][o.course_id.number] == null) this.dict[o.course_id.subject][o.course_id.number] = [];
             if (this.numbers[o.course_id.subject] == null) this.numbers[o.course_id.subject] = [];
             if (this.numbers[o.course_id.subject].indexOf(o.course_id.number) < 0) this.numbers[o.course_id.subject].push(o.course_id.number);
-            o.classList.forEach(c => {
+            o.classes.forEach(c => {
                 if (this.dict[o.course_id.subject][o.course_id.number].indexOf(c.title) < 0) {
                     this.dict[o.course_id.subject][o.course_id.number].push(c.title);
                 }
             });
             return o.course_id.subject;
         });
-        this.subjects = Object.keys(this.subjects);
+        this.subjects = Object.keys(this.dict).sort();
         this.primed = true;
         return {classes: this.classList, subjects: this.subjects, numbers: this.numbers, dict: this.dict};
     }

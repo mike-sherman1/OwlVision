@@ -23,7 +23,7 @@ export class SGService {
         // Set basic user profile defaults
         sg = new StudyGroup(sg);
 
-
+        console.log(sg);
         // Save user profile
         return this.studygroups.push(sg);
 
