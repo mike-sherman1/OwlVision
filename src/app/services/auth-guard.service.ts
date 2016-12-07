@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
                 let email, ind, valid_domain;
                 // if(auth_state.auth.email === null) valid_domain = false;
                 if (authenticated) {
-                    email = auth_state.auth.email;
+                    email = auth_state.auth.email || '';
                     ind = email.indexOf('@');
                     valid_domain = email.slice((ind + 1), email.length) === 'fau.edu';
                 }
