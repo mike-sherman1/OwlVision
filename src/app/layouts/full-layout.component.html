@@ -7,14 +7,47 @@
             <li class="nav-item">
                 <a class="nav-link navbar-toggler sidebar-toggle" href="#">&#9776;</a>
             </li>
-            <li class="nav-item px-1">
-                <a class="nav-link" href="#">Dashboard</a>
+            <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false" dropdownToggle>
+                    <span class="hidden-md-down">Issues</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
+                    <a class="dropdown-item" href="#/issues/browse"><i class="fa fa-bell-o"></i>Browse<span
+                            class="tag tag-info">1</span></a>
+                    <a class="dropdown-item" href="#/issues/post"><i class="fa fa-envelope-o"></i>Post<span
+                            class="tag tag-success">1</span></a>
+                    <a class="dropdown-item" href="#/issues/my-issues"><i class="fa fa-usd"></i>Posted<span
+                            class="tag tag-danger">2</span></a>
+                </div>
             </li>
-            <li class="nav-item px-1">
-                <a class="nav-link" href="#">Users</a>
+            <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false" dropdownToggle>
+                    <span class="hidden-md-down">Campus Events</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
+                    <a class="dropdown-item" href="#/issues/browse"><i class="fa fa-bell-o"></i>Browse<span
+                            class="tag tag-info">1</span></a>
+                    <a class="dropdown-item" href="#/issues/post"><i class="fa fa-envelope-o"></i>Post<span
+                            class="tag tag-success">1</span></a>
+                    <a class="dropdown-item" href="#/issues/my-issues"><i class="fa fa-usd"></i>Posted<span
+                            class="tag tag-danger">2</span></a>
+                </div>
             </li>
-            <li class="nav-item px-1">
-                <a class="nav-link" href="#">Settings</a>
+            <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false" dropdownToggle>
+                    <span class="hidden-md-down">Study</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
+                    <a class="dropdown-item" href="#/issues/browse"><i class="fa fa-bell-o"></i>Browse<span
+                            class="tag tag-info">1</span></a>
+                    <a class="dropdown-item" href="#/issues/post"><i class="fa fa-envelope-o"></i>Post<span
+                            class="tag tag-success">1</span></a>
+                    <a class="dropdown-item" href="#/issues/my-issues"><i class="fa fa-usd"></i>Posted<span
+                            class="tag tag-danger">2</span></a>
+                </div>
             </li>
         </ul>
         <ul class="nav navbar-nav float-xs-right hidden-md-down">
