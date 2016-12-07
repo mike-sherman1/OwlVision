@@ -1,0 +1,23 @@
+<div class="card" [ngClass]="accentColor[issue.priority]">
+    <div class="card-header text-sm-center">
+        {{issue.title}}
+        <span [ngClass]="statusColor[issue.status]" class="tag float-xs-left">{{issue.status}}</span>
+        <span [ngClass]="priorityColor[issue.priority]" class="tag tag-pill float-xs-right">{{issue.priority}}</span>
+    </div>
+    <div class="card-block">
+        <ul>
+            <li>
+                Author: {{issue.isAnonymous ? 'Anonymous' : issue.name}}
+            </li>
+            <li>
+                Email: {{issue.email}}
+            </li>
+            <li>
+                Location: {{issue.location}}
+            </li>
+            <li>
+                Description: {{issue.description}}
+            </li>
+        </ul>
+    </div>
+</div>

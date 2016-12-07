@@ -11,7 +11,8 @@ import {EventsRoutingModule} from "./events.routing";
     declarations: [
         BrowseEventsComponent,
         MyEventsComponent,
-        PostIssueComponent
+        PostIssueComponent,
+
     ]
 })
 export class EventsModule {
