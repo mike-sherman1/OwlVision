@@ -35,3 +35,13 @@
   padding-top:none;
   padding: 0.75rem 1rem;
 }
+
+body:not(.top-nav) .sidebar ul.nav li.nav-item a.nav-link.active i {
+    color: #b10e23;
+}
+.breadcrumb-item{
+  color:#002e5a;
+}
+.breadcrumb-item .active{
+  color: #b10e23;
+}

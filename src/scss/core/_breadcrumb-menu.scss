@@ -34,3 +34,10 @@
         line-height: $line-height-base;
     }
 }
+
+.breadcrumb-item a{
+  color:#002e5a;
+}
+li .breadcrumb-item .active{
+  color: #b10e23;
+}
