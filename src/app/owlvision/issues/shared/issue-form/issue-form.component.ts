@@ -67,9 +67,20 @@ export class IssueFormComponent implements OnInit {
     photoInputChange(event) {
         let files = event.srcElement.files[0];
         let uploader = document.getElementById("uploader");
-        let url = this._issueService.uploadPhoto(files, this.uid);
+        let pic_id;
+        if (this.form.value.picture_id !== '') {
+            pic_id = this.form.value.picture_id
+        } else {
+            pic_id = this.randomString(16, 'aA');
+            this.form.patchValue({picture_id: pic_id});
+        }
+        let url = this._issueService.uploadPhoto(files, pic_id);
         this.image = url;
         this.isPicChange = true;
+    }
+
+    isFullForm() {
+        return this.form.value.time === '' || (this.form.value.location.type !== 'other' && this.form.value.location.name === '') || this.form.value.title === ''
     }
 
     newForm(event_id = '') {
@@ -91,6 +102,7 @@ export class IssueFormComponent implements OnInit {
             comments: [],
             time: new Date(),
             picture: '',
+            picture_id: '',
             isAnonymous: false
         });
     }
@@ -152,6 +164,17 @@ export class IssueFormComponent implements OnInit {
             });
         }
 
+    }
+
+    randomString(length, chars) {
+        var mask = '';
+        if (chars.indexOf('a') > -1) mask += 'abcdefghijklmnopqrstuvwxyz';
+        if (chars.indexOf('A') > -1) mask += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        if (chars.indexOf('#') > -1) mask += '0123456789';
+        if (chars.indexOf('!') > -1) mask += '~`!@#$%^&*()_+-={}[]:";\'<>?,./|\\';
+        var result = '';
+        for (var i = length; i > 0; --i) result += mask[Math.round(Math.random() * (mask.length - 1))];
+        return result;
     }
 
     // saveAndReturn() {

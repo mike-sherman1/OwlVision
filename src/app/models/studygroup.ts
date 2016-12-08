@@ -11,6 +11,7 @@ export class StudyGroup {
     public the_class: Class;
     public description: string;
     public picture: string;
+    public picture_id: string;
     public $key?: string;
     public comments: Comment[];
 
@@ -24,6 +25,7 @@ export class StudyGroup {
         this.the_class = sgObj && new Class(sgObj.the_class) || null;
         this.description = sgObj && sgObj.description || '';
         this.picture = sgObj && sgObj.picture || '';
+        this.picture_id = sgObj && sgObj.picture_id || '';
         this.comments = sgObj && sgObj.comments || [];
     }
 }

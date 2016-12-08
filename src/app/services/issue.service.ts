@@ -36,6 +36,7 @@ export class IssueService {
         //     // }
         // })
 
+
     }
 
     createIssue(issue: Issue) {
@@ -78,8 +79,8 @@ export class IssueService {
         return this.af.database.object('/issues/' + key + '/').update(issue);
     }
 
-    uploadPhoto(files, userId) {
-        let path = '/issues/' + userId + '/' + files.name;
+    uploadPhoto(files, id) {
+        let path = '/issues/' + id + '/' + files.name;
         let storageref = this.storage.child(path);
         let task = storageref.put(files);
         task.on('state_changed', function (snapshot) {

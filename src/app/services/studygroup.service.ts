@@ -64,8 +64,8 @@ export class SGService {
         return this.af.database.object('/studygroups/' + key + '/').update(studyGroup);
     }
 
-    uploadPhoto(files, userId) {
-        let path = '/studygroups/' + userId + '/' + files.name;
+    uploadPhoto(files, id) {
+        let path = '/studygroups/' + id + '/' + files.name;
         let storageref = this.storage.child(path);
         let task = storageref.put(files);
         task.on('state_changed', function (snapshot) {

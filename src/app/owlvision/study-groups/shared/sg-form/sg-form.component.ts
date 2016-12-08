@@ -89,9 +89,21 @@ export class SGFormComponent implements OnInit {
     photoInputChange(event) {
         let files = event.srcElement.files[0];
         let uploader = document.getElementById("uploader");
-        let url = this._studyGroupService.uploadPhoto(files, this.uid);
+        let pic_id;
+        if (this.form.value.picture_id !== '') {
+            pic_id = this.form.value.picture_id
+        } else {
+            pic_id = this.randomString(16, 'aA');
+            this.form.patchValue({picture_id: pic_id});
+        }
+
+        let url = this._studyGroupService.uploadPhoto(files, pic_id);
         this.image = url;
         this.isPicChange = true;
+    }
+
+    isFullForm() {
+        return this.form.value.time.start === '' || this.form.value.time.end === '' || this.form.value.the_class.subject === '' || this.form.value.the_class.number === '' || this.form.value.the_class.title === '' || this.form.value.location.name === '' || this.form.value.title === ''
     }
 
     newForm(event_id = '') {
@@ -114,6 +126,7 @@ export class SGFormComponent implements OnInit {
             }),
             comments: [],
             picture: '',
+            picture_id: '',
             the_class: this.fb.group({
                 subject: '',
                 number: '',
@@ -178,6 +191,17 @@ export class SGFormComponent implements OnInit {
 
     clearLoc() {
         this.form.patchValue({location: {code: '', name: '', room: '', extra: ''}});
+    }
+
+    randomString(length, chars) {
+        var mask = '';
+        if (chars.indexOf('a') > -1) mask += 'abcdefghijklmnopqrstuvwxyz';
+        if (chars.indexOf('A') > -1) mask += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        if (chars.indexOf('#') > -1) mask += '0123456789';
+        if (chars.indexOf('!') > -1) mask += '~`!@#$%^&*()_+-={}[]:";\'<>?,./|\\';
+        var result = '';
+        for (var i = length; i > 0; --i) result += mask[Math.round(Math.random() * (mask.length - 1))];
+        return result;
     }
 
     // saveAndReturn() {

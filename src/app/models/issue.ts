@@ -11,6 +11,7 @@ export class Issue {
     public description: string;
     public location: Location;
     public picture: string;
+    public picture_id: string;
     public isAnonymous: boolean;
     public time?: any;
     public $key?: string;
@@ -26,6 +27,7 @@ export class Issue {
         this.description = issueObj && issueObj.description || '';
         this.location = issueObj && new Location(issueObj.location) || new Location();
         this.picture = issueObj && issueObj.picture || '';
+        this.picture_id = issueObj && issueObj.picture_id || '';
         this.isAnonymous = issueObj && issueObj.isAnonymous || false;
         this.time = issueObj && new Date(issueObj.time) || null;
         // this.$key = issueObj && issueObj.$key || null;
