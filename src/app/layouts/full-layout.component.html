@@ -20,13 +20,11 @@
                 <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
                     <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/issues/browse']"><i
                             class="fa fa-bell-o"></i>Browse<span
-                            class="tag tag-danger">1</span></a>
+                            class="tag tag-danger">{{issues}}</span></a>
                     <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/issues/post']"><i
-                            class="fa fa-envelope-o"></i>Post<span
-                            class="tag tag-danger">1</span></a>
+                            class="fa fa-envelope-o"></i>Post</a>
                     <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/issues/my-issues']"><i
-                            class="fa fa-usd"></i>Posted<span
-                            class="tag tag-danger">2</span></a>
+                            class="fa fa-usd"></i>Posted</a>
                 </div>
             </li>
             <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
@@ -37,13 +35,11 @@
                 <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
                     <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/events/browse']"><i
                             class="fa fa-bell-o"></i>Browse<span
-                            class="tag tag-danger">1</span></a>
+                            class="tag tag-danger">{{events}}</span></a>
                     <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/events/post']"><i
-                            class="fa fa-envelope-o"></i>Post<span
-                            class="tag tag-danger">1</span></a>
+                            class="fa fa-envelope-o"></i>Post</a>
                     <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/events/my-events']"><i
-                            class="fa fa-usd"></i>Posted<span
-                            class="tag tag-danger">2</span></a>
+                            class="fa fa-usd"></i>Posted</a>
                 </div>
             </li>
             <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
@@ -54,13 +50,11 @@
                 <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
                     <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/study-groups/browse']"><i
                             class="fa fa-bell-o"></i>Browse<span
-                            class="tag tag-danger">1</span></a>
+                            class="tag tag-danger">{{sg}}</span></a>
                     <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/study-groups/post']"><i
-                            class="fa fa-envelope-o"></i>Post<span
-                            class="tag tag-danger">1</span></a>
+                            class="fa fa-envelope-o"></i>Post</a>
                     <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/study-groups/my-study-groups']"><i
-                            class="fa fa-usd"></i>Posted<span
-                            class="tag tag-danger">2</span></a>
+                            class="fa fa-usd"></i>Posted</a>
                 </div>
             </li>
         </ul>
