@@ -73,6 +73,7 @@ export class IssueFormComponent implements OnInit {
                 room: '',
                 extra: ''
             }),
+            time:'',
             picture: '',
             isAnonymous: false
         });

@@ -30,6 +30,8 @@ export class IssueCardComponent implements OnInit {
         "Low": "card-accent-success",
     };
 
+    newComment: string;
+
     constructor(private _issueService: IssueService, private _router: Router) {
 
     }
@@ -43,6 +45,12 @@ export class IssueCardComponent implements OnInit {
         }
         // console.log(this.issue);
 
+    }
+
+    addComment() {
+        console.log(this.issue);
+        if(!this.issue.comments) this.issue.comments = [];
+        this._issueService.addComment(this.issue.$key, this.newComment,this.issue.comments);
     }
 
     goToDetail() {

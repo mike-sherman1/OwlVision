@@ -6,6 +6,9 @@ import 'rxjs';
 import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 
 import {Issue} from "../models/issue";
+import {UserService} from "./user.service";
+import {Comment} from "../models/comment";
+import {AuthService} from "./auth.service";
 
 @Injectable()
 export class IssueService {
@@ -14,12 +17,24 @@ export class IssueService {
     issuepics;
     storage;
 
+    auth: any;
 
-    constructor(public af: AngularFire) {
+
+    constructor(public af: AngularFire, private _userService: UserService, private _authService: AuthService) {
 
         this.issues = af.database.list('/issues/');
         this.storage = firebase.storage().ref();
         // this.issuepics = firebase.storage().ref('/issuepics/');
+
+        // af.auth.subscribe(auth => {
+        //     this.auth = auth.auth;
+        //     console.log(auth.auth);
+        //     // if (auth.auth) {
+        //     //     this.displayName = auth.auth.displayName;
+        //     //     this.email = auth.auth.email;
+        //     //     this.uid = auth.auth.uid;
+        //     // }
+        // })
 
     }
 
@@ -31,6 +46,19 @@ export class IssueService {
 
         // Save user profile
         return this.issues.push(issue);
+
+    }
+
+    addComment(id, commentText,comments) {
+        let comment = new Comment();
+        comment.name = this._authService.displayName;
+        comment.author = this._authService.id;
+        comment.text = commentText;
+        this._userService.getProfile().subscribe(prof => {
+            comment.isAdmin = prof.type === 'admin';
+            comments.push(comment);
+            this.af.database.object('/issues/' + id + '/').update({comments: comments});
+        })
 
     }
 

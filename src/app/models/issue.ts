@@ -1,4 +1,5 @@
 import {Comment} from "./comment";
+import {Time} from "./time";
 export class Issue {
     public title: string;
     public author: string;
@@ -10,6 +11,7 @@ export class Issue {
     public location: string;
     public picture: string;
     public isAnonymous: boolean;
+    public time?: string;
     public $key?: string;
     public comments: Comment[];
 
@@ -24,6 +26,7 @@ export class Issue {
         this.location = issueObj && issueObj.location || '';
         this.picture = issueObj && issueObj.picture || '';
         this.isAnonymous = issueObj && issueObj.isAnonymous || false;
+        this.time = issueObj && issueObj.time || null;
         // this.$key = issueObj && issueObj.$key || null;
         this.comments = issueObj && issueObj.comments || [];
     }

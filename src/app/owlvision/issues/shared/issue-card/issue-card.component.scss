@@ -16,6 +16,14 @@
 }
 
 .the_pic {
+  text-align: center;
+}
+
+.the_pic > img {
   //max-height: 300px;
-  width: 100%;
+  max-width: 50%;
+}
+
+.commentsSection{
+  margin:0 24px 24px 24px;
 }
