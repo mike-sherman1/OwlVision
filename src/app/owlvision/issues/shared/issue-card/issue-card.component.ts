@@ -4,6 +4,7 @@ import {Issue} from "../../../../models/issue";
 import {IssueService} from "../../../../services/issue.service";
 import {Router} from "@angular/router";
 import {UserService} from "../../../../services/user.service";
+import {LocationStrategy} from "@angular/common";
 
 @Component({
     selector: 'issue-card',
@@ -14,7 +15,6 @@ export class IssueCardComponent implements OnInit {
 
     @Input() issue: Issue;
     @Input() detail: boolean = false;
-    picture: string = '';
     statusColor: any = {
         "Opened": "tag-danger",
         "In Progress": "tag-warning",
@@ -35,14 +35,18 @@ export class IssueCardComponent implements OnInit {
     isAdmin: boolean;
     isOwner: boolean;
     status: string;
+    picture: string = '';
+    edit: boolean;
 
-    constructor(private _issueService: IssueService, private _router: Router, private _userService: UserService) {
+    constructor(private _issueService: IssueService, private _router: Router, private _userService: UserService, private _location: LocationStrategy) {
     }
 
     ngOnInit() {
         console.log(this.issue.picture !== '');
+        console.log(this.issue);
         if (this.issue.picture !== '') {
             this._issueService.getImageURL(this.issue.picture).then(url => {
+                // console.log(url);
                 this.picture = url;
             });
         }
@@ -53,6 +57,23 @@ export class IssueCardComponent implements OnInit {
         });
         // console.log(this.issue);
 
+    }
+
+    saveAndUpdatePic() {
+        this.edit = !this.edit;
+        console.log('save and pic');
+        if (this.issue.picture !== '') {
+            this._issueService.getImageURL(this.issue.picture).then(url => {
+                // console.log(url);
+                this.picture = url;
+            });
+        }
+    }
+
+    deleteIssue() {
+        this._issueService.deleteIssue(this.issue.$key).then(res => {
+            this._location.back();
+        });
     }
 
     updateStatus($event) {

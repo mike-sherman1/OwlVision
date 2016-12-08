@@ -13,6 +13,11 @@
                         Your
                         Issue
                     </button>
+                    <button class="btn btn-outline-danger active toggleEdit" type="button" (click)="deleteIssue()">
+                        Delete
+                        Your
+                        Issue
+                    </button>
                 </li>
                 <li *ngIf="isAdmin && detail" class="text-xs-center">
                     <!--<label for="status">Update Status</label>-->
@@ -30,8 +35,11 @@
                     Email: {{issue.email}}
                 </li>
                 <li>
-                    Location: {{issue.location.code}}{{issue.location.room}}
-                    ({{issue.location.name}}) <span *ngIf="issue.location.extra && issue.location.extra !== ''">[{{issue.location.extra}}]</span>
+                    Location: <span
+                        *ngIf="issue.location && issue.location.code !== ''">{{issue.location.code}}</span><span
+                        *ngIf="issue.location && issue.location.room !== ''">{{issue.location.room}}</span>
+                    <span *ngIf="issue.location && issue.location.name !== ''">({{issue.location.name}})</span>
+                    <span *ngIf="issue.location && issue.location.extra !== ''">[{{issue.location.extra}}]</span>
                 </li>
                 <li>
                     Description: {{issue.description}}
@@ -72,5 +80,5 @@
     </div>
 </div>
 <div *ngIf="edit">
-    <issue-form [issue]="issue" (save)="edit=!edit"></issue-form>
+    <issue-form [issue]="issue" (save)="edit=!edit" (picChange)="saveAndUpdatePic()"></issue-form>
 </div>

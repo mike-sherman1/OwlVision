@@ -42,11 +42,16 @@ export class IssueService {
 
         // Set basic user profile defaults
         issue = new Issue(issue);
-
+        issue.time = issue.time.toUTCString();
+        delete issue.$key;
 
         // Save user profile
         return this.issues.push(issue);
 
+    }
+
+    deleteIssue(key) {
+        return this.af.database.object('/issues/' + key + '/').remove();
     }
 
     addComment(id, commentText, comments) {
@@ -67,8 +72,10 @@ export class IssueService {
         this.af.database.object('/issues/' + key + '/').update({status: status});
     }
 
-    updateIssue(issue) {
-        return this.af.database.object('/issues/' + issue.$key + '/').update(issue);
+    updateIssue(issue, key) {
+        issue.time = issue.time.toUTCString();
+        console.log('update issue', issue, key);
+        return this.af.database.object('/issues/' + key + '/').update(issue);
     }
 
     uploadPhoto(files, userId) {
