@@ -30,3 +30,22 @@
         border: 0;
     }
 }
+
+.dropdown{
+  padding:0px 20px;
+}
+
+.navbar{
+  position:relative;
+  z-index: 2;
+}
+
+.navbar:after{
+  position: absolute;
+  z-index: 1;
+  display: block;
+  background: #b10e23;
+  width: 105%;
+  box-shadow: -5px 7px 6px -4px;
+  height: 10px;
+}

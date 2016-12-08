@@ -1,9 +1,10 @@
-<div class="container d-table">
+<div class="container d-table logincontainer">
+  <div class="loginbackground"></div>
     <div class="d-100vh-va-middle">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <div class="card-group">
-                    <div class="card p-2">
+                <div class="logincardsizer card-group">
+                    <div class="card p-2 logincard">
                         <div class="card-block">
                             <h1>Login</h1>
                             <!--<p class="text-muted">Sign In to your account</p>-->
@@ -28,8 +29,8 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <!--<h4>You must use an FAU email address to use OwlVision</h4>-->
-                                    <button type="button" (click)="signInWithGoogle()" class="btn btn-warning btn-lg btn-block googleButton">Sign In with
-                                        Google
+                                    <button type="button" (click)="signInWithGoogle()" class="btn btn-warning btn-lg btn-block googleButton loginbutton">Sign In with
+                                      <i class="fa fa-google" aria-hidden="true"></i>oogle
                                     </button>
                                 </div>
                             </div>
