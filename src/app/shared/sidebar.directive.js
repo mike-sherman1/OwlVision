@@ -36,13 +36,7 @@ var SidebarToggleDirective = (function () {
             this.toggleClass(document.querySelector('body'), 'sidebar-opened');
             this.toggleClass(document.querySelector('html'), 'sidebar-opened');
         }
-        else if (this.hasClass(document.querySelector('body'), 'sidebar-nav') || bodyClass == 'sidebar-nav') {
-            this.toggleClass(document.querySelector('body'), 'sidebar-nav');
-            localStorage.setItem('body-class', 'sidebar-nav');
-            if (bodyClass == 'sidebar-nav') {
-                localStorage.clear();
-            }
-        }
+      
     };
     return SidebarToggleDirective;
 }());

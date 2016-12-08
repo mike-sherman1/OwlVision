@@ -1,25 +1,62 @@
 <header class="navbar">
     <div class="container-fluid">
         <button class="navbar-toggler hidden-lg-up" type="button" mobile-nav-toggle>&#9776;</button>
-        <a class="navbar-brand" href="#"></a>
+        <a class="navbar-brand sidebar-toggle navbar-toggler" href="#"></a>
 
         <ul class="nav navbar-nav hidden-md-down">
-            <li class="nav-item">
-                <a class="nav-link navbar-toggler sidebar-toggle" href="#">&#9776;</a>
+            <!--make only mobile--><li class="nav-item mobile-only">
+                <a class="nav-link navbar-toggler sidebar-toggle" style="height: 55px;padding: 0px;border-bottom: 0px;" href="#">&#9776;</a>
             </li>
-            <li class="nav-item px-1">
-                <a class="nav-link" href="#">Dashboard</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']">Dashboard</a>
             </li>
-            <li class="nav-item px-1">
-                <a class="nav-link" href="#">Users</a>
+            <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false" dropdownToggle>
+                    <span class="hidden-md-down">Issues</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
+                    <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/issues/browse']"><i class="fa fa-bell-o"></i>Browse<span
+                            class="tag tag-info">1</span></a>
+                    <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/issues/post']"><i class="fa fa-envelope-o"></i>Post<span
+                            class="tag tag-success">1</span></a>
+                    <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/issues/my-issues']"><i class="fa fa-usd"></i>Posted<span
+                            class="tag tag-danger">2</span></a>
+                </div>
             </li>
-            <li class="nav-item px-1">
-                <a class="nav-link" href="#">Settings</a>
+            <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false" dropdownToggle>
+                    <span class="hidden-md-down">Campus Events</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
+                    <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/events/browse']"><i class="fa fa-bell-o"></i>Browse<span
+                            class="tag tag-info">1</span></a>
+                    <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/events/post']"><i class="fa fa-envelope-o"></i>Post<span
+                            class="tag tag-success">1</span></a>
+                    <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/events/my-events']"><i class="fa fa-usd"></i>Posted<span
+                            class="tag tag-danger">2</span></a>
+                </div>
+            </li>
+            <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false" dropdownToggle>
+                    <span class="hidden-md-down">Study</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
+                    <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/study-groups/browse']"><i class="fa fa-bell-o"></i>Browse<span
+                            class="tag tag-info">1</span></a>
+                    <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/study-groups/post']"><i class="fa fa-envelope-o"></i>Post<span
+                            class="tag tag-success">1</span></a>
+                    <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/study-groups/my-study-groups']"><i class="fa fa-usd"></i>Posted<span
+                            class="tag tag-danger">2</span></a>
+                </div>
             </li>
         </ul>
         <ul class="nav navbar-nav float-xs-right hidden-md-down">
+            <a class="nav-link" routerLinkActive="active" (click)="authService.signOut()" style="margin-right:15px;cursor:pointer;"><i class="fa fa-lock"></i> Logout</a><!--
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="icon-bell"></i><span class="tag tag-pill tag-danger">5</span></a>
+                <a class="nav-link" href="#"><i class="icon-power"></i><span class="tag tag-pill tag-danger">5</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="icon-list"></i></a>
@@ -64,21 +101,19 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link navbar-toggler aside-toggle" href="#">&#9776;</a>
-            </li>
+            </li>-->
         </ul>
 
     </div>
 </header>
 
-<div class="sidebar">
+<div class="sidebar toggled">
     <nav class="sidebar-nav">
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i
                         class="icon-speedometer"></i> Dashboard <span class="tag tag-info">NEW</span></a>
             </li>
-
-            <!-- owlvision menu-->
 
             <li class="divider"></li>
             <li class="nav-title">
@@ -551,7 +586,7 @@
 
 <footer class="footer">
     <span class="text-left">
-        <a href="http://coreui.io">CoreUI</a> &copy; 2016 creativeLabs.
+        <span style="color:#002e5a;font-weight: 700;">OWL</span> <span style="color:#b10e23;font-weight: 700;">VISION</span> &copy; 2016 Florida Atlantic University.
     </span>
     <span class="float-xs-right">
         Powered by <a href="http://coreui.io">CoreUI</a>
