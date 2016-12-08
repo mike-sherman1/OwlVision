@@ -2,7 +2,7 @@
     Back
 </button>
 <div *ngIf="!edit">
-    <div class="card" [class]="!detail ? 'issueC' : ''" (click)="goToDetail()">
+    <div [class]="!detail ? 'card issueC' : 'card'" (click)="goToDetail()">
         <div class="card-header text-sm-center">
             {{studyGroup.title}}
         </div>
