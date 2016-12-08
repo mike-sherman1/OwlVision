@@ -17,7 +17,7 @@ export class BrowseDetailComponent implements OnInit {
     ngOnInit() {
         let id = this._route.snapshot.params['id'];
         this.af.database.object('/issues/' + id).subscribe(issue => {
-            console.log(issue);
+            // console.log(issue);
             this.issue = issue;
         });
 
