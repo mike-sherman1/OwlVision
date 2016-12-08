@@ -4,10 +4,10 @@
         <a class="navbar-brand sidebar-toggle navbar-toggler" href="#"></a>
 
         <ul class="nav navbar-nav hidden-md-down">
-            <!--<li class="nav-item">
-                <a class="nav-link navbar-toggler sidebar-toggle" href="#">&#9776;</a>
-            </li>-->
-            <li class="nav-item px-1">
+            <!--make only mobile--><li class="nav-item mobile-only">
+                <a class="nav-link navbar-toggler sidebar-toggle" style="height: 55px;padding: 0px;border-bottom: 0px;" href="#">&#9776;</a>
+            </li>
+            <li class="nav-item dropdown">
                 <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']">Dashboard</a>
             </li>
             <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
@@ -54,7 +54,7 @@
             </li>
         </ul>
         <ul class="nav navbar-nav float-xs-right hidden-md-down">
-            <a class="nav-link" routerLinkActive="active" style="cursor:pointer" (click)="authService.signOut()" style="margin-right:15px;"><i class="fa fa-lock"></i> Logout</a><!--
+            <a class="nav-link" routerLinkActive="active" (click)="authService.signOut()" style="margin-right:15px;cursor:pointer;"><i class="fa fa-lock"></i> Logout</a><!--
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="icon-power"></i><span class="tag tag-pill tag-danger">5</span></a>
             </li>
@@ -107,7 +107,7 @@
     </div>
 </header>
 
-<<div class="sidebar">
+<div class="sidebar toggled">
     <nav class="sidebar-nav">
         <ul class="nav">
             <li class="nav-item">
@@ -586,7 +586,7 @@
 
 <footer class="footer">
     <span class="text-left">
-        <a href="http://coreui.io">CoreUI</a> &copy; 2016 creativeLabs.
+        <span style="color:#002e5a;font-weight: 700;">OWL</span> <span style="color:#b10e23;font-weight: 700;">VISION</span> &copy; 2016 Florida Atlantic University.
     </span>
     <span class="float-xs-right">
         Powered by <a href="http://coreui.io">CoreUI</a>

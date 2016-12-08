@@ -68,12 +68,15 @@ header.navbar {
     line-height: $navbar-height - 4px;
 }
 .aside-toggle, {
+        z-index: 99999;
     @extend .navbar-toggler;
+          z-index: 99999;
     padding: 0 .75em;
     line-height: $navbar-height - 4px;
 }
 
 header.navbar {
+  
     .navbar-nav {
         .nav-link {
             padding-top: 0;
@@ -93,9 +96,10 @@ header.navbar {
 .navbar-nav {
     .nav-link {
         color: $navbar-color;
-
+        padding:0px 20px;
         @include hover-focus {
-            color: $navbar-hover-color;
+            color:white;
+            background:$navbar-hover-color;
         }
     }
 
@@ -103,9 +107,6 @@ header.navbar {
     .active > .nav-link,
     .nav-link.open,
     .nav-link.active {
-        @include plain-hover-focus {
-            color: $navbar-active-color;
-        }
     }
 }
 
@@ -118,5 +119,5 @@ header.navbar {
 }
 
 .body.navbar-fixed .main{
-  padding-top:0px;
+  padding-top:600px !important;
 }
