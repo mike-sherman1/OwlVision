@@ -1,6 +1,10 @@
 // Here you can add other styles
 
 @media (min-width: 992px) {
+  .mobile-only{
+    display:none;
+  }
+
   body:not(.top-nav) .sidebar {
     display: none !important;
   }
