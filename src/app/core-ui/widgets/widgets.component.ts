@@ -8,7 +8,7 @@ export class WidgetsComponent {
     constructor() { }
 
     public brandPrimary:string =  '#002e5a';
-    public brandSuccess:string =  '#4dbd74';
+    public brandSuccess:string =  '#002e5a';
     public brandInfo:string =     '#63c2de';
     public brandWarning:string =  '#f8cb00';
     public brandDanger:string =   '#f86c6b';
