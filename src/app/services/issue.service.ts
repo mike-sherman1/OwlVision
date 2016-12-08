@@ -67,6 +67,10 @@ export class IssueService {
         this.af.database.object('/issues/' + key + '/').update({status: status});
     }
 
+    updateIssue(issue) {
+        return this.af.database.object('/issues/' + issue.$key + '/').update(issue);
+    }
+
     uploadPhoto(files, userId) {
         let path = '/issues/' + userId + '/' + files.name;
         let storageref = this.storage.child(path);

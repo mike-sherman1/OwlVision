@@ -33,12 +33,10 @@ export class IssueCardComponent implements OnInit {
 
     newComment: string;
     isAdmin: boolean;
+    isOwner: boolean;
     status: string;
 
     constructor(private _issueService: IssueService, private _router: Router, private _userService: UserService) {
-        _userService.getProfile().subscribe(prof => {
-            this.isAdmin = prof.type === 'admin';
-        })
     }
 
     ngOnInit() {
@@ -49,6 +47,10 @@ export class IssueCardComponent implements OnInit {
             });
         }
         this.status = this.issue.status;
+        this._userService.getProfile().subscribe(prof => {
+            this.isAdmin = prof.type === 'admin';
+            this.isOwner = prof.$key === this.issue.author;
+        });
         // console.log(this.issue);
 
     }

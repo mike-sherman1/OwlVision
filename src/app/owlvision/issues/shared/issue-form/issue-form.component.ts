@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Inject}  from '@angular/core';
+import {Component, Input, OnInit, Inject, Output, EventEmitter}  from '@angular/core';
 import {FormGroup, FormBuilder, Validators}                 from '@angular/forms';
 import {Issue} from "../../../../models/issue";
 import {IssueService} from "../../../../services/issue.service";
@@ -14,6 +14,7 @@ import {BuildingListService} from "../../../../services/building.service";
 export class IssueFormComponent implements OnInit {
 
     @Input() issue: Issue;
+    @Output() save = new EventEmitter;
     form: FormGroup;
     display: boolean = false;
     update: boolean = false;
@@ -73,7 +74,8 @@ export class IssueFormComponent implements OnInit {
                 room: '',
                 extra: ''
             }),
-            time:'',
+            comments: [],
+            time: new Date(),
             picture: '',
             isAnonymous: false
         });
@@ -105,11 +107,25 @@ export class IssueFormComponent implements OnInit {
     }
 
     onSubmit() {
-        this.form.patchValue({name: this.displayName, email: this.email, author: this.uid, picture: this.image});
-        console.log(this.form.value);
-        this._issueService.createIssue(this.form.value).then(res => {
-            this._router.navigate(['/issues']);
-        });
+        if (!this.issue) {
+            this.form.patchValue({
+                name: this.displayName,
+                email: this.email,
+                author: this.uid,
+                picture: this.image
+            });
+        }
+        // console.log(this.form.value);
+        if (this.issue) {
+            this._issueService.updateIssue(this.form.value).then(res => {
+                this.save.emit();
+            })
+        } else {
+            this._issueService.createIssue(this.form.value).then(res => {
+                this._router.navigate(['/issues']);
+            });
+        }
+
     }
 
     // saveAndReturn() {
