@@ -1,19 +1,34 @@
-"use strict";
-var Issue = (function () {
-    function Issue(issueObj) {
+import {Comment} from "./comment";
+import {Time} from "./time";
+import {Location} from "./location";
+export class Issue {
+    public title: string;
+    public author: string;
+    public name: string;
+    public email: string;
+    public priority: number;
+    public status: string;
+    public description: string;
+    public location: Location;
+    public picture: string;
+    public isAnonymous: boolean;
+    public time?: any;
+    public $key?: string;
+    public comments: Comment[];
+
+    constructor(issueObj?: any) {
         this.title = issueObj && issueObj.title || '';
-        this.location = issueObj && issueObj.location || '';
         this.author = issueObj && issueObj.author || '';
         this.name = issueObj && issueObj.name || '';
-        this.description = issueObj && issueObj.description || '';
-        //this.email = issueObj && issueObj.email || '';
+        this.email = issueObj && issueObj.email || '';
         this.priority = issueObj && issueObj.priority || '';
         this.status = issueObj && issueObj.status || null;
-        this.picture = issueObj && issueObj.picture || '';
+        this.description = issueObj && issueObj.description || '';
+        this.location = issueObj && new Location(issueObj.location) || new Location();
         this.picture = issueObj && issueObj.picture || '';
         this.isAnonymous = issueObj && issueObj.isAnonymous || false;
+        this.time = issueObj && new Date(issueObj.time) || null;
+        // this.$key = issueObj && issueObj.$key || null;
         this.comments = issueObj && issueObj.comments || [];
     }
-    return Issue;
-}());
-exports.Issue = Issue;
+}
