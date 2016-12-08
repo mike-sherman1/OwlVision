@@ -122,24 +122,29 @@
                 </div>
                 <div class="form-group" formGroupName="time">
                     <label>When will you study?</label>
-                    <div class="col-sm-12">
-                        <label>Date</label>
-                        <p-calendar formControlName="date"></p-calendar>
+                    <div class="form-group">
+                        <label>Start</label><br>
+                        <p-calendar formControlName="start" showTime="showTime" hourFormat="12"></p-calendar>
                     </div>
-                    <div class="col-sm-12">
-                        <label>Start</label>
-                        <p-calendar formControlName="start" [timeOnly]="true"></p-calendar>
-                    </div>
-                    <div class="col-sm-12">
-                        <label>End</label>
-                        <p-calendar formControlName="end" [timeOnly]="true"></p-calendar>
+                    <div class="form-group">
+                        <label>End</label><br>
+                        <p-calendar formControlName="end" showTime="showTime" hourFormat="12"></p-calendar>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Placeholder for picture upload</label>
+                    <div *ngIf="the_pic !== ''">
+                        <img [src]="the_pic">
+                    </div>
+                    <div>
+                        <label *ngIf="the_pic === ''">Picture Upload</label><label *ngIf="the_pic !== ''">Change
+                        Picture</label><br>
+                        <input type="file" id="filebutton" value="upload" #filebtn (change)="photoInputChange($event)">
+                    </div>
                 </div>
                 <div class="form-group text-sm-center">
-                    <button type="submit" class="btn btn-success"><i class="fa fa-magic"></i>&nbsp; Post Issue</button>
+                    <button type="submit" class="btn btn-success"><i class="fa fa-magic"></i>&nbsp; <span
+                            *ngIf="!studyGroup">Post</span><span *ngIf="studyGroup">Update</span> Study Group
+                    </button>
                 </div>
             </div>
             <!--/row-->

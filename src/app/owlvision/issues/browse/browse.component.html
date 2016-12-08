@@ -1,10 +1,22 @@
-<div class="row">
-    <div class="col-md-12">
-        <h1>Browse Issues</h1>
+<!--<div class="row">-->
+<!--<div class="col-md-12">-->
+<!--<h1>Browse Issues</h1>-->
+<!--</div>-->
+<!--</div>-->
+<div class="row p-1">
+    <div class="col-sm-4">
+        <label for="status">View By Status</label>
+        <select id="status" class="form-control" [(ngModel)]="status" size="1">
+            <option ngValue="All">All</option>
+            <option ngValue="Opened">Opened</option>
+            <option ngValue="In Progress">In Progress</option>
+            <option ngValue="Resolved">Resolved</option>
+        </select>
     </div>
 </div>
-<div class="row">
-    <div class="issueCards">
-        <issue-card *ngFor="let issue of issues | async" class="issue-card" [issue]="issue"></issue-card>
-    </div>
+<div class="row issueCards">
+    <!--<span >-->
+    <issue-card *ngFor="let issue of issues | async" [hidden]="status!=='All' && issue.status !== status"
+                class="issue-card" [issue]="issue"></issue-card>
+    <!--</span>-->
 </div>

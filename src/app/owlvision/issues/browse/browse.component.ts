@@ -10,6 +10,7 @@ import {IssueService} from "../../../services/issue.service";
 export class BrowseIssuesComponent {
 
     issues: FirebaseListObservable<any>;
+    status: string = "All";
 
     constructor(private _router: Router, af: AngularFire, private _issueService: IssueService) {
         this.issues = af.database.list('/issues');

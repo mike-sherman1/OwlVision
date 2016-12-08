@@ -5,15 +5,22 @@ import 'rxjs';
 // firebase/angularfire
 import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import {StudyGroup} from "../models/studygroup";
+import {AuthService} from "./auth.service";
+import {Comment} from "../models/comment";
+import {UserService} from "./user.service";
 
 @Injectable()
 export class SGService {
 
-    studygroups:FirebaseListObservable<any>;
+    studygroups: FirebaseListObservable<any>;
+    storage;
 
-    constructor(public af: AngularFire) {
+    auth: any;
+
+    constructor(public af: AngularFire, private _authService: AuthService, private _userService: UserService) {
 
         this.studygroups = af.database.list('/studygroups/');
+        this.storage = firebase.storage().ref();
         // this.issuepics = firebase.storage().ref('/issuepics/');
 
     }
@@ -23,10 +30,71 @@ export class SGService {
         // Set basic user profile defaults
         sg = new StudyGroup(sg);
 
+        sg.time.start = sg.time.start.toUTCString();
+        sg.time.end = sg.time.end.toUTCString();
+
+        delete sg.$key;
         console.log(sg);
         // Save user profile
         return this.studygroups.push(sg);
 
+    }
+
+    deleteSG(key) {
+        return this.af.database.object('/studygroups/' + key + '/').remove();
+    }
+
+    addComment(id, commentText, comments) {
+        let comment = new Comment();
+        comment.name = this._authService.displayName;
+        comment.author = this._authService.id;
+        comment.text = commentText;
+        this._userService.getProfile().subscribe(prof => {
+            comment.isAdmin = prof.type === 'admin';
+            comments.push(comment);
+            this.af.database.object('/studygroups/' + id + '/').update({comments: comments});
+        })
+
+    }
+
+    updateSG(studyGroup, key) {
+        studyGroup.time.start = studyGroup.time.start.toUTCString();
+        studyGroup.time.end = studyGroup.time.end.toUTCString();
+        console.log('update studyGroup', studyGroup, key);
+        return this.af.database.object('/studygroups/' + key + '/').update(studyGroup);
+    }
+
+    uploadPhoto(files, userId) {
+        let path = '/studygroups/' + userId + '/' + files.name;
+        let storageref = this.storage.child(path);
+        let task = storageref.put(files);
+        task.on('state_changed', function (snapshot) {
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
+            // Handle unsuccessful uploads
+        }, function () {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            let iurl = task.snapshot.downloadURL;
+            console.log(iurl);
+            // return iurl;
+        });
+        return path;
+    }
+
+    getImageURL(path) {
+        return this.storage.child(path).getDownloadURL();
     }
 
     // /**

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Inject}  from '@angular/core';
+import {Component, Input, OnInit, Inject, Output, EventEmitter}  from '@angular/core';
 import {FormGroup, FormBuilder, Validators}                 from '@angular/forms';
 import {Issue} from "../../../../models/issue";
 import {IssueService} from "../../../../services/issue.service";
@@ -17,11 +17,14 @@ import {StudyGroup} from "../../../../models/studygroup";
 })
 export class SGFormComponent implements OnInit {
 
-    @Input() studyGroup: Issue;
+    @Input() studyGroup: StudyGroup;
+    @Output() save = new EventEmitter;
+    @Output() picChange = new EventEmitter;
     form: FormGroup;
     display: boolean = false;
     update: boolean = false;
     form_title: string = 'New Study Group';
+    isPicChange: boolean = false;
 
     displayName: string;
     email: string;
@@ -32,8 +35,13 @@ export class SGFormComponent implements OnInit {
     subjects_numbers: any = {};
     classes_dict: any = {};
 
+    image: string;
+    the_pic: string = '';
+
     locList: any[] = [];
     nameList: any[] = [];
+
+    updateKey: string;
 
     constructor(private fb: FormBuilder, private _studyGroupService: SGService, private _router: Router, private _classService: ClassService, private _authService: AuthService, private _af: AngularFire, private _bldgService: BuildingListService) {
 
@@ -50,17 +58,19 @@ export class SGFormComponent implements OnInit {
     ngOnInit() {
         this.form = this.newForm();
         if (this.studyGroup !== undefined) {
-            this.studyGroup = new Issue(this.studyGroup);
+            this.updateKey = this.studyGroup.$key;
+            this.studyGroup = new StudyGroup(this.studyGroup);
             this.update = true;
             this.form.setValue(this.studyGroup);
+            this.getLocList(this.studyGroup.location.type, true);
         }
-        if(this._classService.primed){
+        if (this._classService.primed) {
             let objs = this._classService.getSubsNumDict();
             this.classes = objs.classes;
             this.subjects = objs.subjects;
             this.classes_dict = objs.dict;
             this.subjects_numbers = objs.numbers;
-        }else{
+        } else {
             this._classService.getAll().subscribe(objs => {
                 this.classes = objs.classes;
                 this.subjects = objs.subjects;
@@ -68,6 +78,20 @@ export class SGFormComponent implements OnInit {
                 this.subjects_numbers = objs.numbers;
             });
         }
+        if (this.studyGroup && this.studyGroup.picture !== '') {
+            this._studyGroupService.getImageURL(this.studyGroup.picture).then(url => {
+                console.log(url);
+                this.the_pic = url;
+            });
+        }
+    }
+
+    photoInputChange(event) {
+        let files = event.srcElement.files[0];
+        let uploader = document.getElementById("uploader");
+        let url = this._studyGroupService.uploadPhoto(files, this.uid);
+        this.image = url;
+        this.isPicChange = true;
     }
 
     newForm(event_id = '') {
@@ -84,49 +108,76 @@ export class SGFormComponent implements OnInit {
                 room: '',
                 extra: ''
             }),
-            time:this.fb.group({
-                date:'',
-                start:'',
-                end:''
+            time: this.fb.group({
+                start: '',
+                end: ''
             }),
-            the_class:this.fb.group({
-                subject:'',
-                number:'',
-                title:''
+            comments: [],
+            picture: '',
+            the_class: this.fb.group({
+                subject: '',
+                number: '',
+                title: ''
             })
         });
     }
 
     onSubmit() {
-        this.form.patchValue({name: this.displayName, email: this.email, author: this.uid});
-        this._studyGroupService.createSG(this.form.value).then(res => {
-            this._router.navigate(['/study-groups']);
-        });
-    }
-
-    getLocList(type: string) {
-        switch (type) {
-            case 'bcode':
-                this.locList = this._bldgService.getDistinctBldgCodes();
-                this.clearLoc();
-                break;
-            case 'bname':
-                this.locList = this._bldgService.getDistinctBldgNames();
-                this.clearLoc();
-                break;
-            case 'other':
-                this.clearLoc();
-                break;
+        if (!this.studyGroup) {
+            this.form.patchValue({
+                name: this.displayName,
+                email: this.email,
+                author: this.uid,
+                picture: this.image
+            });
+        }
+        if (this.studyGroup && this.isPicChange) {
+            this.form.patchValue({
+                picture: this.image
+            });
+        }
+        if (this.form.value.location.type === 'bname') {
+            let code = this._bldgService.getBldgCodeFromName(this.form.value.location.name);
+            // console.log(code);
+            this.form.patchValue({location: {code: code}});
+        }
+        // console.log(this.form.value);
+        if (this.studyGroup) {
+            console.log(this.form.value);
+            this._studyGroupService.updateSG(this.form.value, this.updateKey).then(res => {
+                if (this.isPicChange) {
+                    this.isPicChange = false;
+                    this.picChange.emit();
+                }
+                else this.save.emit();
+            })
+        } else {
+            console.log('before save', this.form.value);
+            this._studyGroupService.createSG(this.form.value).then(res => {
+                this._router.navigate(['/study-groups']);
+            });
         }
     }
 
-    getNameList($event){
-        this.nameList = this._bldgService.getBldgNamesByCode($event);
-        if(this.nameList.length === 1) this.form.patchValue({location:{name:this.nameList[0]}});
+    getLocList(type: string, noClear: boolean = false) {
+        switch (type) {
+            case 'bcode':
+                this.locList = this._bldgService.getDistinctBldgCodes();
+                break;
+            case 'bname':
+                this.locList = this._bldgService.getDistinctBldgNames();
+                break;
+        }
+        if (!noClear) this.clearLoc();
     }
 
-    clearLoc(){
-        this.form.patchValue({location:{code:'',name:'',room:'',extra:''}});
+    getNameList($event) {
+        this.nameList = this._bldgService.getBldgNamesByCode($event);
+        if (this.nameList.length === 1) this.form.patchValue({location: {name: this.nameList[0]}});
+    }
+
+    clearLoc() {
+        this.form.patchValue({location: {code: '', name: '', room: '', extra: ''}});
     }
 
     // saveAndReturn() {
