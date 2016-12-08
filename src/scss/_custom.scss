@@ -83,7 +83,11 @@ body.sidebar-nav .footer {
   left: 0px;
 }
 
-.dropdown-menu{
+.dropdown-menu {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-  border: 0px ;
+  border: 0px;
+}
+
+.navbar-toggler {
+  border-radius: 0;
 }
