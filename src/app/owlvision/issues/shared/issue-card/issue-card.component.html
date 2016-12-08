@@ -34,7 +34,7 @@
                 <li>
                     Author: {{issue.isAnonymous ? 'Anonymous' : issue.name}}
                 </li>
-                <li>
+                <li *ngIf="issue.isAnonymous">
                     Email: {{issue.email}}
                 </li>
                 <li>
