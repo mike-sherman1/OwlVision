@@ -1,7 +1,7 @@
 .issueCards {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   issue-card {
     flex: 1 1 450px;
     //max-width: 400px;
