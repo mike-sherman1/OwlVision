@@ -5,28 +5,7 @@
     </div>
     <div class="card-block">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="form-group text-md-center text-sm-center">
-                <label for="isAnon">Post Anonymously?</label><br/>
-                <label class="switch switch-text switch-primary">
-                    <input id="isAnon" formControlName="isAnonymous" type="checkbox" class="switch-input" checked>
-                    <span class="switch-label" data-on="Yes" data-off="No"></span>
-                    <span class="switch-handle"></span>
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" formControlName="title" class="form-control" id="title"
-                       placeholder="Enter issue title">
-            </div>
-            <div class="form-group">
-                <label for="priority">Priority</label>
-                <select id="priority" formControlName="priority" class="form-control" size="1">
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                </select>
-            </div>
-            <div class="form-group">
+            <div class="form-group col-xs-12 col-sm-4" style="text-align:center;">
                 <label for="status">Status</label>
                 <select id="status" formControlName="status" *ngIf="update" class="form-control" size="1">
                     <option value="Opened">Opened</option>
@@ -35,17 +14,38 @@
                 </select>
                 <span *ngIf="!update">: <strong class="red">New Issue</strong></span>
             </div>
-            <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="description">Description</label>
-                <div class="col-md-9">
+            <div class="form-group text-md-center text-sm-center col-xs-12 col-sm-8" style="text-align:center;">
+                <label for="isAnon" style="padding-right:10px;">Post Anonymously?</label>
+                <label class="switch switch-text switch-primary">
+                    <input id="isAnon" formControlName="isAnonymous" type="checkbox" class="switch-input" checked>
+                    <span class="switch-label" data-on="Yes" data-off="No"></span>
+                    <span class="switch-handle"></span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="title" class="">Title</label>
+                <div class="col-xs-10" style="float:right;"><input type="text" formControlName="title" class="form-control" id="title"
+                       placeholder="Enter issue title"></div>
+            </div>
+            <div class="form-group">
+                <label for="priority">Priority</label>
+                <div class="col-xs-10" style="float:right;"><select id="priority" formControlName="priority" class="form-control" size="1">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select></div>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <div class="">
                     <textarea id="description" formControlName="description" name="textarea-input" rows="9"
                               class="form-control" placeholder="Description of issue.."></textarea>
                 </div>
             </div>
             <div class="form-group" formGroupName="location">
-                <label>Where did the issue occur?</label>
+                <label>Where did this issue occur?</label>
                 <div class="form-group row">
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <div class="radio">
                             <label for="bcode">
                                 <input type="radio" id="bcode" formControlName="type" (click)="getLocList('bcode')"
@@ -61,7 +61,7 @@
                         <div class="radio">
                             <label for="bother">
                                 <input type="radio" id="bother" formControlName="type"
-                                       value="other" (click)="getLocList('other')">Manual
+                                       value="other" (click)="getLocList('other')">Somewhere else
                             </label>
                         </div>
                     </div>
@@ -111,21 +111,23 @@
                 </div>
             </div>
             <div class="form-group">
-                <label>When did this occur?</label><br>
+                <label>When did this issue occur?</label><br>
                 <p-calendar formControlName="time" showTime="showTime" hourFormat="12"></p-calendar>
+                <!--<label for="bname"><input type="radio">Just Now!</input></label>-->
             </div>
             <div class="form-group">
                 <div *ngIf="the_pic !== ''">
                     <img [src]="the_pic">
                 </div>
                 <div>
-                    <label *ngIf="the_pic === ''">Picture Upload</label><label *ngIf="the_pic !== ''">Change
+                    <label *ngIf="the_pic === ''">Upload a Picture</label><label *ngIf="the_pic !== ''">Change
                     Picture</label><br>
                     <input type="file" id="filebutton" value="upload" #filebtn (change)="photoInputChange($event)">
                 </div>
+                <!-- picture preview?? -->
             </div>
             <div class="form-group text-sm-center">
-                <button type="submit" class="btn btn-success"><i class="fa fa-magic"></i>&nbsp; <span
+                <button type="submit" class="btn btn-primary"><i class="fa fa-magic"></i>&nbsp; <span
                         *ngIf="!issue">Post</span><span *ngIf="issue">Update</span> Issue
                 </button>
             </div>

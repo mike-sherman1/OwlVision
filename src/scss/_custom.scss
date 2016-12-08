@@ -1,9 +1,24 @@
 // Here you can add other styles
 
-@media (min-width: 991px) {
-  .mobile-only {
-    display: none;
+@media (min-width: 992px){
+  .sidebar{
+    display:none !important;
   }
+}
+
+.breadcrumb{
+  padding-top:22px;
+}
+
+.sidebar-nav .breadcrumb{
+  padding-top:0.75rem;
+}
+.breadcrumb-menu{
+  padding-top:10px;
+}
+
+.sidebar-nav .breadcrumb-menu{
+  padding-top:0.75rem;
 }
 
 .card-header {
@@ -21,12 +36,39 @@
     .sidebar-nav{
       padding-top:10px;
     }
-    
-    body.sidebar-nav .main {
-  //padding-left: 200px;
-  width: 100%;
-  padding: 0;
-  padding-top: 55px;
-  margin: 0;
-  overflow: hidden;
+
+body:not(.top-nav) .sidebar ul.nav li.nav-item a.nav-link.active i{
+  color:#b10e23;
+}
+body:not(.top-nav) .sidebar ul.nav li.nav-item a.nav-link:hover{
+  background:#b10e23;
+}
+.dropdown-item:focus, .dropdown-item:hover{
+  color:white;
+  background:#002e5a;
+}
+
+label{
+      font-weight: 500;
+}
+
+.card-fau{
+  background-color:#002e5a;
+}
+
+body{
+      background: url("/assets/img/images/loginbackgroundfaded.png");
+      background-size:cover;
+}
+
+body.sidebar-nav .main {
+ //padding-left: 200px;
+ width: 100%;
+ padding: 0;
+ padding-top: 55px;
+ margin: 0;
+ overflow: hidden;
+}
+body.sidebar-nav .footer{
+  left:0px;
 }
