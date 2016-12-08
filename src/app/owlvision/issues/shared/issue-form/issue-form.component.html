@@ -111,23 +111,11 @@
                 </div>
             </div>
             <div class="form-group">
-                <label>When did this occur?</label><br>
-                <p-calendar formControlName="time" showTime="showTime" hourFormat="12"></p-calendar>
+                <label>Picture Upload</label><br>
+                <input type="file" id="filebutton" value="upload" #filebtn (change)="photoInputChange($event)">
             </div>
-            <div class="form-group">
-                <div *ngIf="the_pic !== ''">
-                    <img [src]="the_pic">
-                </div>
-                <div>
-                    <label *ngIf="the_pic === ''">Picture Upload</label><label *ngIf="the_pic !== ''">Change
-                    Picture</label><br>
-                    <input type="file" id="filebutton" value="upload" #filebtn (change)="photoInputChange($event)">
-                </div>
-                <div class="form-group text-sm-center">
-                    <button type="submit" class="btn btn-success"><i class="fa fa-magic"></i>&nbsp; <span
-                            *ngIf="!issue">Post</span><span *ngIf="issue">Update</span> Issue
-                    </button>
-                </div>
+            <div class="form-group text-sm-center">
+                <button type="submit" class="btn btn-success"><i class="fa fa-magic"></i>&nbsp; Post Issue</button>
             </div>
             <!--/row-->
         </form>

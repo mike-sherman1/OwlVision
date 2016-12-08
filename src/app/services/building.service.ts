@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class BuildingListService {
 
-    bldg_list: any = [
+    bldg_list:any =   [
         {
             "number": "1",
             "code": "SC",
@@ -790,38 +790,30 @@ export class BuildingListService {
     constructor() {
     }
 
-    getDistinctBldgCodes() {
-        let res = [];
-        this.bldg_list.map(function (o) {
-            if (res.indexOf(o.code) < 0) res.push(o.code);
+    getDistinctBldgCodes(){
+        let res=[];
+        this.bldg_list.map(function(o){
+            if(res.indexOf(o.code) < 0) res.push(o.code);
         });
         return res;
     }
 
-    getDistinctBldgNames() {
-        let res = [];
-        this.bldg_list.map(function (o) {
-            if (res.indexOf(o.name) < 0) res.push(o.name);
+    getDistinctBldgNames(){
+        let res=[];
+        this.bldg_list.map(function(o){
+            if(res.indexOf(o.name) < 0) res.push(o.name);
         });
         return res;
     }
 
-    getBldgNamesByCode(code) {
-        let res = [];
-        this.bldg_list.map(function (o) {
-            if (o.code === code) {
-                if (res.indexOf(o.name) < 0) res.push(o.name);
+    getBldgNamesByCode(code){
+        let res=[];
+        this.bldg_list.map(function(o){
+            if(o.code===code){
+                if(res.indexOf(o.name) < 0) res.push(o.name);
             }
         });
         return res;
-    }
-
-    getBldgCodeFromName(name) {
-        let code: string;
-        this.bldg_list.map(o => {
-            if (o.name === name) code = o.code;
-        })
-        return code;
     }
 
 }

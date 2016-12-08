@@ -6,6 +6,15 @@
   }
 }
 
+.breadcrumb{
+  padding-top:20px;
+}
+
+.sidebar-nav .breadcrumb{
+  padding-top:0.75rem;
+}
+
+
 .card-header {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
@@ -22,20 +31,13 @@
       padding-top:10px;
     }
 
-    .dropdown-item:hover {
-    color: #ffffff;
-    text-decoration: none;
-    background-color: rgb(0, 46, 90);
+body:not(.top-nav) .sidebar ul.nav li.nav-item a.nav-link.active i{
+  color:#b10e23;
 }
-.breadcrumb{
-  padding-top:20px;
+body:not(.top-nav) .sidebar ul.nav li.nav-item a.nav-link:hover{
+  background:#b10e23;
 }
-
-.sidebar-nav .breadcrumb{
-  padding-top:none;
-  padding: 0.75rem 1rem;
-}
-
-body:not(.top-nav) .sidebar ul.nav li.nav-item a.nav-link.active i {
-    color: #b10e23;
+.dropdown-item:focus, .dropdown-item:hover{
+  color:white;
+  background:#002e5a;
 }

@@ -23,14 +23,6 @@ export class AuthService {
         return this.authenticated ? this.authState.uid : '';
     }
 
-    get displayName(): string {
-        return this.authenticated ? this.authState.auth.displayName : '';
-    }
-
-    get email(): string {
-        return this.authenticated ? this.authState.auth.email : '';
-    }
-
     signIn(provider: number): firebase.Promise<FirebaseAuthState> {
         return this.auth$.login({provider})
             .catch(error => console.log('ERROR @ AuthService#signIn() :', error));
