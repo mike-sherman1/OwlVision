@@ -7,7 +7,7 @@
 }
 
 .breadcrumb{
-  padding-top:20px;
+  padding-top:0.75rem;
 }
 
 .sidebar-nav .breadcrumb{
@@ -68,4 +68,7 @@ body.sidebar-nav .main {
  padding-top: 55px;
  margin: 0;
  overflow: hidden;
+}
+body.sidebar-nav .footer{
+  left:0px;
 }
