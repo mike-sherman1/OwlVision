@@ -48,7 +48,7 @@
                     Description: {{issue.description}}
                 </li>
                 <li>
-                    Time: {{issue.time}}
+                    Time: {{issue.time | date:'medium'}}
                 </li>
                 <li class="the_pic">
                     <img *ngIf="picture!=='' && detail" [src]="picture">

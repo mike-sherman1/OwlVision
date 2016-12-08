@@ -6,6 +6,7 @@ import {
 import {BrowseStudyGroupsComponent} from "./browse/browse.component";
 import {MyStudyGroupsComponent} from "./my-study-groups/my-study-groups.component";
 import {PostStudyGroupComponent} from "./post/post.component";
+import {SGBrowseDetailComponent} from "./detail/detail.component";
 
 const routes: Routes = [
     {
@@ -31,6 +32,13 @@ const routes: Routes = [
                 component: BrowseStudyGroupsComponent,
                 data: {
                     title: 'Browse Study Groups'
+                }
+            },
+            {
+                path: 'browse/:id',
+                component: SGBrowseDetailComponent,
+                data: {
+                    title: 'Detail'
                 }
             },
             {
