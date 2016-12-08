@@ -49,7 +49,7 @@ export class IssueService {
 
     }
 
-    addComment(id, commentText,comments) {
+    addComment(id, commentText, comments) {
         let comment = new Comment();
         comment.name = this._authService.displayName;
         comment.author = this._authService.id;
@@ -60,6 +60,11 @@ export class IssueService {
             this.af.database.object('/issues/' + id + '/').update({comments: comments});
         })
 
+    }
+
+    updateStatus(key, status) {
+        console.log(status);
+        this.af.database.object('/issues/' + key + '/').update({status: status});
     }
 
     uploadPhoto(files, userId) {

@@ -3,6 +3,7 @@ import {FormGroup, FormBuilder, Validators}                 from '@angular/forms
 import {Issue} from "../../../../models/issue";
 import {IssueService} from "../../../../services/issue.service";
 import {Router} from "@angular/router";
+import {UserService} from "../../../../services/user.service";
 
 @Component({
     selector: 'issue-card',
@@ -31,9 +32,13 @@ export class IssueCardComponent implements OnInit {
     };
 
     newComment: string;
+    isAdmin: boolean;
+    status: string;
 
-    constructor(private _issueService: IssueService, private _router: Router) {
-
+    constructor(private _issueService: IssueService, private _router: Router, private _userService: UserService) {
+        _userService.getProfile().subscribe(prof => {
+            this.isAdmin = prof.type === 'admin';
+        })
     }
 
     ngOnInit() {
@@ -43,14 +48,19 @@ export class IssueCardComponent implements OnInit {
                 this.picture = url;
             });
         }
+        this.status = this.issue.status;
         // console.log(this.issue);
 
     }
 
+    updateStatus($event) {
+        this._issueService.updateStatus(this.issue.$key, $event);
+    }
+
     addComment() {
-        console.log(this.issue);
-        if(!this.issue.comments) this.issue.comments = [];
-        this._issueService.addComment(this.issue.$key, this.newComment,this.issue.comments);
+        // console.log(this.issue);
+        if (!this.issue.comments) this.issue.comments = [];
+        this._issueService.addComment(this.issue.$key, this.newComment, this.issue.comments);
     }
 
     goToDetail() {
