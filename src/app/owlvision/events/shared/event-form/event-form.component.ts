@@ -1,34 +1,43 @@
-import {Component, Input, OnInit, Inject}  from '@angular/core';
+import {Component, Input, OnInit, Inject, Output, EventEmitter}  from '@angular/core';
 import {FormGroup, FormBuilder, Validators}                 from '@angular/forms';
-import {Issue} from "../../../../models/issue";
-import {IssueService} from "../../../../services/issue.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../../services/auth.service";
 import {AngularFire} from "angularfire2";
-import {SGService} from "../../../../services/studygroup.service";
 import {BuildingListService} from "../../../../services/building.service";
-// import {BuildingListService, SGService} from "../../../../services";
+import {EventService} from "../../../../services/event.service";
+import {Event} from "../../../../models/event";
+
 @Component({
-    selector: 'sg-form',
+    selector: 'event-form',
     template: require('./event-form.component.html'),
     styles: [require('./event-form.component.scss')],
 })
+
 export class EventFormComponent implements OnInit {
 
-    @Input() studyGroup: Issue;
+    @Input() event: Event;
+    @Output() save = new EventEmitter;
+    @Output() picChange = new EventEmitter;
     form: FormGroup;
     display: boolean = false;
     update: boolean = false;
-    form_title: string = 'New Study Group';
+    form_title: string = 'New Event';
+    isPicChange: boolean = false;
 
     displayName: string;
     email: string;
     uid: string;
 
+
+    image: string;
+    the_pic: string = '';
+
     locList: any[] = [];
     nameList: any[] = [];
 
-    constructor(private fb: FormBuilder, private _studyGroupService: SGService, private _router: Router, private _authService: AuthService, private _af: AngularFire, private _bldgService: BuildingListService) {
+    updateKey: string;
+
+    constructor(private fb: FormBuilder, private _eventService: EventService, private _router: Router, private _authService: AuthService, private _af: AngularFire, private _bldgService: BuildingListService) {
 
         _af.auth.subscribe(auth => {
             console.log(auth.auth);
@@ -37,17 +46,44 @@ export class EventFormComponent implements OnInit {
                 this.email = auth.auth.email;
                 this.uid = auth.auth.uid;
             }
-        })
-
+        });
     }
 
     ngOnInit() {
         this.form = this.newForm();
-        if (this.studyGroup !== undefined) {
-            this.studyGroup = new Issue(this.studyGroup);
+        if (this.event !== undefined) {
+            this.updateKey = this.event.$key;
+            this.event = new Event(this.event);
             this.update = true;
-            this.form.setValue(this.studyGroup);
+            this.form.setValue(this.event);
+            this.getLocList(this.event.location.type, true);
         }
+        if (this.event && this.event.picture !== '') {
+            this._eventService.getImageURL(this.event.picture).then(url => {
+                console.log(url);
+                this.the_pic = url;
+            });
+        }
+    }
+
+    photoInputChange(event) {
+        let files = event.srcElement.files[0];
+        let uploader = document.getElementById("uploader");
+        let pic_id;
+        if (this.form.value.picture_id !== '') {
+            pic_id = this.form.value.picture_id
+        } else {
+            pic_id = this.randomString(16, 'aA');
+            this.form.patchValue({picture_id: pic_id});
+        }
+
+        let url = this._eventService.uploadPhoto(files, pic_id);
+        this.image = url;
+        this.isPicChange = true;
+    }
+
+    isFullForm() {
+        return this.form.value.time.start === '' || this.form.value.time.end === '' || this.form.value.location.name === '' || this.form.value.title === ''
     }
 
     newForm(event_id = '') {
@@ -64,44 +100,83 @@ export class EventFormComponent implements OnInit {
                 room: '',
                 extra: ''
             }),
-            time:this.fb.group({
-                date:'',
-                start:'',
-                end:''
-            })
+            time: this.fb.group({
+                start: '',
+                end: ''
+            }),
+            comments: [],
+            picture: '',
+            picture_id: '',
         });
     }
 
     onSubmit() {
-        this.form.patchValue({name: this.displayName, email: this.email, author: this.uid});
-        this._studyGroupService.createIssue(this.form.value).then(res => {
-            this._router.navigate(['/study-groups']);
-        });
-    }
-
-    getLocList(type: string) {
-        switch (type) {
-            case 'bcode':
-                this.locList = this._bldgService.getDistinctBldgCodes();
-                this.clearLoc();
-                break;
-            case 'bname':
-                this.locList = this._bldgService.getDistinctBldgNames();
-                this.clearLoc();
-                break;
-            case 'other':
-                this.clearLoc();
-                break;
+        if (!this.event) {
+            this.form.patchValue({
+                name: this.displayName,
+                email: this.email,
+                author: this.uid,
+                picture: this.image
+            });
+        }
+        if (this.event && this.isPicChange) {
+            this.form.patchValue({
+                picture: this.image
+            });
+        }
+        if (this.form.value.location.type === 'bname') {
+            let code = this._bldgService.getBldgCodeFromName(this.form.value.location.name);
+            // console.log(code);
+            this.form.patchValue({location: {code: code}});
+        }
+        // console.log(this.form.value);
+        if (this.event) {
+            console.log(this.form.value);
+            this._eventService.updateEvent(this.form.value, this.updateKey).then(res => {
+                if (this.isPicChange) {
+                    this.isPicChange = false;
+                    this.picChange.emit();
+                }
+                else this.save.emit();
+            })
+        } else {
+            console.log('before save', this.form.value);
+            this._eventService.createEvent(this.form.value).then(res => {
+                this._router.navigate(['/study-groups']);
+            });
         }
     }
 
-    getNameList($event){
-        this.nameList = this._bldgService.getBldgNamesByCode($event);
-        if(this.nameList.length === 1) this.form.patchValue({location:{name:this.nameList[0]}});
+    getLocList(type: string, noClear: boolean = false) {
+        switch (type) {
+            case 'bcode':
+                this.locList = this._bldgService.getDistinctBldgCodes();
+                break;
+            case 'bname':
+                this.locList = this._bldgService.getDistinctBldgNames();
+                break;
+        }
+        if (!noClear) this.clearLoc();
     }
 
-    clearLoc(){
-        this.form.patchValue({location:{code:'',name:'',room:'',extra:''}});
+    getNameList($event) {
+        this.nameList = this._bldgService.getBldgNamesByCode($event);
+        if (this.nameList.length === 1) this.form.patchValue({location: {name: this.nameList[0]}});
+    }
+
+    clearLoc() {
+        this.form.patchValue({location: {code: '', name: '', room: '', extra: ''}});
+    }
+
+    randomString(length, chars) {
+        var mask = '';
+        if (chars.indexOf('a') > -1) mask += 'abcdefghijklmnopqrstuvwxyz';
+        if (chars.indexOf('A') > -1) mask += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        if (chars.indexOf('#') > -1) mask += '0123456789';
+        if (chars.indexOf('!') > -1) mask += '~`!@#$%^&*()_+-={}[]:";\'<>?,./|\\';
+        var result = '';
+        for (var i = length; i > 0; --i) result += mask[Math.round(Math.random() * (mask.length - 1))];
+        return result;
     }
 
     // saveAndReturn() {

@@ -1,6 +1,7 @@
 import {Component, OnInit}    from '@angular/core';
 import {Router}               from '@angular/router';
 import {AngularFire, FirebaseListObservable} from "angularfire2";
+import {UserService} from "../../services/user.service";
 
 @Component({
     templateUrl: 'dashboard.component.html',
@@ -12,7 +13,7 @@ export class DashboardComponent implements OnInit {
     events: number;
     sg: number;
 
-    constructor(private _af: AngularFire, private _router: Router) {
+    constructor(private _af: AngularFire, private _router: Router, private _userService:UserService) {
     }
 
     public brandPrimary: string = '#20a8d8';
@@ -36,6 +37,7 @@ export class DashboardComponent implements OnInit {
 
 
     ngOnInit(): void {
+
         this._af.database.list('/issues').map(list => list.length).subscribe(length => {
             // console.log(length);
             this.issues = length;
@@ -48,5 +50,7 @@ export class DashboardComponent implements OnInit {
             // console.log(length);
             this.sg = length;
         });
+
+        this._userService.getProfile();
     }
 }

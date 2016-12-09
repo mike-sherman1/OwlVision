@@ -1,23 +1,84 @@
-<div class="card" [ngClass]="accentColor[issue.priority]">
-    <div class="card-header text-sm-center">
-        {{issue.title}}
-        <span [ngClass]="statusColor[issue.status]" class="tag float-xs-left">{{issue.status}}</span>
-        <span [ngClass]="priorityColor[issue.priority]" class="tag tag-pill float-xs-right">{{issue.priority}}</span>
+<button *ngIf="detail" class="btn btn-outline-warning active toggleEdit" type="button"
+        (click)="_router.navigate(['/events'])">Go
+    Back
+</button>
+<div *ngIf="!edit">
+    <div [class]="!detail ? 'card issueC' : 'card'" (click)="goToDetail()">
+        <div class="card-header text-sm-center">
+            {{event.title}}
+        </div>
+        <div class="card-block">
+            <ul>
+                <li *ngIf="isOwner && detail" class="text-xs-center">
+                    <button class="btn btn-outline-info active toggleEdit" type="button" (click)="edit = !edit">Edit
+                        Your
+                        Event
+                    </button>
+                    <button class="btn btn-outline-danger active toggleEdit" type="button" (click)="deleteStudyGroup()">
+                        Delete
+                        Your
+                        Event
+                    </button>
+                </li>
+                <li *ngIf="!isOwner && detail" class="text-xs-center">
+                    <button class="btn btn-outline-info active toggleEdit" type="button" (click)="rsvp()">RSVP To This
+                        Event
+                    </button>
+                </li>
+                <li>
+                    Author: {{event.name}}
+                </li>
+                <li>
+                    Email: {{event.email}}
+                </li>
+                <li>
+                    Location: <span
+                        *ngIf="event.location && event.location.code !== ''">{{event.location.code}}</span><span
+                        *ngIf="event.location && event.location.room !== ''">{{event.location.room}}</span>
+                    <span *ngIf="event.location && event.location.name !== ''">({{event.location.name}})</span>
+                    <span *ngIf="event.location && event.location.extra !== ''">[{{event.location.extra}}]</span>
+                </li>
+                <li>
+                    Description: {{event.description}}
+                </li>
+                <li>
+                    Start: {{event.time.start | date:'medium'}}
+                </li>
+                <li>
+                    End: {{event.time.end | date:'medium'}}
+                </li>
+                <li class="the_pic">
+                    <img *ngIf="picture!=='' && detail" [src]="picture">
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="card-block">
-        <ul>
-            <li>
-                Author: {{issue.isAnonymous ? 'Anonymous' : issue.name}}
-            </li>
-            <li>
-                Email: {{issue.email}}
-            </li>
-            <li>
-                Location: {{issue.location}}
-            </li>
-            <li>
-                Description: {{issue.description}}
-            </li>
-        </ul>
+    <div *ngIf="detail" class="commentsSection">
+        <div *ngFor="let comment of event.comments">
+            <div [class]="comment.isAdmin ? 'col-md-8 offset-md-4 col-sm-12' : 'col-md-8 col-sm-12'">
+                <div [class]="comment.isAdmin ? 'card card-inverse card-danger' : 'card card-inverse card-primary'">
+                    <div class="card-header">
+                        Posted By: {{comment.name}}
+                    </div>
+                    <div class="card-block">
+                        {{comment.text}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+            <textarea name="textarea-input" rows="5" class="form-control" placeholder="Add a comment.."
+                      [(ngModel)]="newComment"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <button class="btn btn-outline-primary active" type="button" (click)="addComment()">Add Comment</button>
+            </div>
+        </div>
     </div>
+</div>
+<div *ngIf="edit">
+    <event-form [event]="event" (save)="edit=!edit" (picChange)="saveAndUpdatePic()"></event-form>
 </div>

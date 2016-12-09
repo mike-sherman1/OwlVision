@@ -1,6 +1,7 @@
 import {Component, OnInit}            from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {AngularFire} from "angularfire2";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'app-dashboard',
@@ -14,8 +15,10 @@ export class FullLayoutComponent implements OnInit {
     myissues: number;
     myevents: number;
     mysg: number;
+    showAlert: boolean = false;
 
-    constructor(public authService: AuthService, private _af: AngularFire) {
+    constructor(public authService: AuthService, private _af: AngularFire, private _out: ActivatedRoute) {
+
     }
 
     public disabled: boolean = false;
@@ -70,5 +73,9 @@ export class FullLayoutComponent implements OnInit {
             // console.log(length);
             this.mysg = length;
         });
+      //  this._route.url.subscribe(r => {
+      //      this.url = r[0].path;
+      //      if (this._authService.authenticated && this.url === 'login') _router.navigate(['/']);
+      //  });
     }
 }

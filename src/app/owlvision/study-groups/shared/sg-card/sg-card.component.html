@@ -1,4 +1,4 @@
-<button *ngIf="detail" class="btn btn-outline-warning active toggleEdit" type="button" (click)="_location.back()">Go
+<button *ngIf="detail" class="btn btn-outline-warning active toggleEdit" type="button" (click)="_router.navigate(['/study-groups'])">Go
     Back
 </button>
 <div *ngIf="!edit">
@@ -65,9 +65,6 @@
         </div>
     </div>
     <div *ngIf="detail" class="commentsSection">
-        <pre>
-            {{studyGroup|json}}
-        </pre>
         <div *ngFor="let comment of studyGroup.comments">
             <div [class]="comment.isAdmin ? 'col-md-8 offset-md-4 col-sm-12' : 'col-md-8 col-sm-12'">
                 <div [class]="comment.isAdmin ? 'card card-inverse card-danger' : 'card card-inverse card-primary'">
