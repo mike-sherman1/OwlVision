@@ -9,11 +9,13 @@ import {EventService} from "../../../services/event.service";
 })
 export class BrowseEventsComponent {
 
-    events: FirebaseListObservable<any>;
+    events: any;
     status: string = "All";
 
     constructor(private _router: Router, af: AngularFire, private _eventService: EventService) {
-        this.events = af.database.list('/events');
+        this.events = af.database.list('/events').map((arr) => {
+            return arr.reverse();
+        });
     }
 
 }

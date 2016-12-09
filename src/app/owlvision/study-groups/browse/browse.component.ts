@@ -11,7 +11,7 @@ import {UserService} from "../../../services/user.service";
 })
 export class BrowseStudyGroupsComponent implements OnInit {
 
-    studyGroups: FirebaseListObservable<any>;
+    studyGroups: any;
     isAll: boolean = true;
     prof;
     myClasses;
@@ -27,7 +27,9 @@ export class BrowseStudyGroupsComponent implements OnInit {
             this.myClasses = this.prof.classes;
         })
         console.log(this.prof);
-        this.studyGroups = this._af.database.list('/studygroups');
+        this.studyGroups = this._af.database.list('/studygroups').map((arr) => {
+            return arr.reverse();
+        });
     }
 
     isMyClass(aclass) {

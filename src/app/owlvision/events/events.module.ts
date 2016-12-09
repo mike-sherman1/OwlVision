@@ -8,7 +8,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CalendarModule} from "primeng/components/calendar/calendar";
 import {EventFormComponent} from "./shared/event-form/event-form.component";
 import {CommonModule} from "@angular/common";
-import {BrowseDetailComponent} from "../events/detail/detail.component";
+import {BrowseDetailComponent} from "./detail/detail.component";
 
 @NgModule({
     imports: [
@@ -18,6 +18,7 @@ import {BrowseDetailComponent} from "../events/detail/detail.component";
         ReactiveFormsModule,
         CalendarModule
     ],
+    exports: [EventCardComponent],
     declarations: [
         BrowseEventsComponent,
         MyEventsComponent,
