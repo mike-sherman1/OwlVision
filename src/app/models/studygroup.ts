@@ -15,6 +15,7 @@ export class StudyGroup {
     public picture_id: string;
     public $key?: string;
     public comments: Comment[];
+    public rsvp:string[];
 
     constructor(sgObj?: any) {
         this.title = sgObj && sgObj.title || '';
@@ -28,5 +29,6 @@ export class StudyGroup {
         this.picture = sgObj && sgObj.picture || '';
         this.picture_id = sgObj && sgObj.picture_id || '';
         this.comments = sgObj && sgObj.comments || [];
+        this.rsvp = sgObj && sgObj.rsvp || [];
     }
 }

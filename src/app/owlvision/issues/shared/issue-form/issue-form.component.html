@@ -130,6 +130,7 @@
                 <button type="submit" class="btn btn-primary" [disabled]="isFullForm()"><i class="fa fa-magic"></i>&nbsp; <span
                         *ngIf="!issue">Post</span><span *ngIf="issue">Update</span> Issue
                 </button>
+                <span *ngIf="isFullForm()">Please fill out ALL field before submitting.</span>
             </div>
             <!--/row-->
         </form>
