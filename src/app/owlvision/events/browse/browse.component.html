@@ -1,9 +1,6 @@
-<div class="row">
-    <div class="col-md-12">
-        <h1>Browse Events</h1>
-    </div>
-</div>
-<div class="row">
-    <div class="eventCards">
-    </div>
+<div class="row issueCards">
+    <!--<span >-->
+    <event-card *ngFor="let event of events | async"
+             class="issue-card" [event]="event"></event-card>
+    <!--</span>-->
 </div>
