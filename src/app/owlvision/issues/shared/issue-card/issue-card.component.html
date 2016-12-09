@@ -25,14 +25,15 @@
                 {{issue.time | date:'medium'}}
             </div>
         </div>
-        <div class="cardpicture" *ngIf="!detail">
-            <img *ngIf="picture!=='' && !detail" [src]="picture">
-            <img *ngIf="picture=='' && !detail" src="/assets/img/images/defaultcardphoto.png">
+        <div *ngIf="!detail" class="cardpicture">
+        <img *ngIf="picture!=='' && !detail" [src]="picture">
+        <img *ngIf="picture=='' && !detail" src="/assets/img/images/defaultcardphoto.png">
         </div>
         <div class="card-block">
             <ul>
-                <li *ngIf="isOwner && detail" class="text-xs-center" [ngClass]="accentColor[issue.priority]">
-                    <button class="btn btn-outline-info active toggleEdit" type="button" (click)="edit = !edit">Edit
+                <div style="display: inline-block;width: 100%;">
+                <li *ngIf="isOwner && detail" class="col-md-6" [ngClass]="accentColor[issue.priority]">
+                    <button class="btn btn-outline-primary active toggleEdit" type="button" (click)="edit = !edit">Edit
                         Your
                         Issue
                     </button>
@@ -42,7 +43,7 @@
                         Issue
                     </button>
                 </li>
-                <li *ngIf="isAdmin && detail" class="text-xs-center">
+                <li *ngIf="isAdmin && detail" class="col-md-6">
                     <!--<label for="status">Update Status</label>-->
                     <select id="status" [ngModel]="status" class="form-control" size="1"
                             (ngModelChange)="updateStatus($event)">
@@ -51,8 +52,9 @@
                         <option ngValue="Resolved">Resolved</option>
                     </select>
                 </li>
+                </div>
                 <li *ngIf="issue.isAnonymous">
-                    Email: {{issue.email}}
+                    <span class="cardsubtitle">Email: </span>{{issue.email}}
                 </li>
                 <li>
                     <span class="cardsubtitle">Location: </span>
@@ -62,7 +64,7 @@
                     <span *ngIf="issue.location && issue.location.name !== ''">({{issue.location.name}})</span>
                     <span *ngIf="issue.location && issue.location.extra !== ''">[{{issue.location.extra}}]</span>
                 </li>
-                <li>
+                <li style="text-overflow: clip;">
                     <span class="cardsubtitle">Description: </span>{{issue.description}}
                 </li>
                 <li class="the_pic">
