@@ -5,6 +5,7 @@
     <div [class]="!detail ? 'card issueC' : 'card'" (click)="goToDetail()">
         <div class="card-header text-sm-center">
             {{studyGroup.title}}
+            <span *ngIf="isRSVP" class="tag tag-danger float-xs-right">RSVP'd</span>
         </div>
         <div class="card-block">
             <ul>
@@ -20,7 +21,8 @@
                     </button>
                 </li>
                 <li *ngIf="!isOwner && detail" class="text-xs-center">
-                    <button class="btn btn-outline-info active toggleEdit" type="button" (click)="rsvp()">RSVP To This
+                    <button class="btn btn-outline-info active toggleEdit" type="button" (click)="doRSVP()"><span
+                            *ngIf="isRSVP">un</span>RSVP To This
                         Study Group
                     </button>
                 </li>

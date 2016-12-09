@@ -93,6 +93,10 @@ export class SGService {
         return path;
     }
 
+    rsvp(sgid,rsvp) {
+        return this.af.database.object('/studygroups/' + sgid + '/').update({rsvp: rsvp});
+    }
+
     getImageURL(path) {
         return this.storage.child(path).getDownloadURL();
     }

@@ -127,6 +127,7 @@ export class SGFormComponent implements OnInit {
             comments: [],
             picture: '',
             picture_id: '',
+            rsvp: [],
             the_class: this.fb.group({
                 subject: '',
                 number: '',
