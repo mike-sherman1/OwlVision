@@ -1,6 +1,15 @@
-<div class="row issueCards">
-    <!--<span >-->
+<div class="row p-1" *ngIf="prof && prof.type !== 'admin'">
+    <div class="col-sm-4">
+        <p-radioButton name="isAll" [value]="false" label="My Classes" [(ngModel)]="isAll"></p-radioButton>
+        <p-radioButton name="isAll" [value]="true" label="All Classes" [(ngModel)]="isAll"></p-radioButton>
+    </div>
+</div>
+
+<div class="row issueCards" *ngIf="isAll">
     <sg-card *ngFor="let studyGroup of studyGroups | async"
              class="issue-card" [studyGroup]="studyGroup"></sg-card>
-    <!--</span>-->
+</div>
+<div class="row issueCards" *ngIf="!isAll">
+    <sg-card *ngFor="let studyGroup of studyGroups | async" [hidden]="!isMyClass(studyGroup.the_class)"
+             class="issue-card" [studyGroup]="studyGroup"></sg-card>
 </div>

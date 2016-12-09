@@ -11,6 +11,7 @@ import {SGCardComponent} from "./shared/sg-card/sg-card.component";
 import {FileUploadModule} from "primeng/components/fileupload/fileupload";
 import {CalendarModule} from "primeng/components/calendar/calendar";
 import {SGBrowseDetailComponent} from "./detail/detail.component";
+import {RadioButtonModule} from "primeng/components/radiobutton/radiobutton";
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import {SGBrowseDetailComponent} from "./detail/detail.component";
         RouterModule,
         StudyGroupsRoutingModule,
         FileUploadModule,
-        CalendarModule
+        CalendarModule,
+        RadioButtonModule
     ],
     declarations: [
         BrowseStudyGroupsComponent,

@@ -6,6 +6,7 @@ import {
 import {BrowseEventsComponent} from "./browse/browse.component";
 import {MyEventsComponent} from "./my-events/my-events.component";
 import {PostIssueComponent} from "./post/post.component";
+import {BrowseDetailComponent} from "../events/detail/detail.component";
 
 const routes: Routes = [
     {
@@ -31,6 +32,13 @@ const routes: Routes = [
                 component: BrowseEventsComponent,
                 data: {
                     title: 'Browse Events'
+                }
+            },
+            {
+                path: 'browse/:id',
+                component: BrowseDetailComponent,
+                data: {
+                    title: 'Detail'
                 }
             },
             {
