@@ -4,9 +4,11 @@
 <div *ngIf="!edit">
     <div [class]="!detail ? 'card issueC' : 'card'" (click)="goToDetail()">
         <div class="card-header text-xs-center">
+            <span *ngIf="isRSVP" class="tag tag-success float-xs-left">RSVP'd</span>
             <div class="cardtitle">
                 {{studyGroup.title}}
             </div>
+            <span *ngIf="isRSVP" class="tag tag-success float-xs-right">RSVP'd</span>
             <br>
             <div *ngIf="!detail" class="cardauthor col-md-6">
                 {{studyGroup.name}}
@@ -14,8 +16,6 @@
             <div *ngIf="!detail" class="cardtime col-md-6">
                 {{studyGroup.time.start | date:'short'}}
             </div>
-            <span *ngIf="isRSVP" class="tag tag-success float-xs-right">RSVP'd</span>
-            <span *ngIf="isRSVP" class="tag tag-success float-xs-left">RSVP'd</span>
         </div>
         <div class="card-block">
             <ul>
