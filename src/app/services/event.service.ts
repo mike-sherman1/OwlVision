@@ -5,27 +5,95 @@ import 'rxjs';
 // firebase/angularfire
 import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import {Event} from "../models/event";
+import {Comment} from "../models/comment";
+import {AuthService} from "./auth.service";
+import {UserService} from "./user.service";
+
 
 @Injectable()
 export class EventService {
 
     events:FirebaseListObservable<any>;
+    storage;
 
-    constructor(public af: AngularFire) {
+    auth: any;
+
+    constructor(public af: AngularFire, private _authService: AuthService, private _userService: UserService) {
 
         this.events = af.database.list('/events/');
+        this.storage = firebase.storage().ref();
         // this.issuepics = firebase.storage().ref('/issuepics/');
 
     }
 
-    createSG(event: Event) {
-
+    createEvent(event: Event) {
         // Set basic user profile defaults
         event = new Event(event);
 
+        event.time.start = event.time.start.toUTCString();
+        event.time.end = event.time.end.toUTCString();
 
+        delete event.$key;
+        console.log(event);
         // Save user profile
         return this.events.push(event);
+
+    }
+
+    getImageURL(path) {
+        return this.storage.child(path).getDownloadURL();
+    }
+
+    uploadPhoto(files, id) {
+        let path = '/events/' + id + '/' + files.name;
+        let storageref = this.storage.child(path);
+        let task = storageref.put(files);
+        task.on('state_changed', function (snapshot) {
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
+            // Handle unsuccessful uploads
+        }, function () {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            let iurl = task.snapshot.downloadURL;
+            console.log(iurl);
+            // return iurl;
+        });
+        return path;
+    }
+
+    updateEvent(event, key) {
+        event.time.start = event.time.start.toUTCString();
+        event.time.end = event.time.end.toUTCString();
+        console.log('update event', event, key);
+        return this.af.database.object('/events/' + key + '/').update(event);
+    }
+
+    deleteEvent(key) {
+        return this.af.database.object('/events/' + key + '/').remove();
+    }
+
+    addComment(id, commentText, comments) {
+        let comment = new Comment();
+        comment.name = this._authService.displayName;
+        comment.author = this._authService.id;
+        comment.text = commentText;
+        this._userService.getProfile().subscribe(prof => {
+            comment.isAdmin = prof.type === 'admin';
+            comments.push(comment);
+            this.af.database.object('/events/' + id + '/').update({comments: comments});
+        })
 
     }
 

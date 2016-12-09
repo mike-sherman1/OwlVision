@@ -88,6 +88,7 @@ body.sidebar-nav .main {
   padding: 0;
   padding-top: 55px;
   margin: 0;
+  height:100%;
   overflow: hidden;
 }
 
@@ -95,11 +96,54 @@ body.sidebar-nav .footer {
   left: 0px;
 }
 
+.main .container-fluid {
+    padding: 0 30px;
+    margin-bottom: 60px;
+}
+.helpdropdown{
+  overflow: scroll;
+    width: 250px;
+    height:306px;
+    background: #b10e23;
+    color: white;
+    position: absolute;
+    padding: 15px;
+    right: 0px;
+    box-shadow: 0px 0px 15px 0px black;
+    z-index: 99999;
+    border-radius: 10px;
+    transition: 1s;
+}
+.helpdropdown:before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid #b10e23;
+    right: 20px;
+    top: -15px;
+  }
+.underlined{
+  position:relative;
+  width:auto;
+}
+.underlined:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: white;
+    position: absolute;
+    left: 0px;
+    bottom: -5px;
+}
 .dropdown-menu {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   border: 0px;
 }
-
 .navbar-toggler {
   border-radius: 0;
 }

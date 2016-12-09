@@ -6,16 +6,19 @@ import {Router} from "@angular/router";
 import {AuthService} from "../../../../services/auth.service";
 import {AngularFire} from "angularfire2";
 import {BuildingListService} from "../../../../services/building.service";
+
 @Component({
     selector: 'issue-form',
     template: require('./issue-form.component.html'),
     styles: [require('./issue-form.component.scss')],
 })
+
 export class IssueFormComponent implements OnInit {
 
     @Input() issue: Issue;
     @Output() save = new EventEmitter;
     @Output() picChange = new EventEmitter;
+
     form: FormGroup;
     display: boolean = false;
     update: boolean = false;
