@@ -49,7 +49,7 @@ export class FullLayoutComponent implements OnInit {
             this.sg = length;
         });
         this._af.database.list('/issues').map(list => {
-            return list.map(o => {
+            return list.filter(o => {
                 return o.author === this.authService.id;
             }).length
         }).subscribe(length => {
@@ -58,7 +58,7 @@ export class FullLayoutComponent implements OnInit {
             console.log('mine', this.myissues);
         });
         this._af.database.list('/events').map(list => {
-            return list.map(o => {
+            return list.filter(o => {
                 return o.author === this.authService.id;
             }).length
         }).subscribe(length => {
@@ -66,7 +66,7 @@ export class FullLayoutComponent implements OnInit {
             this.myevents = length;
         });
         this._af.database.list('/studygroups').map(list => {
-            return list.map(o => {
+            return list.filter(o => {
                 return o.author === this.authService.id;
             }).length
         }).subscribe(length => {

@@ -7,6 +7,7 @@ import {SGService} from "../../../../services/studygroup.service";
 import {Router} from "@angular/router";
 import {UserService} from "../../../../services/user.service";
 import {LocationStrategy} from "@angular/common";
+import {AuthService} from "../../../../services/auth.service";
 @Component({
     selector: 'sg-card',
     template: require('./sg-card.component.html'),
@@ -35,10 +36,11 @@ export class SGCardComponent implements OnInit {
     newComment: string;
     isAdmin: boolean;
     isOwner: boolean;
+    isRSVP: boolean;
     picture: string = '';
     edit: boolean;
 
-    constructor(private _studyGroupService: SGService, private _router: Router, private _userService: UserService, private _location: LocationStrategy) {
+    constructor(private _studyGroupService: SGService, private _router: Router, private _userService: UserService, private _location: LocationStrategy, private _authService: AuthService) {
 
     }
 
@@ -55,8 +57,31 @@ export class SGCardComponent implements OnInit {
             this.isAdmin = prof.type === 'admin';
             this.isOwner = prof.$key === this.studyGroup.author;
         });
+        this.isRSVP = this.studyGroup.rsvp && this.studyGroup.rsvp.indexOf(this._authService.id) >= 0;
+
         // console.log(this.issue);
 
+    }
+
+    doRSVP() {
+        // console.log()
+        let uid = this._authService.id;
+        if (!this.studyGroup.rsvp) {
+            this.studyGroup.rsvp = [];
+        }
+        let ind = this.studyGroup.rsvp.indexOf(uid);
+        if (ind === -1) this.studyGroup.rsvp.push(uid);
+        else {
+            console.log('before', this.studyGroup.rsvp);
+            console.log(ind);
+            this.studyGroup.rsvp.splice(ind, 1);
+            console.log('after', this.studyGroup.rsvp);
+        }
+        this._studyGroupService.rsvp(this.studyGroup.$key, this.studyGroup.rsvp).then(res => {
+            this.isRSVP = this.studyGroup.rsvp && this.studyGroup.rsvp.indexOf(this._authService.id) >= 0;
+            console.log(this.isRSVP);
+            console.log(this.studyGroup);
+        });
     }
 
     saveAndUpdatePic() {
@@ -85,9 +110,5 @@ export class SGCardComponent implements OnInit {
     goToDetail() {
         // console.log('/studyGroups/browse/' + this.studyGroup.$key);
         if (!this.detail) this._router.navigate(['/study-groups/browse/' + this.studyGroup.$key])
-    }
-
-    rsvp() {
-
     }
 }

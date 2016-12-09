@@ -5,6 +5,7 @@
     <div [class]="!detail ? 'card issueC' : 'card'" (click)="goToDetail()">
         <div class="card-header text-sm-center">
             {{studyGroup.title}}
+            <span *ngIf="isRSVP" class="tag tag-danger float-xs-right">RSVP'd</span>
         </div>
         <div class="card-block">
             <ul>
@@ -20,7 +21,8 @@
                     </button>
                 </li>
                 <li *ngIf="!isOwner && detail" class="text-xs-center">
-                    <button class="btn btn-outline-info active toggleEdit" type="button" (click)="rsvp()">RSVP To This
+                    <button class="btn btn-outline-info active toggleEdit" type="button" (click)="doRSVP()"><span
+                            *ngIf="isRSVP">un</span>RSVP To This
                         Study Group
                     </button>
                 </li>
@@ -29,6 +31,9 @@
                 </li>
                 <li>
                     Email: {{studyGroup.email}}
+                </li>
+                <li>
+                    Class: {{studyGroup.the_class.subject}}{{studyGroup.the_class.number}} - {{studyGroup.the_class.title}}
                 </li>
                 <li>
                     Location: <span
@@ -53,6 +58,9 @@
         </div>
     </div>
     <div *ngIf="detail" class="commentsSection">
+        <pre>
+            {{studyGroup|json}}
+        </pre>
         <div *ngFor="let comment of studyGroup.comments">
             <div [class]="comment.isAdmin ? 'col-md-8 offset-md-4 col-sm-12' : 'col-md-8 col-sm-12'">
                 <div [class]="comment.isAdmin ? 'card card-inverse card-danger' : 'card card-inverse card-primary'">
