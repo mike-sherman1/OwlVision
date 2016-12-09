@@ -1,11 +1,23 @@
-<button *ngIf="detail" class="btn btn-outline-warning active toggleEdit" type="button" (click)="_router.navigate(['/study-groups'])">Go
+<button *ngIf="detail" class="btn btn-outline-warning active toggleEdit" type="button"
+        (click)="_router.navigate(['/study-groups'])">Go
     Back
 </button>
 <div *ngIf="!edit">
     <div [class]="!detail ? 'card issueC' : 'card'" (click)="goToDetail()">
-        <div class="card-header text-sm-center">
-            {{studyGroup.title}}
+        <div class="card-header text-xs-center">
+            <span *ngIf="studyGroup.rsvp"
+                  class="tag tag-success float-xs-left"># RSVPs: {{studyGroup.rsvp.length}}</span>
+            <div class="cardtitle">
+                {{studyGroup.title}}
+            </div>
             <span *ngIf="isRSVP" class="tag tag-danger float-xs-right">RSVP'd</span>
+            <br>
+            <div *ngIf="!detail" class="cardauthor col-md-6">
+                {{studyGroup.name}}
+            </div>
+            <div *ngIf="!detail" class="cardtime col-md-6">
+                {{studyGroup.time.start | date:'short'}}
+            </div>
         </div>
         <div class="card-block">
             <ul>
@@ -27,30 +39,27 @@
                     </button>
                 </li>
                 <li>
-                    Author: {{studyGroup.name}}
+                    <span class="cardsubtitle">Email:</span> {{studyGroup.email}}
                 </li>
                 <li>
-                    Email: {{studyGroup.email}}
+                    <span class="cardsubtitle">Class: </span>{{studyGroup.the_class.subject}}{{studyGroup.the_class.number}}
+                    - {{studyGroup.the_class.title}}
                 </li>
                 <li>
-                    Class: {{studyGroup.the_class.subject}}{{studyGroup.the_class.number}} -
-                    {{studyGroup.the_class.title}}
-                </li>
-                <li>
-                    Location: <span
+                    <span class="cardsubtitle"> Location: </span><span
                         *ngIf="studyGroup.location && studyGroup.location.code !== ''">{{studyGroup.location.code}}</span><span
                         *ngIf="studyGroup.location && studyGroup.location.room !== ''">{{studyGroup.location.room}}</span>
                     <span *ngIf="studyGroup.location && studyGroup.location.name !== ''">({{studyGroup.location.name}})</span>
                     <span *ngIf="studyGroup.location && studyGroup.location.extra !== ''">[{{studyGroup.location.extra}}]</span>
                 </li>
                 <li>
-                    Description: {{studyGroup.description}}
+                    <span class="cardsubtitle">Description: </span>{{studyGroup.description}}
                 </li>
                 <li>
-                    Start: {{studyGroup.time.start | date:'medium'}}
+                    <span class="cardsubtitle">Start: </span>{{studyGroup.time.start | date:'medium'}}
                 </li>
                 <li>
-                    End: {{studyGroup.time.end | date:'medium'}}
+                    <span class="cardsubtitle">End:</span> {{studyGroup.time.end | date:'medium'}}
                 </li>
                 <li class="the_pic">
                     <img *ngIf="picture!=='' && detail" [src]="picture">

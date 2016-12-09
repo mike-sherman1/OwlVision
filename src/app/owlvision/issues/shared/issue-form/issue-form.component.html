@@ -24,12 +24,14 @@
             </div>
             <div class="form-group">
                 <label for="title" class="">Title</label>
-                <div class="col-xs-10" style="float:right;"><input type="text" formControlName="title" class="form-control" id="title"
-                       placeholder="Enter issue title"></div>
+                <div class="col-xs-10" style="float:right;"><input type="text" formControlName="title"
+                                                                   class="form-control" id="title"
+                                                                   placeholder="Enter issue title"></div>
             </div>
             <div class="form-group">
                 <label for="priority">Priority</label>
-                <div class="col-xs-10" style="float:right;"><select id="priority" formControlName="priority" class="form-control" size="1">
+                <div class="col-xs-10" style="float:right;"><select id="priority" formControlName="priority"
+                                                                    class="form-control" size="1">
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
@@ -127,19 +129,13 @@
                 <!-- picture preview?? -->
             </div>
             <div class="form-group text-sm-center">
-                <button type="submit" class="btn btn-primary" [disabled]="isFullForm()"><i class="fa fa-magic"></i>&nbsp; <span
-                        *ngIf="!issue">Post</span><span *ngIf="issue">Update</span> Issue
+                <button type="submit" class="btn btn-primary" [disabled]="isFullForm()"><i class="fa fa-magic"></i>&nbsp;
+                    <span
+                            *ngIf="!issue">Post</span><span *ngIf="issue">Update</span> Issue
                 </button>
                 <br><span *ngIf="isFullForm()">Please fill out ALL field before submitting.</span>
             </div>
             <!--/row-->
         </form>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <pre>
-            {{form.value|json}}
-        </pre>
     </div>
 </div>

@@ -24,6 +24,7 @@ import {RadioButtonModule} from "primeng/components/radiobutton/radiobutton";
         CalendarModule,
         RadioButtonModule
     ],
+    exports: [SGCardComponent],
     declarations: [
         BrowseStudyGroupsComponent,
         MyStudyGroupsComponent,

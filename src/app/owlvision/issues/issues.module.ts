@@ -19,6 +19,7 @@ import {CalendarModule} from "primeng/components/calendar/calendar";
         IssuesRoutingModule,
         CalendarModule
     ],
+    exports: [IssueCardComponent],
     declarations: [
         BrowseIssuesComponent,
         MyIssuesComponent,

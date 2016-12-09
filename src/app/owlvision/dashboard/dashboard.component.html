@@ -44,6 +44,27 @@
 
         <!--/col-->
     </div>
+    <div class="row">
+        <div class="issueCards">
+            <div *ngFor="let eventa of eventsList | async">
+                <event-card *ngIf="eventa.author === id" class="issue-card" [event]="eventa"></event-card>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="issueCards">
+            <div *ngFor="let issuea of issuesList | async">
+                <issue-card *ngIf="issuea.author === id" class="issue-card" [issue]="issuea"></issue-card>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="issueCards">
+            <div *ngFor="let studyGroupa of studyGroupsList | async">
+                <sg-card *ngIf="studyGroupa.author === id" class="issue-card" [studyGroup]="studyGroupa"></sg-card>
+            </div>
+        </div>
+    </div>
     <!--/row-->
     <!--
     <div class="card">

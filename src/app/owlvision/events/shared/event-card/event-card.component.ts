@@ -85,7 +85,7 @@ export class EventCardComponent implements OnInit {
 
     goToDetail() {
         // console.log('/studyGroups/browse/' + this.event.$key);
-        if (!this.detail) this._router.navigate(['/study-groups/browse/' + this.event.$key])
+        if (!this.detail) this._router.navigate(['/events/browse/' + this.event.$key])
     }
 
     rsvp() {
