@@ -9,11 +9,13 @@ import {IssueService} from "../../../services/issue.service";
 })
 export class BrowseIssuesComponent {
 
-    issues: FirebaseListObservable<any>;
+    issues: any;
     status: string = "All";
 
     constructor(private _router: Router, af: AngularFire, private _issueService: IssueService) {
-        this.issues = af.database.list('/issues');
+        this.issues = af.database.list('/issues').map((arr) => {
+            return arr.reverse();
+        });
     }
 
 }

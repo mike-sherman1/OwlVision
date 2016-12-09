@@ -1,14 +1,16 @@
-<button *ngIf="detail" class="btn btn-outline-warning active toggleEdit" type="button" (click)="_router.navigate(['/study-groups'])">Go
+<button *ngIf="detail" class="btn btn-outline-warning active toggleEdit" type="button"
+        (click)="_router.navigate(['/study-groups'])">Go
     Back
 </button>
 <div *ngIf="!edit">
     <div [class]="!detail ? 'card issueC' : 'card'" (click)="goToDetail()">
         <div class="card-header text-xs-center">
-            <span *ngIf="isRSVP" class="tag tag-success float-xs-left">RSVP'd</span>
+            <span *ngIf="studyGroup.rsvp"
+                  class="tag tag-success float-xs-left"># RSVPs: {{studyGroup.rsvp.length}}</span>
             <div class="cardtitle">
                 {{studyGroup.title}}
             </div>
-            <span *ngIf="isRSVP" class="tag tag-success float-xs-right">RSVP'd</span>
+            <span *ngIf="isRSVP" class="tag tag-danger float-xs-right">RSVP'd</span>
             <br>
             <div *ngIf="!detail" class="cardauthor col-md-6">
                 {{studyGroup.name}}
@@ -40,7 +42,8 @@
                     <span class="cardsubtitle">Email:</span> {{studyGroup.email}}
                 </li>
                 <li>
-                    <span class="cardsubtitle">Class: </span>{{studyGroup.the_class.subject}}{{studyGroup.the_class.number}} - {{studyGroup.the_class.title}}
+                    <span class="cardsubtitle">Class: </span>{{studyGroup.the_class.subject}}{{studyGroup.the_class.number}}
+                    - {{studyGroup.the_class.title}}
                 </li>
                 <li>
                     <span class="cardsubtitle"> Location: </span><span
