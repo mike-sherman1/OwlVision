@@ -5,106 +5,115 @@
     </div>
     <div class="card-block">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" formControlName="title" class="form-control" id="title"
-                       placeholder="Enter study group title">
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="description">What will you study?</label>
-                <div class="col-md-9">
-                    <textarea id="description" formControlName="description" name="textarea-input" rows="9"
-                              class="form-control" placeholder="exam topics, homework, etc.."></textarea>
+            <div>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" formControlName="title" class="form-control" id="title"
+                           placeholder="Enter event title">
                 </div>
-            </div>
-            <div class="form-group" formGroupName="location">
-                <label>Where will you study?</label>
+
                 <div class="form-group row">
-                    <div class="col-md-8">
-                        <div class="radio">
-                            <label for="bcode">
-                                <input type="radio" id="bcode" formControlName="type" (click)="getLocList('bcode')"
-                                       value="bcode">By Building Code
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label for="bname">
-                                <input type="radio" id="bname" formControlName="type" (click)="getLocList('bname')"
-                                       value="bname">By Building Name
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label for="bother">
-                                <input type="radio" id="bother" formControlName="type"
-                                       value="other" (click)="getLocList('other')">Manual
-                            </label>
-                        </div>
+                    <label class="col-md-3 form-control-label" for="description">What is the event?</label>
+                    <div class="col-md-9">
+                    <textarea id="description" formControlName="description" name="textarea-input" rows="9"
+                              class="form-control" placeholder="Description of event.."></textarea>
                     </div>
                 </div>
-                <div class="col-sm-12" *ngIf="form.value.location.type === 'bcode'">
-                    <label>Building Code</label>
-                    <select formControlName="code"
-                            class="form-control" (ngModelChange)="getNameList($event)">
-                        <option *ngFor="let t of locList"
-                                [ngValue]="t">
-                            {{t}}
-                        </option>
-                    </select>
-                    <div *ngIf="form.value.location.code !== ''">
+                <div class="form-group" formGroupName="location">
+                    <label>Where will this event occur?</label>
+                    <div class="form-group row">
+                        <div class="col-md-8">
+                            <div class="radio">
+                                <label for="bcode">
+                                    <input type="radio" id="bcode" formControlName="type" (click)="getLocList('bcode')"
+                                           value="bcode">By Building Code
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="bname">
+                                    <input type="radio" id="bname" formControlName="type" (click)="getLocList('bname')"
+                                           value="bname">By Building Name
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="bother">
+                                    <input type="radio" id="bother" formControlName="type"
+                                           value="other" (click)="getLocList('other')">Manual
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" *ngIf="form.value.location.type === 'bcode'">
+                        <label>Building Code</label>
+                        <select formControlName="code"
+                                class="form-control" (ngModelChange)="getNameList($event)">
+                            <option *ngFor="let t of locList"
+                                    [ngValue]="t">
+                                {{t}}
+                            </option>
+                        </select>
+                        <div *ngIf="form.value.location.code !== ''">
+                            <label>Building Name</label>
+                            <select formControlName="name"
+                                    class="form-control">
+                                <option *ngFor="let t of nameList"
+                                        [ngValue]="t">
+                                    {{t}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" *ngIf="form.value.location.type === 'bname'">
                         <label>Building Name</label>
                         <select formControlName="name"
                                 class="form-control">
-                            <option *ngFor="let t of nameList"
+                            <option *ngFor="let t of locList"
                                     [ngValue]="t">
                                 {{t}}
                             </option>
                         </select>
                     </div>
+                    <div class="col-sm-12" *ngIf="form.value.location.type === 'other'">
+                        <label>Other Location</label>
+                        <input type="text" formControlName="name" class="form-control">
+                        <label>Room (if applicable)</label>
+                        <input type="text" formControlName="room" class="form-control">
+                    </div>
+                    <div class="col-sm-12"
+                         *ngIf="form.value.location.type !== 'other' && (form.value.location.name !== '' || form.value.location.code !== '')">
+                        <label>Room (if applicable)</label>
+                        <input type="text" formControlName="room" class="form-control">
+                        <label>Further Description</label>
+                        <input type="text" formControlName="extra" class="form-control">
+                    </div>
                 </div>
-                <div class="col-sm-12" *ngIf="form.value.location.type === 'bname'">
-                    <label>Building Name</label>
-                    <select formControlName="name"
-                            class="form-control">
-                        <option *ngFor="let t of locList"
-                                [ngValue]="t">
-                            {{t}}
-                        </option>
-                    </select>
+                <div class="form-group" formGroupName="time">
+                    <label>When is the event?</label>
+                    <div class="form-group">
+                        <label>Start</label><br>
+                        <p-calendar formControlName="start" showTime="showTime" hourFormat="12"></p-calendar>
+                    </div>
+                    <div class="form-group">
+                        <label>End</label><br>
+                        <p-calendar formControlName="end" showTime="showTime" hourFormat="12"></p-calendar>
+                    </div>
                 </div>
-                <div class="col-sm-12" *ngIf="form.value.location.type === 'other'">
-                    <label>Other Location</label>
-                    <input type="text" formControlName="name" class="form-control">
-                    <label>Room (if applicable)</label>
-                    <input type="text" formControlName="room" class="form-control">
+                <div class="form-group">
+                    <div *ngIf="the_pic !== ''">
+                        <img [src]="the_pic">
+                    </div>
+                    <div>
+                        <label *ngIf="the_pic === ''">Picture Upload</label><label *ngIf="the_pic !== ''">Change
+                        Picture</label><br>
+                        <input type="file" id="filebutton" value="upload" #filebtn (change)="photoInputChange($event)">
+                    </div>
                 </div>
-                <div class="col-sm-12"
-                     *ngIf="form.value.location.type !== 'other' && (form.value.location.name !== '' || form.value.location.code !== '')">
-                    <label>Room (if applicable)</label>
-                    <input type="text" formControlName="room" class="form-control">
-                    <label>Further Description</label>
-                    <input type="text" formControlName="extra" class="form-control">
+                <div class="form-group text-sm-center">
+                    <button type="submit" class="btn btn-success" [disabled]="isFullForm()"><i class="fa fa-magic"></i>&nbsp;
+                        <span
+                                *ngIf="!event">Post</span><span *ngIf="event">Update</span> Event
+                    </button>
                 </div>
-            </div>
-            <div class="form-group" formGroupName="time">
-                <label>When will you study?</label>
-                <div class="col-sm-12">
-                    <label>Date</label>
-                    <p-calendar formControlName="date"></p-calendar>
-                </div>
-                <div class="col-sm-12">
-                    <label>Start</label>
-                    <p-calendar formControlName="start" [timeOnly]="true"></p-calendar>
-                </div>
-                <div class="col-sm-12">
-                    <label>End</label>
-                    <p-calendar formControlName="end" [timeOnly]="true"></p-calendar>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Placeholder for picture upload</label>
-            </div>
-            <div class="form-group text-sm-center">
-                <button type="submit" class="btn btn-success"><i class="fa fa-magic"></i>&nbsp; Post Issue</button>
             </div>
             <!--/row-->
         </form>

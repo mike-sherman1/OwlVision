@@ -1,4 +1,6 @@
+import {Location} from "./location";
 import {Time} from "./time";
+
 export class Event {
     public title: string;
     public author: string;
@@ -7,6 +9,10 @@ export class Event {
     public location: Location;
     public time: Time;
     public description: string;
+    public picture: string;
+    public picture_id: string;
+    public $key?: string;
+    public comments: Comment[];
 
     constructor(eventObj?: any) {
         this.title = eventObj && eventObj.title || '';
@@ -16,5 +22,8 @@ export class Event {
         this.location = eventObj && eventObj.location || null;
         this.time = eventObj && eventObj.time || null;
         this.description = eventObj && eventObj.description || '';
+        this.picture = eventObj && eventObj.picture || '';
+        this.picture_id = eventObj && eventObj.picture_id || '';
+        this.comments = eventObj && eventObj.comments || [];
     }
 }

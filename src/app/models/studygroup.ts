@@ -1,6 +1,7 @@
 import {Time} from "./time";
 import {Class} from "./class";
 import {Location} from "./location";
+
 export class StudyGroup {
     public title: string;
     public author: string;
