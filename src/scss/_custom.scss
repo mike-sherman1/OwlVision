@@ -147,3 +147,12 @@ body.sidebar-nav .footer {
 .navbar-toggler {
   border-radius: 0;
 }
+.card-description{
+  text-overflow: clip;
+  max-height: 157px;
+  height: 90px;
+  overflow: hidden;
+}
+.issueC{
+  //min-height: 615px; 
+}
