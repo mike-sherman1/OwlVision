@@ -3,7 +3,7 @@
     Back
 </button>
 <div *ngIf="!edit">
-    <div [class]="!detail ? 'card issueC' : 'card'" (click)="goToDetail()">
+    <div [class]="!detail ? 'card issueC' : 'card'" (click)="goToDetail()" class="col-md-6">
         <div class="card-header text-sm-center">
             {{event.title}}
         </div>
@@ -25,27 +25,31 @@
                         Event
                     </button>
                 </li>
+                <div *ngIf="!detail" class="cardpicture">
+                <img *ngIf="picture!=='' && !detail" [src]="picture">
+                <img *ngIf="picture=='' && !detail" src="/assets/img/images/defaultcardphoto.png">
+                </div>
                 <li>
-                    Author: {{event.name}}
+                    <span class="cardsubtitle">Author: </span>{{event.name}}
                 </li>
                 <li>
-                    Email: {{event.email}}
+                    <span class="cardsubtitle">Email: </span>{{event.email}}
                 </li>
                 <li>
-                    Location: <span
+                    <span class="cardsubtitle">Location: </span><span
                         *ngIf="event.location && event.location.code !== ''">{{event.location.code}}</span><span
                         *ngIf="event.location && event.location.room !== ''">{{event.location.room}}</span>
                     <span *ngIf="event.location && event.location.name !== ''">({{event.location.name}})</span>
                     <span *ngIf="event.location && event.location.extra !== ''">[{{event.location.extra}}]</span>
                 </li>
                 <li>
-                    Description: {{event.description}}
+                    <span class="cardsubtitle">Description: </span>{{event.description}}
                 </li>
                 <li>
-                    Start: {{event.time.start | date:'medium'}}
+                    <span class="cardsubtitle">Start: </span>{{event.time.start | date:'medium'}}
                 </li>
                 <li>
-                    End: {{event.time.end | date:'medium'}}
+                    <span class="cardsubtitle">End: </span>{{event.time.end | date:'medium'}}
                 </li>
                 <li class="the_pic">
                     <img *ngIf="picture!=='' && detail" [src]="picture">
