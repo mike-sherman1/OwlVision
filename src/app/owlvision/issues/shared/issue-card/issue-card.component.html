@@ -4,14 +4,33 @@
 <div *ngIf="!edit">
     <div class="card" [class]="!detail ? 'issueC' : ''" [ngClass]="accentColor[issue.priority]" (click)="goToDetail()">
         <div class="card-header text-xs-center">
-            {{issue.title}}
+            <div class="cardtitle">
+              {{issue.title}}
+            </div>
             <span [ngClass]="statusColor[issue.status]" class="tag float-xs-left">{{issue.status}}</span>
             <span [ngClass]="priorityColor[issue.priority]"
                   class="tag tag-pill float-xs-right">{{issue.priority}}</span>
+                  <br>
+            <div *ngIf="detail" class="cardauthor col-md-6">
+                Posted By {{issue.isAnonymous ? 'Anonymous' : issue.name}}
+            </div>
+            <div *ngIf="!detail" class="cardauthor col-md-6">
+                {{issue.isAnonymous ? 'Anonymous' : issue.name}}
+            </div>
+            <div *ngIf="!detail" class="cardtime col-md-6">
+                {{issue.time | date:'short'}}
+            </div>
+            <div *ngIf="detail" class="cardtime col-md-6">
+                {{issue.time | date:'long'}}
+            </div>
+        </div>
+        <div class="cardpicture">
+        <img *ngIf="picture!=='' && !detail" [src]="picture">
+        <img *ngIf="picture=='' && !detail" src="/assets/img/images/defaultcardphoto.png">
         </div>
         <div class="card-block">
             <ul>
-                <li *ngIf="isOwner && detail" class="text-xs-center">
+                <li *ngIf="isOwner && detail" class="text-xs-center" [ngClass]="accentColor[issue.priority]">
                     <button class="btn btn-outline-info active toggleEdit" type="button" (click)="edit = !edit">Edit
                         Your
                         Issue
@@ -31,24 +50,19 @@
                         <option ngValue="Resolved">Resolved</option>
                     </select>
                 </li>
-                <li>
-                    Author: {{issue.isAnonymous ? 'Anonymous' : issue.name}}
-                </li>
                 <li *ngIf="issue.isAnonymous">
                     Email: {{issue.email}}
                 </li>
                 <li>
-                    Location: <span
+                    <span class="cardsubtitle">Location: </span>
+                    <span
                         *ngIf="issue.location && issue.location.code !== ''">{{issue.location.code}}</span><span
                         *ngIf="issue.location && issue.location.room !== ''">{{issue.location.room}}</span>
                     <span *ngIf="issue.location && issue.location.name !== ''">({{issue.location.name}})</span>
                     <span *ngIf="issue.location && issue.location.extra !== ''">[{{issue.location.extra}}]</span>
                 </li>
                 <li>
-                    Description: {{issue.description}}
-                </li>
-                <li>
-                    Time: {{issue.time | date:'medium'}}
+                    <span class="cardsubtitle">Description: </span>{{issue.description}}
                 </li>
                 <li class="the_pic">
                     <img *ngIf="picture!=='' && detail" [src]="picture">

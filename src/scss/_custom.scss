@@ -3,7 +3,15 @@
 @media (min-width: 992px) {
   .mobile-only{
     display:none;
+  .cardtime, .cardauthor{
+    text-align: center;
   }
+  }
+@media (max-width: 500px) {
+  .mobile-disabled{
+    display:none;
+  }
+}
 
   body:not(.top-nav) .sidebar {
     display: none !important;

@@ -41,3 +41,43 @@
 .toggleEdit {
   margin-bottom: 10px;
 }
+
+.cardpicture{
+  min-height:300px;
+  max-height: 300px;
+  overflow:hidden;
+  position:relative;
+}
+.cardpicture img{
+  width:100%;
+}
+.cardauthor{
+  padding:0px;
+  float:left;
+  font-size: medium;
+  font-weight: 500;
+  text-transform: none;
+  text-align: left;
+}
+
+.cardtitle{
+  width:auto;
+  display:inline;
+}
+
+.cardtime{
+  padding:0px;
+  font-size: medium;
+  font-weight: 500;
+  text-transform: none;
+  text-align: right;
+  float:right;
+}
+
+.cardsubtitle{
+  font-weight: 400;
+  font-size: larger;
+}
+.card-header{
+  border-bottom: 0px;
+}
