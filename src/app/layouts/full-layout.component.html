@@ -1,7 +1,7 @@
 <header class="navbar">
     <div class="container-fluid">
         <button class="navbar-toggler hidden-lg-up" type="button" mobile-nav-toggle>&#9776;</button>
-        <a class="navbar-brand sidebar-toggle navbar-toggler" href="#"></a>
+        <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/dashboard']"></a>
 
         <ul class="nav navbar-nav hidden-md-down">
             <!--make only mobile-->
@@ -121,7 +121,7 @@
             <ul class="nav">
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i
-                            class="icon-speedometer"></i> Dashboard <span class="tag tag-danger">NEW</span></a>
+                            class="icon-speedometer"></i> Dashboard</a>
                 </li>
 
                 <li class="divider"></li>
@@ -133,107 +133,107 @@
                     <ul class="nav-dropdown-items">
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/issues/post']"><i
-                                    class="icon-puzzle"></i> Post a new Issue</a>
+                                    class="fa fa-support fa-lg"></i> Post a new Issue</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/issues/browse']"><i
-                                    class="icon-puzzle"></i> Browse Issues</a>
+                                    class="fa fa-support fa-lg"></i> Browse Issues</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/issues/my-issues']"><i
-                                    class="icon-puzzle"></i> My Issues</a>
+                                    class="fa fa-support fa-lg"></i> My Issues</a>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item nav-dropdown" routerLinkActive="open">
-                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-support fa-lg"></i> Events</a>
+                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-calendar-o"></i> Events<span class="tag tag-danger">NEW</span></a>
                     <ul class="nav-dropdown-items">
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/events/post']"><i
-                                    class="icon-puzzle"></i> Post New</a>
+                                    class="fa fa-calendar-o"></i> Post New</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/events/browse']"><i
-                                    class="icon-puzzle"></i> Browse</a>
+                                    class="fa fa-calendar-o"></i> Browse</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/events/my-events']"><i
-                                    class="icon-puzzle"></i> My Events</a>
+                                    class="fa fa-calendar-o"></i> My Events</a>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item nav-dropdown" routerLinkActive="open">
-                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-support fa-lg"></i> Study
+                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-graduation-cap"></i> Study
                         Groups</a>
                     <ul class="nav-dropdown-items">
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/study-groups/post']"><i
-                                    class="icon-puzzle"></i> Create New</a>
+                                    class="fa fa-graduation-cap"></i> Create New</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/study-groups/browse']"><i
-                                    class="icon-puzzle"></i> Browse</a>
+                                    class="fa fa-graduation-cap"></i> Browse</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active"
-                               [routerLink]="['/study-groups/my-study-groups']"><i class="icon-puzzle"></i> My Study
+                               [routerLink]="['/study-groups/my-study-groups']"><i class="fa fa-graduation-cap"></i> My Study
                                 Groups</a>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item nav-dropdown" routerLinkActive="open">
-                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-support fa-lg"></i> Auth</a>
+                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-cogs"></i>Settings</a>
                     <ul class="nav-dropdown-items">
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/auth/login']"><i
-                                    class="icon-puzzle"></i> Login</a>
+                                    class="fa fa-calendar-o"></i> Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" style="cursor:pointer"
                                (click)="authService.signOut()"><i
-                                    class="icon-puzzle"></i> Logout</a>
+                                    class="fa fa-calendar-o"></i> Logout</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/auth/register']"><i
-                                    class="icon-puzzle"></i> Register</a>
+                                    class="fa fa-calendar-o"></i> Register</a>
                         </li>
                     </ul>
                 </li>
 
                 <li class="divider"></li>
-                <li class="nav-title">
+                <!--<li class="nav-title">
                     UI Elements
                 </li>
                 <li class="nav-item nav-dropdown" routerLinkActive="open">
-                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Components</a>
+                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-calendar-o"></i> Components</a>
                     <ul class="nav-dropdown-items">
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/buttons']"><i
-                                    class="icon-puzzle"></i> Buttons</a>
+                                    class="fa fa-calendar-o"></i> Buttons</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i
-                                    class="icon-puzzle"></i> Social Buttons</a>
+                                    class="fa fa-calendar-o"></i> Social Buttons</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/cards']"><i
-                                    class="icon-puzzle"></i> Cards</a>
+                                    class="fa fa-calendar-o"></i> Cards</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/forms']"><i
-                                    class="icon-puzzle"></i> Forms</a>
+                                    class="fa fa-calendar-o"></i> Forms</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/switches']"><i
-                                    class="icon-puzzle"></i> Switches</a>
+                                    class="fa fa-calendar-o"></i> Switches</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/tables']"><i
-                                    class="icon-puzzle"></i> Tables</a>
+                                    class="fa fa-calendar-o"></i> Tables</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/tabs']"><i
-                                    class="icon-puzzle"></i> Tabs</a>
+                                    class="fa fa-calendar-o"></i> Tabs</a>
                         </li>
                     </ul>
                 </li>
@@ -275,7 +275,7 @@
                                     class="icon-star"></i> Error 500</a>
                         </li>
                     </ul>
-                </li>
+                </li>-->
 
             </ul>
         </nav>
