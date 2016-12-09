@@ -1,18 +1,17 @@
 import {Component, Input, OnInit, Inject}  from '@angular/core';
 import {FormGroup, FormBuilder, Validators}                 from '@angular/forms';
-import {Issue} from "../../../../models/issue";
-import {IssueService} from "../../../../services/issue.service";
 import {StudyGroup} from "../../../../models/studygroup";
 import {SGService} from "../../../../services/studygroup.service";
 import {Router} from "@angular/router";
 import {UserService} from "../../../../services/user.service";
 import {LocationStrategy} from "@angular/common";
-import {AuthService} from "../../../../services/auth.service";
+
 @Component({
     selector: 'sg-card',
     template: require('./sg-card.component.html'),
     styles: [require('./sg-card.component.scss')],
 })
+
 export class SGCardComponent implements OnInit {
 
     @Input() studyGroup: StudyGroup;
