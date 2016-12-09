@@ -296,6 +296,24 @@
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                 <a class="btn btn-secondary" [routerLink]="['/dashboard']"><i class="icon-graph"></i>
                     &nbsp;Dashboard</a>
+
+                <div  style="display: inline-block;">
+                  <a id="mybutton" (click)="showAlert = !showAlert" class="btn btn-secondary" [routerLink]="['/dashboard']"><i class="fa fa-question"></i>
+                    Help
+                  </a>
+                    <div *ngIf="showAlert" class="helpdropdown">
+                      <h3 class="underlined">Post Issues</h3>
+                      Fill in the blanks to bring up an issue that you have found on campus.  Determine the priority level and select “Low, Medium, or High.”  Add the description, location (nearest building), and time. Optionally attach a picture of the issue. Click the “Post Issue” button when finished.
+                      <h3 class="underlined">Browse Issues</h3>
+                      Scroll through recently posted issues. You may sort the issues by All, opened, in progress, or resolved. Click on the issue to see more details.
+                      <h3 class="underlined">Post Studygroup</h3>
+                      Fill in the blanks to create a study group on campus.  Add a title, class, details of what you are going to study, location, and a start and end time.  Optionally attach a picture for the group.  Click the “Post Study Group” button when finished.
+                      <h3 class="underlined">Browse Study Group</h3>
+                      Scroll through recently posted study groups on campus.  Click on the post for more details about the study group.
+                      <h3 class="underlined">Dashboard</h3>
+                      View the amount of Issues, Events, and Study Groups posted. Click on “Issues” to browse recently posted issues.  Click on “Events” to browse recently posted campus events.  Click on “Study Groups” to browse recently posted study groups.
+                    </div>
+                </div>
             </div>
         </li>
 
