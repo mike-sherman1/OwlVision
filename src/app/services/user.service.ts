@@ -13,16 +13,23 @@ export class UserService {
 
     profile: FirebaseObjectObservable<any>;
     profileList: FirebaseListObservable<any>;
+    prof;
     issuepics;
 
     constructor(public af: AngularFire, private _authService: AuthService) {
         this.profileList = this.af.database.list('/profiles/');
 
     }
+    getProf(){
+        return this.prof;
+    }
 
     getProfile() {
-        if(this._authService.authenticated){
+        if (this._authService.authenticated) {
             this.profile = this.af.database.object('/profiles/' + this._authService.id);
+            this.profile.subscribe(p => {
+                this.prof = p;
+            });
             return this.profile;
         }
         else return null;

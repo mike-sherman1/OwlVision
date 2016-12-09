@@ -5,6 +5,7 @@ import {SGService} from "../../../../services/studygroup.service";
 import {Router} from "@angular/router";
 import {UserService} from "../../../../services/user.service";
 import {LocationStrategy} from "@angular/common";
+import {AuthService} from "../../../../services/auth.service";
 
 @Component({
     selector: 'sg-card',

@@ -1,16 +1,17 @@
-<button *ngIf="detail" class="btn btn-outline-warning active toggleEdit" type="button" (click)="_location.back()">Go
+<button *ngIf="detail" class="btn btn-outline-warning active toggleEdit" type="button"
+        (click)="_router.navigate(['/issues'])">Go
     Back
 </button>
 <div *ngIf="!edit">
     <div class="card" [class]="!detail ? 'issueC' : ''" [ngClass]="accentColor[issue.priority]" (click)="goToDetail()">
         <div class="card-header text-xs-center">
             <div class="cardtitle">
-              {{issue.title}}
+                {{issue.title}}
             </div>
             <span [ngClass]="statusColor[issue.status]" class="tag float-xs-left">{{issue.status}}</span>
             <span [ngClass]="priorityColor[issue.priority]"
                   class="tag tag-pill float-xs-right">{{issue.priority}}</span>
-                  <br>
+            <br>
             <div *ngIf="detail" class="cardauthor col-md-6">
                 Posted By {{issue.isAnonymous ? 'Anonymous' : issue.name}}
             </div>
@@ -21,12 +22,12 @@
                 {{issue.time | date:'short'}}
             </div>
             <div *ngIf="detail" class="cardtime col-md-6">
-                {{issue.time | date:'long'}}
+                {{issue.time | date:'medium'}}
             </div>
         </div>
-        <div class="cardpicture">
-        <img *ngIf="picture!=='' && !detail" [src]="picture">
-        <img *ngIf="picture=='' && !detail" src="/assets/img/images/defaultcardphoto.png">
+        <div class="cardpicture" *ngIf="!detail">
+            <img *ngIf="picture!=='' && !detail" [src]="picture">
+            <img *ngIf="picture=='' && !detail" src="/assets/img/images/defaultcardphoto.png">
         </div>
         <div class="card-block">
             <ul>
@@ -56,7 +57,7 @@
                 <li>
                     <span class="cardsubtitle">Location: </span>
                     <span
-                        *ngIf="issue.location && issue.location.code !== ''">{{issue.location.code}}</span><span
+                            *ngIf="issue.location && issue.location.code !== ''">{{issue.location.code}}</span><span
                         *ngIf="issue.location && issue.location.room !== ''">{{issue.location.room}}</span>
                     <span *ngIf="issue.location && issue.location.name !== ''">({{issue.location.name}})</span>
                     <span *ngIf="issue.location && issue.location.extra !== ''">[{{issue.location.extra}}]</span>

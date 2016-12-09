@@ -1,4 +1,5 @@
-<button *ngIf="detail" class="btn btn-outline-warning active toggleEdit" type="button" (click)="_location.back()">Go
+<button *ngIf="detail" class="btn btn-outline-warning active toggleEdit" type="button"
+        (click)="_router.navigate(['/events'])">Go
     Back
 </button>
 <div *ngIf="!edit">
