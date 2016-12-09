@@ -295,9 +295,9 @@
                     &nbsp;Dashboard</a>
 
                 <div  style="display: inline-block;">
-                  <a id="mybutton" (click)="showAlert = !showAlert" class="btn btn-secondary" [routerLink]="['/dashboard']"><i class="fa fa-question"></i>
+                  <button id="mybutton" (click)="showAlert = !showAlert" class="btn btn-secondary"><i class="fa fa-question"></i>
                     Help
-                  </a>
+                  </button>
                     <div *ngIf="showAlert" class="helpdropdown">
                       <h3 class="underlined">Post Issues</h3>
                       Fill in the blanks to bring up an issue that you have found on campus.  Determine the priority level and select “Low, Medium, or High.”  Add the description, location (nearest building), and time. Optionally attach a picture of the issue. Click the “Post Issue” button when finished.
