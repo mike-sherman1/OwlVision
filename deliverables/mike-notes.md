@@ -1,6 +1,7 @@
 TODO FIRST:
-	-push to a web server 000webhost
+	-push to a web server: 000webhost
 		goes to login screen, then blank screen. prob cause db
+        archived, restored, no index found
 	-clean up files
 
 Functionality:
@@ -22,7 +23,7 @@ System infrastructure:
 		Angular CLI
 		WebBack
 		Core UI
-		Heroku (node server)
+		HOSTING: Heroku (node server)
 		Firebase (angular client)
 		AngularFire2 - Integrates Firebase's real-time observers and authentication with Angular2
 		PrimeNG – UI components for Angular 2
