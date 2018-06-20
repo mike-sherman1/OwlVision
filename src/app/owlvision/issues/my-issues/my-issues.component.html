@@ -1,7 +1,0 @@
-<div class="row">
-    <div class="issueCards">
-        <div *ngFor="let issue of issues | async">
-            <issue-card *ngIf="issue.author === id" class="issue-card" [issue]="issue"></issue-card>
-        </div>
-    </div>
-</div>

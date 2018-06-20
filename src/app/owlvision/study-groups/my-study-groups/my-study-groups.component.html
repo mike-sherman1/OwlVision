@@ -1,7 +1,0 @@
-<div class="row">
-    <div class="issueCards">
-        <div *ngFor="let studyGroup of studyGroups | async">
-            <sg-card *ngIf="studyGroup.author === id" class="issue-card" [studyGroup]="studyGroup"></sg-card>
-        </div>
-    </div>
-</div>
